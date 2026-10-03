@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#10130F"/>
+  <circle cx="1010" cy="110" r="240" fill="#223024" opacity=".9"/>
+  <circle cx="1040" cy="110" r="150" fill="#384D39" opacity=".7"/>
+  <text x="90" y="128" fill="#A6B2A2" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="3">MAKMUR LAB</text>
+  <text x="90" y="245" fill="#F4F4EF" font-family="Arial, sans-serif" font-size="66" font-weight="700">Procurement is not just buying.</text>
+  <text x="90" y="323" fill="#F4F4EF" font-family="Arial, sans-serif" font-size="66" font-weight="700">It is a system of decisions.</text>
+  <text x="90" y="415" fill="#A6B2A2" font-family="Arial, sans-serif" font-size="28">Procurement · Systems · Learning · Decision Making</text>
+  <rect x="90" y="482" width="180" height="52" rx="16" fill="#DDE7DA"/>
+  <text x="180" y="516" text-anchor="middle" fill="#141512" font-family="Arial, sans-serif" font-size="20" font-weight="700">Makmur Lab</text>
+</svg>

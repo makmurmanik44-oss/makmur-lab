@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Selected procurement, systems, and professional development projects from Makmur Lab.">
+  <title>Projects — Makmur Lab</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Projects — Makmur Lab">
+  <meta property="og:description" content="Selected public-safe case studies on procurement analytics, governance, supplier lifecycle, and personal operating systems.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Projects — Makmur Lab">
+  <meta name="twitter:description" content="Selected public-safe case studies on procurement analytics, governance, supplier lifecycle, and personal operating systems.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">ML</span><span>Makmur Lab</span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="nav">
+      <a href="about.html" class="">About</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="notes.html" class="">Notes</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <button class="icon-btn theme-toggle" aria-label="Toggle theme">◐</button>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <div class="eyebrow">PROJECTS</div>
+      <h1>Work presented as problems, systems, and lessons.</h1>
+      <p class="lead">
+        The purpose of these case studies is not to expose confidential company information.
+        It is to show the reasoning structure behind the work.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <article class="case" id="control-tower">
+        <div class="case-head">
+          <div>
+            <div class="eyebrow">CASE 01 · ANALYTICS</div>
+            <h2>Procurement Control Tower</h2>
+          </div>
+          <p class="case-summary">
+            Procurement data often exists, but decision visibility is fragmented. This project turns operational
+            data into a single view of suppliers, spend, contracts, open PO, activity, and lifecycle.
+          </p>
+        </div>
+        <div class="case-grid">
+          <div class="case-box"><span>PROBLEM</span><p>Information is distributed across raw PO data, supplier lists, contract records, and manual follow-up.</p></div>
+          <div class="case-box"><span>APPROACH</span><p>Build a single-source structure linking vendor master, spend analytics, contract lifecycle, PO status, and supplier activity.</p></div>
+          <div class="case-box"><span>OUTCOME</span><p>A clearer decision layer for category review, supplier concentration, open commitments, and follow-up priorities.</p></div>
+          <div class="case-box"><span>MY ROLE</span><p>Problem framing, data structure design, workflow logic, dashboard requirements, and iterative testing.</p></div>
+          <div class="case-box"><span>TOOLS</span><p>Google Sheets, Apps Script, structured master data, dashboard logic, and automation.</p></div>
+          <div class="case-box"><span>LESSON</span><p>A dashboard is useful only when the underlying data ownership and definitions are disciplined.</p></div>
+        </div>
+        <div class="case-cta">
+          <a class="btn case-btn" href="procurement-control-tower.html">Open full flagship case study →</a>
+        </div>
+      </article>
+
+      <article class="case" id="quality-gates">
+        <div class="case-head">
+          <div>
+            <div class="eyebrow">CASE 02 · GOVERNANCE</div>
+            <h2>Procurement Quality Gates</h2>
+          </div>
+          <p class="case-summary">
+            Many procurement failures are created before commercial negotiation begins: unclear scope,
+            ambiguous acceptance criteria, missing ownership, or execution before approval.
+          </p>
+        </div>
+        <div class="case-grid">
+          <div class="case-box"><span>PROBLEM</span><p>Procurement can become responsible for outcomes created by upstream ambiguity.</p></div>
+          <div class="case-box"><span>APPROACH</span><p>Define quality checks at requirement, tender, clarification, award, execution, acceptance, and closure stages.</p></div>
+          <div class="case-box"><span>OUTCOME</span><p>Clearer accountability, fewer interpretation gaps, and stronger auditability of key decisions.</p></div>
+          <div class="case-box"><span>MY ROLE</span><p>Translate repeated operational issues into governance questions, controls, and standard checkpoints.</p></div>
+          <div class="case-box"><span>TOOLS</span><p>RACI, scope matrix, MoM, technical-commercial comparison, approval rules, and acceptance criteria.</p></div>
+          <div class="case-box"><span>LESSON</span><p>Governance should reduce decision ambiguity without becoming unnecessary bureaucracy.</p></div>
+        </div>
+      </article>
+
+      <article class="case" id="supplier-lifecycle">
+        <div class="case-head">
+          <div>
+            <div class="eyebrow">CASE 03 · VENDOR MANAGEMENT</div>
+            <h2>Supplier Lifecycle System</h2>
+          </div>
+          <p class="case-summary">
+            A long supplier list does not automatically mean healthy supplier coverage.
+            The important question is who is active, strategic, under-used, duplicated, or creating concentration risk.
+          </p>
+        </div>
+        <div class="case-grid">
+          <div class="case-box"><span>PROBLEM</span><p>Supplier count alone hides dormant vendors, one-time vendors, category gaps, and concentration risk.</p></div>
+          <div class="case-box"><span>APPROACH</span><p>Classify suppliers by activity, category, spend, recency, onboarding age, and actual utilization.</p></div>
+          <div class="case-box"><span>OUTCOME</span><p>Better basis for supplier rationalization, sourcing priorities, category coverage, and performance review.</p></div>
+          <div class="case-box"><span>MY ROLE</span><p>Define segmentation logic and integrate it into broader procurement visibility.</p></div>
+          <div class="case-box"><span>TOOLS</span><p>Vendor master, activity aging, spend segmentation, category mapping, and lifecycle tracking.</p></div>
+          <div class="case-box"><span>LESSON</span><p>Supplier resilience depends on usable capability, not merely the number of names in a database.</p></div>
+        </div>
+      </article>
+
+      <article class="case" id="quest-os">
+        <div class="case-head">
+          <div>
+            <div class="eyebrow">CASE 04 · PERSONAL SYSTEM</div>
+            <h2>Quest OS</h2>
+          </div>
+          <p class="case-summary">
+            Work produces experience, but experience does not automatically become learning.
+            Quest OS is an experiment to make execution, evidence, lessons, and progress visible.
+          </p>
+        </div>
+        <div class="case-grid">
+          <div class="case-box"><span>PROBLEM</span><p>Tasks get completed but lessons, evidence, and reusable patterns can disappear.</p></div>
+          <div class="case-box"><span>APPROACH</span><p>Connect work master, subtasks, missions, evidence, lesson learned, and achievements into one loop.</p></div>
+          <div class="case-box"><span>OUTCOME</span><p>A more deliberate personal operating system for execution and continuous improvement.</p></div>
+          <div class="case-box"><span>MY ROLE</span><p>System owner, workflow designer, user, tester, and continuous improver.</p></div>
+          <div class="case-box"><span>TOOLS</span><p>Google Apps Script, Sheets, workflow logic, scoring, evidence, and review rhythm.</p></div>
+          <div class="case-box"><span>LESSON</span><p>A productivity system fails when maintaining the system becomes heavier than doing the work.</p></div>
+        </div>
+      </article>
+
+      <div class="template">
+        <div class="eyebrow">CASE STUDY TEMPLATE</div>
+        <code>PROJECT TITLE
+
+Context
+What environment or business condition created the problem?
+
+Problem
+What was actually wrong or unclear?
+
+My Role
+What did I personally own, influence, or build?
+
+Constraints
+What made the problem difficult?
+
+Approach
+How did I structure the problem and the decision?
+
+System / Framework
+What repeatable method, workflow, dashboard, or governance was created?
+
+Outcome
+What changed after the work?
+
+Lesson Learned
+What would I do differently next time?
+
+Confidentiality Check
+Remove supplier prices, internal contract language, sensitive operational issues,
+and non-public company data before publishing.</code>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-wrap">
+    <span>© <span data-year></span> Makmur Lab</span>
+    <span>A living laboratory for procurement, systems, and learning.</span>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body></html>

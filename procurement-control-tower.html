@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Procurement Control Tower — a Makmur Lab case study on turning fragmented procurement data into a decision system.">
+  <title>Procurement Control Tower — Makmur Lab</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Procurement Control Tower — Makmur Lab">
+  <meta property="og:description" content="A public-safe case study on turning fragmented procurement data into a structured intelligence and decision layer.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Procurement Control Tower — Makmur Lab">
+  <meta name="twitter:description" content="A public-safe case study on turning fragmented procurement data into a structured intelligence and decision layer.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">ML</span><span>Makmur Lab</span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="nav">
+      <a href="about.html">About</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="notes.html">Notes</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <button class="icon-btn theme-toggle" aria-label="Toggle theme">◐</button>
+  </div>
+</header>
+
+<main>
+  <section class="flagship-hero">
+    <div class="container">
+      <div class="flagship-label">FLAGSHIP CASE STUDY · PROCUREMENT ANALYTICS</div>
+      <div class="flagship-title">
+        <h1>Procurement Control Tower</h1>
+        <p class="lead">
+          Turning fragmented procurement data into a structured decision layer for suppliers,
+          spend, contracts, open commitments, and category visibility.
+        </p>
+      </div>
+
+      <div class="flagship-meta">
+        <div class="flagship-meta-card"><span>DOMAIN</span><strong>Strategic Procurement</strong></div>
+        <div class="flagship-meta-card"><span>ROLE</span><strong>Problem Framing & System Design</strong></div>
+        <div class="flagship-meta-card"><span>TOOLS</span><strong>Google Sheets · Apps Script</strong></div>
+        <div class="flagship-meta-card"><span>STATUS</span><strong>Living System</strong></div>
+      </div>
+
+        <div class="visual-frame">
+          <img src="assets/control-tower-architecture.svg" alt="Architecture diagram for Procurement Control Tower">
+          <div class="visual-note">A simple architecture view: raw data becomes structured data, then reusable intelligence modules, then procurement decisions.</div>
+        </div>
+
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container case-section-grid">
+      <div class="case-kicker">01 · CONTEXT</div>
+      <div class="case-content">
+        <h2>Procurement had data. The harder problem was seeing the business meaning inside it.</h2>
+        <p>
+          ERP and purchasing reports contain transactions, but management questions are rarely transaction questions.
+          The questions are about supplier exposure, activity, category concentration, contract status, open PO,
+          sourcing priorities, and where attention should go next.
+        </p>
+        <div class="thesis-box">
+          The problem was not lack of data. The problem was lack of decision visibility.
+        </div>
+        <div class="visual-frame">
+          <img src="assets/control-tower-dashboard-mockup.svg" alt="Illustrative mockup of Procurement Control Tower dashboard">
+          <div class="visual-note">Illustrative public-safe mockup of a procurement dashboard. This is not a direct screenshot of internal company data.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section alt">
+    <div class="container case-section-grid">
+      <div class="case-kicker">02 · THE PROBLEM</div>
+      <div class="case-content">
+        <h2>The data existed in different places, with different definitions and different purposes.</h2>
+        <p>
+          A buyer could answer an individual question manually. But repeated manual analysis creates
+          inconsistent logic, slow review cycles, and dependency on whoever remembers how the data was interpreted last time.
+        </p>
+
+        <div class="problem-grid">
+          <div class="problem-card"><span>SUPPLIERS</span><strong>Who is active, new, dormant, one-time, or under-utilized?</strong></div>
+          <div class="problem-card"><span>SPEND</span><strong>Where is spend concentrated by vendor, category, and period?</strong></div>
+          <div class="problem-card"><span>CONTRACTS</span><strong>Which agreements are active, expiring, or require follow-up?</strong></div>
+          <div class="problem-card"><span>OPEN PO</span><strong>What remains open, aging, partially received, or at risk?</strong></div>
+          <div class="problem-card"><span>CATEGORIES</span><strong>Which areas have healthy coverage and which rely on too few capable suppliers?</strong></div>
+          <div class="problem-card"><span>DECISION</span><strong>Which issue deserves procurement attention now—not after the next report cycle?</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container case-section-grid">
+      <div class="case-kicker">03 · HYPOTHESIS</div>
+      <div class="case-content">
+        <h2>Build one procurement intelligence layer instead of another isolated report.</h2>
+        <p>
+          The working hypothesis was simple: if core supplier, category, contract, PO, and lifecycle definitions
+          are structured consistently, multiple procurement questions can be answered from the same foundation.
+        </p>
+        <div class="thesis-box">
+          Single source → consistent logic → reusable insight → faster procurement decisions.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section alt">
+    <div class="container case-section-grid">
+      <div class="case-kicker">04 · SYSTEM ARCHITECTURE</div>
+      <div class="case-content">
+        <h2>From raw transactions to decision intelligence.</h2>
+        <p>
+          The architecture separates raw operational data from master data, analytical logic, and the final decision views.
+          This matters because dashboards should not become the place where business definitions are improvised.
+        </p>
+
+        <div class="architecture">
+          <div class="arch-layer">
+            <div class="arch-layer-title">SOURCE LAYER</div>
+            <div class="arch-items">
+              <span class="arch-item">PO Raw / ERP Export</span>
+              <span class="arch-item">Receiving / Realization Data</span>
+              <span class="arch-item">Contract Records</span>
+            </div>
+          </div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-layer">
+            <div class="arch-layer-title">DATA FOUNDATION</div>
+            <div class="arch-items">
+              <span class="arch-item">Vendor Master</span>
+              <span class="arch-item">Category & Sub-category Mapping</span>
+              <span class="arch-item">Contract Master</span>
+              <span class="arch-item">Managed Item Setup</span>
+              <span class="arch-item">Demand Profile</span>
+            </div>
+          </div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-layer">
+            <div class="arch-layer-title">INTELLIGENCE MODULES</div>
+            <div class="arch-items">
+              <span class="arch-item">Spend Intelligence</span>
+              <span class="arch-item">Supplier Lifecycle</span>
+              <span class="arch-item">Contract Lifecycle</span>
+              <span class="arch-item">Open PO Aging</span>
+              <span class="arch-item">Vendor Activity</span>
+              <span class="arch-item">Transporter Mapping</span>
+            </div>
+          </div>
+          <div class="arch-arrow">↓</div>
+          <div class="arch-layer primary">
+            <div class="arch-layer-title">DECISION LAYER</div>
+            <div class="arch-items">
+              <span class="arch-item">Category Review</span>
+              <span class="arch-item">Supplier Priorities</span>
+              <span class="arch-item">Contract Follow-up</span>
+              <span class="arch-item">Open Commitment Control</span>
+              <span class="arch-item">Sourcing Opportunities</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container case-section-grid">
+      <div class="case-kicker">05 · KEY MODULES</div>
+      <div class="case-content">
+        <h2>The system is modular because procurement questions evolve.</h2>
+        <p>
+          Instead of building one giant dashboard, the system is separated into modules that share the same underlying structure.
+          A module can improve without breaking the whole system.
+        </p>
+
+        <div class="module-grid">
+          <article class="module-card"><span class="module-no">01</span><h3>Vendor Intelligence</h3><p>Supplier profile, category coverage, activity, last PO, total spend, PO frequency, and vendor status.</p></article>
+          <article class="module-card"><span class="module-no">02</span><h3>Spend Intelligence</h3><p>Spend trends, vendor concentration, category mix, yearly comparison, and drill-down from summary to PO detail.</p></article>
+          <article class="module-card"><span class="module-no">03</span><h3>Supplier Lifecycle</h3><p>New vendor, active, dormant, one-time, and aging logic to distinguish supplier count from actual supplier capability.</p></article>
+          <article class="module-card"><span class="module-no">04</span><h3>Contract Lifecycle</h3><p>Visibility of active agreements, expiry horizon, follow-up status, ownership, and contract-related actions.</p></article>
+          <article class="module-card"><span class="module-no">05</span><h3>Open PO Monitoring</h3><p>Qty ordered, received, open balance, percentage received, and aging to reveal outstanding commitments.</p></article>
+          <article class="module-card"><span class="module-no">06</span><h3>Transport Intelligence</h3><p>Transporter mapping, regional activity, volume and trip pattern, vendor usage, and potential rationalization.</p></article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section alt">
+    <div class="container case-section-grid">
+      <div class="case-kicker">06 · BEFORE / AFTER</div>
+      <div class="case-content">
+        <h2>The intended change is not “more charts.” It is less decision friction.</h2>
+
+        <div class="before-after">
+          <div class="ba-card">
+            <div class="ba-label">BEFORE</div>
+            <div class="flow-line">
+              <span class="step">Raw Data</span><span class="arrow">→</span>
+              <span class="step">Manual Report</span><span class="arrow">→</span>
+              <span class="step">Manual Analysis</span><span class="arrow">→</span>
+              <span class="step">Decision</span>
+            </div>
+          </div>
+          <div class="ba-card after">
+            <div class="ba-label">AFTER</div>
+            <div class="flow-line">
+              <span class="step">Raw Data</span><span class="arrow">→</span>
+              <span class="step">Structured Model</span><span class="arrow">→</span>
+              <span class="step">Procurement Intelligence</span><span class="arrow">→</span>
+              <span class="step">Decision</span>
+            </div>
+          </div>
+        </div>
+
+        <p style="margin-top:28px">
+          The target is not to eliminate judgment. The target is to remove repetitive preparation so judgment can focus on
+          the question that actually requires experience and management attention.
+        </p>
+        <div class="visual-frame">
+          <img src="assets/control-tower-flow.svg" alt="Before and after decision flow">
+          <div class="visual-note">The main shift is from repetitive manual preparation toward a structured intelligence layer that supports faster review and escalation.</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="case-section alt">
+    <div class="container case-section-grid">
+      <div class="case-kicker">07 · CONSTRAINTS</div>
+      <div class="case-content">
+        <h2>The design had to work inside real operational constraints.</h2>
+        <p>
+          The project was not built in a clean data environment. The system had to remain usable while data definitions,
+          master data quality, reporting needs, and the technical platform were still evolving.
+        </p>
+
+        <div class="constraint-grid">
+          <article class="constraint-card">
+            <span>DATA QUALITY</span>
+            <h3>Master data was not always analysis-ready.</h3>
+            <p>Vendor names, category mapping, dates, and transaction definitions needed normalization before the dashboard could become reliable.</p>
+          </article>
+          <article class="constraint-card">
+            <span>PLATFORM</span>
+            <h3>Sheets and Apps Script are powerful, but not unlimited.</h3>
+            <p>Performance, formula complexity, and maintainability become real design constraints as data volume and modules grow.</p>
+          </article>
+          <article class="constraint-card">
+            <span>BUSINESS LOGIC</span>
+            <h3>Definitions had to become explicit.</h3>
+            <p>Terms such as active, dormant, new, one-time, open, aging, and realized require agreed rules—not visual interpretation.</p>
+          </article>
+          <article class="constraint-card">
+            <span>ADOPTION</span>
+            <h3>A technically correct system can still fail operationally.</h3>
+            <p>The output must answer actual procurement questions and fit review rhythms, otherwise users return to manual reports.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container case-section-grid">
+      <div class="case-kicker">08 · MY ROLE</div>
+      <div class="case-content">
+        <h2>I owned the bridge between procurement questions and the working system.</h2>
+        <p>
+          My contribution was not limited to preparing reports. I translated recurring procurement questions into data structures,
+          business rules, modules, and review views that could be reused.
+        </p>
+
+        <div class="role-grid">
+          <div class="role-card"><h3>Problem framing</h3><p>Convert repeated management and procurement questions into explicit system requirements.</p></div>
+          <div class="role-card"><h3>Information architecture</h3><p>Define how PO data, vendor master, categories, contracts, managed items, and lifecycle data relate to one another.</p></div>
+          <div class="role-card"><h3>Business-rule design</h3><p>Define repeatable logic for supplier status, activity windows, open PO, aging, realization, and category mapping.</p></div>
+          <div class="role-card"><h3>Prototype & automation</h3><p>Build and iterate the working solution using Google Sheets and Apps Script rather than stopping at a presentation concept.</p></div>
+          <div class="role-card"><h3>Review with users</h3><p>Test whether outputs answer operational and management questions, then adjust the structure when the logic is not useful enough.</p></div>
+          <div class="role-card"><h3>System ownership</h3><p>Treat recurring issues, performance limitations, and new needs as inputs for the next version of the system.</p></div>
+        </div>
+      </div>
+    </div></section>
+
+  
+  <section class="case-section alt">
+    <div class="container case-section-grid">
+      <div class="case-kicker">09 · IMPACT & EVIDENCE</div>
+      <div class="case-content">
+        <h2>I separate demonstrated capability from impact that still needs measurement.</h2>
+        <p>
+          A portfolio becomes less credible when it turns every project into an unverified success story.
+          For this system, the strongest evidence today is what the system can already make visible and repeatable.
+        </p>
+
+        <div class="impact-grid">
+          <div class="impact-column">
+            <div class="impact-label">DEMONSTRATED</div>
+            <ul class="impact-list">
+              <li>One structured view across supplier, spend, PO, contract, category, and lifecycle information.</li>
+              <li>Drill-down logic from summary views into supporting procurement transactions.</li>
+              <li>Repeatable classification of supplier lifecycle and open-PO status.</li>
+              <li>Year-on-year and monthly trend views for procurement review.</li>
+              <li>A foundation that can support category, supplier, and sourcing discussions from a shared data model.</li>
+            </ul>
+          </div>
+          <div class="impact-column muted-impact">
+            <div class="impact-label">NOT YET CLAIMED WITHOUT MEASUREMENT</div>
+            <ul class="impact-list">
+              <li>Exact hours of manual work saved.</li>
+              <li>Exact procurement cost savings caused by the dashboard.</li>
+              <li>Quantified reduction in decision cycle time.</li>
+              <li>Quantified improvement in supplier performance.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout-strip">
+          The next maturity step is to add an impact baseline: report-preparation time, review cycle time,
+          exception closure rate, and decisions/actions generated from the system.
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="case-section alt">
+    <div class="container case-section-grid">
+      <div class="case-kicker">10 · WHAT I LEARNED</div>
+      <div class="case-content">
+        <h2>The hardest part of automation is usually not automation.</h2>
+
+        <div class="callout-strip">Good procurement dashboards should not be judged by how much they display, but by how clearly they help the team decide what needs attention next.</div><div class="lesson-list">
+          <div class="lesson-row">
+            <span class="lesson-no">01</span>
+            <div><strong>A dashboard cannot repair weak master data.</strong><p>Automation makes inconsistent definitions travel faster. Data ownership and taxonomy come first.</p></div>
+          </div>
+          <div class="lesson-row">
+            <span class="lesson-no">02</span>
+            <div><strong>Every metric needs a management question behind it.</strong><p>If a chart does not change an action, priority, escalation, or decision, it may only be visual noise.</p></div>
+          </div>
+          <div class="lesson-row">
+            <span class="lesson-no">03</span>
+            <div><strong>Systems should reduce maintenance burden.</strong><p>A useful procurement system cannot require more effort to maintain than the manual process it replaces.</p></div>
+          </div>
+          <div class="lesson-row">
+            <span class="lesson-no">04</span>
+            <div><strong>The system needs a lifecycle, too.</strong><p>Modules should be reviewed, simplified, retired, or redesigned as procurement priorities change.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="case-section">
+    <div class="container case-section-grid">
+      <div class="case-kicker">11 · NEXT VERSION</div>
+      <div class="case-content">
+        <div class="next-version">
+          <h2>From dashboard to procurement operating system.</h2>
+          <p>
+            The next evolution is not simply adding more charts. It is connecting visibility with action:
+            ownership, review cadence, exception triggers, supplier follow-up, sourcing pipeline, and decision records.
+          </p>
+          <div class="chips">
+            <span class="chip">Exception-based review</span>
+            <span class="chip">Action ownership</span>
+            <span class="chip">Decision log</span>
+            <span class="chip">Supplier risk</span>
+            <span class="chip">Category strategy</span>
+            <span class="chip">Database migration</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="case-section confidentiality-section">
+    <div class="container">
+      <div class="confidentiality-box">
+        <div>
+          <div class="case-kicker">PUBLIC PORTFOLIO NOTE</div>
+          <h2>What you see here is intentionally sanitized.</h2>
+        </div>
+        <p>
+          Screens, figures, supplier names, values, and examples on this page are illustrative or generalized.
+          Non-public company data, supplier pricing, contract clauses, internal operational issues, and personally identifiable information are not published.
+          The purpose of this case study is to communicate the problem-solving approach and system architecture.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="container project-nav">
+    <a href="projects.html">← All projects</a>
+    <a href="notes.html">Explore thinking & notes →</a>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-wrap">
+    <span>© <span data-year></span> Makmur Lab</span>
+    <span>A living laboratory for procurement, systems, and learning.</span>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

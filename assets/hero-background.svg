@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900">
+ <defs><linearGradient id="room" x2="1" y2="1"><stop stop-color="#26394b"/><stop offset="1" stop-color="#101820"/></linearGradient></defs>
+ <rect width="1600" height="900" fill="url(#room)"/>
+ <path d="M0 590 1600 520V900H0Z" fill="#35434f"/>
+ <g transform="translate(920 300) rotate(-6)">
+  <rect width="460" height="280" rx="16" fill="#101a25" stroke="#718294" stroke-width="5"/>
+  <rect x="20" y="20" width="420" height="240" rx="4" fill="#203a4b"/>
+  <g fill="#75949f"><rect x="45" y="48" width="115" height="10" rx="5"/><rect x="45" y="78" width="65" height="40" rx="4"/><rect x="125" y="78" width="65" height="40" rx="4"/><rect x="205" y="78" width="65" height="40" rx="4"/></g>
+  <path d="M45 210 100 195 150 201 200 164 250 174 310 142 375 130" fill="none" stroke="#8bb9b1" stroke-width="6"/>
+  <path d="M0 280H460L520 335H-60Z" fill="#7b8994"/><path d="M155 302H305L323 320H137Z" fill="#526575"/>
+ </g>
+ <g transform="translate(740 655) rotate(-12)"><rect width="215" height="155" rx="8" fill="#bbc0b8"/><path d="M25 30H185M25 55H185M25 80H160M25 105H175" stroke="#78847e" stroke-width="3"/><path d="M190 0V155" stroke="#556666" stroke-width="6"/></g>
+ <g transform="translate(1350 650)"><path d="M-55 0V85Q0 120 55 85V0" fill="#84918f"/><ellipse rx="55" ry="28" fill="#b4bab0"/><ellipse rx="44" ry="20" fill="#362e29"/><path d="M55 18Q110 18 95 60Q85 80 55 65" fill="none" stroke="#84918f" stroke-width="14"/></g>
+</svg>

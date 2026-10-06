@@ -4,12 +4,14 @@ import { ArrowRight, ArrowUpRight, Layers3, Route } from "lucide-react";
 import { LivingCover } from "@/components/home/living-cover";
 import { ArticleCard } from "@/components/cards/article-card";
 import { Container, SectionHeading, Badge } from "@/components/ui/primitives";
-import { domains, knowledge } from "@/content/seed";
+import { domains } from "@/content/taxonomy";
+import { getKnowledgeEntries } from "@/content/library";
 import { displayDate } from "@/lib/date";
 
 export const metadata: Metadata = { alternates: { canonical: "./" } };
 
-export default function Home() {
+export default async function Home() {
+  const knowledge = await getKnowledgeEntries();
   return (
     <>
       <LivingCover />

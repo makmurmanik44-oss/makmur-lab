@@ -2,10 +2,17 @@
 
 import { useEffect, useState } from "react";
 import { ArticleCard } from "@/components/cards/article-card";
-import { domains, knowledge } from "@/content/seed";
+import { domains } from "@/content/taxonomy";
+import type { KnowledgeEntry } from "@/types/knowledge";
 import { ButtonLink } from "@/components/ui/primitives";
 
-export function Discovery({ search = false }: { search?: boolean }) {
+export function Discovery({
+  entries,
+  search = false,
+}: {
+  entries: KnowledgeEntry[];
+  search?: boolean;
+}) {
   const [domain, setDomain] = useState("all");
   const [query, setQuery] = useState("");
   useEffect(() => {
@@ -19,11 +26,11 @@ export function Discovery({ search = false }: { search?: boolean }) {
     return () => cancelAnimationFrame(frame);
   }, []);
   const words = query.toLowerCase().trim().split(/\s+/).filter(Boolean);
-  const results = knowledge.filter(
+  const results = entries.filter(
     (entry) =>
       (domain === "all" || entry.domain === domain) &&
       words.every((word) =>
-        `${entry.title} ${entry.summary} ${entry.topic} ${entry.tags.join(" ")} ${entry.sections.map((section) => section.text).join(" ")}`
+        `${entry.title} ${entry.summary} ${entry.topic} ${entry.tags.join(" ")} ${entry.searchText}`
           .toLowerCase()
           .includes(word),
       ),

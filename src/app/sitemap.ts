@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 import { site, navigation } from "@/config/site";
-import { knowledge } from "@/content/seed";
+import { getKnowledgeEntries } from "@/content/library";
 export const dynamic = "force-static";
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const knowledge = await getKnowledgeEntries();
   const routes = [
     ...navigation.map((item) => item.href),
     "/search",
@@ -11,7 +12,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   return routes.map((route) => ({
     url: `${site.url}${route === "/" ? "/" : `${route}/`}`,
-    lastModified: "2026-10-05",
+    lastModified:
+      knowledge.find((entry) => route === `/articles/${entry.slug}`)?.updated ||
+      "2026-10-06",
     changeFrequency: "monthly",
   }));
 }

@@ -1,26 +1,37 @@
 {
   "name": "makmur-lab",
-  "version": "0.1.0-alpha.1",
+  "version": "0.2.0-alpha.2",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
+    "prebuild": "npm run content:check",
+    "content:check": "node --import tsx scripts/content-check.ts",
+    "test": "node --import tsx --test tests/*.test.ts",
     "typecheck": "next typegen && tsc --noEmit",
     "lint": "eslint .",
-    "format:check": "prettier --check src docs *.json *.mjs *.ts",
-    "format": "prettier --write src docs *.json *.mjs *.ts"
+    "format:check": "prettier --check src content docs scripts tests *.json *.mjs *.ts",
+    "format": "prettier --write src content docs scripts tests *.json *.mjs *.ts"
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.2.8",
     "@fontsource-variable/source-serif-4": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
+    "@mdx-js/mdx": "^3.1.1",
+    "github-slugger": "^2.0.0",
     "lucide-react": "1.52.0",
     "next": "16.3.8",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "remark-gfm": "^4.0.1",
+    "server-only": "^0.0.1",
+    "yaml": "^2.9.1",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "4.3.3",
+    "@types/mdast": "^4.0.4",
     "@types/node": "^22.19.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
@@ -29,6 +40,7 @@
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "tailwindcss": "4.3.3",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.3"
   }
 }

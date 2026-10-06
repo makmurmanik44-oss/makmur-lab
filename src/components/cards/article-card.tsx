@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, Clock3 } from "lucide-react";
-import { domainTitle } from "@/content/seed";
+import { domainTitle } from "@/content/taxonomy";
 import { KnowledgeBadges } from "@/components/knowledge/knowledge-badges";
 import type { KnowledgeEntry } from "@/types/knowledge";
 

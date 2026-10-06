@@ -1,5 +1,15 @@
 # Development changelog
 
+## Alpha MDX engine 2026-10-06
+
+- Continued from migration commit `0dfe1fca470c4ed315d6ad4b99b3cbb5e244510f` without rebuilding the foundation.
+- Moved the three existing learning notes to MDX with unchanged slugs and core explanations.
+- Added validated YAML frontmatter, reference records, visible knowledge debt, publication control, and derived reading times, anchors, and search text.
+- Routed Home, Knowledge, Atlas, article metadata/detail, Search, and sitemap through one content loader.
+- Added reference rendering, a static Callout, and Markdown table/code/blockquote styling.
+- Added related W3C reading to the data-definition note with explicit relevance and limits; retained Developing maturity.
+- Added the authoring template/guide, content checks before build, and focused rejection tests in CI.
+
 ## Alpha foundation 2026-10-05
 
 - Audited main at `7afdeff47311e347c4a2f06329515b01c05cf6d9`: six static HTML pages, GitHub Pages workflow, sanitized diagrams, no existing framework or package tooling.
@@ -16,8 +26,7 @@
 
 ## Next sprint
 
-- Replace the typed seed registry with validated MDX/file-based authoring.
 - Add primary-source references and field validation before promoting seed notes to Stable.
-- Improve full-text indexing as the collection grows; the Alpha search only covers seed notes.
+- Improve full-text indexing as the MDX collection grows.
 - Add detailed content debt and review scheduling to the editorial workflow.
 - Configure and verify Vercel, final canonical URLs, domain, analytics choice, and production indexing before retiring the legacy release.

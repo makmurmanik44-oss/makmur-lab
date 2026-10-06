@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { domains, knowledge, learningPaths } from "@/content/seed";
+import { domains, learningPaths } from "@/content/taxonomy";
+import { getKnowledgeEntries } from "@/content/library";
 import { PageIntro } from "@/components/common/page-intro";
 import { Container } from "@/components/ui/primitives";
 export const metadata: Metadata = {
   title: "Knowledge Atlas",
   alternates: { canonical: "./atlas/" },
 };
-export default function Atlas() {
+export default async function Atlas() {
+  const knowledge = await getKnowledgeEntries();
   return (
     <>
       <PageIntro

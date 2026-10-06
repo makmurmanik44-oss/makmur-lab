@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { PageIntro } from "@/components/common/page-intro";
 import { Container } from "@/components/ui/primitives";
 import { Discovery } from "@/components/knowledge/discovery";
+import { getKnowledgeEntries } from "@/content/library";
 export const metadata: Metadata = {
   title: "Knowledge",
   alternates: { canonical: "./articles/" },
 };
-export default function Articles() {
+export default async function Articles() {
+  const entries = await getKnowledgeEntries();
   return (
     <>
       <PageIntro
@@ -16,7 +18,7 @@ export default function Articles() {
       />
       <section className="page-content">
         <Container>
-          <Discovery />
+          <Discovery entries={entries} />
         </Container>
       </section>
     </>

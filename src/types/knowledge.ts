@@ -22,9 +22,19 @@ export type KnowledgeEntry = {
   updated: string;
   lastReviewed: string;
   featured: boolean;
+  published: boolean;
   prerequisites: string[];
   relatedKnowledge: string[];
-  references: { title: string; url: string }[];
-  sections: { title: string; text: string; steps?: string[] }[];
+  references: {
+    id: string;
+    title: string;
+    url: string;
+    publisher: string;
+    accessed: string;
+    note: string;
+  }[];
+  knowledgeDebt: string[];
+  toc: { id: string; title: string; depth: number }[];
+  searchText: string;
   revisionHistory: { date: string; note: string }[];
 };

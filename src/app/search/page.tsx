@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { PageIntro } from "@/components/common/page-intro";
 import { Container } from "@/components/ui/primitives";
 import { Discovery } from "@/components/knowledge/discovery";
+import { getKnowledgeEntries } from "@/content/library";
 export const metadata: Metadata = { title: "Search" };
-export default function SearchPage() {
+export default async function SearchPage() {
+  const entries = await getKnowledgeEntries();
   return (
     <>
       <PageIntro
@@ -13,7 +15,7 @@ export default function SearchPage() {
       />
       <section className="page-content">
         <Container>
-          <Discovery search />
+          <Discovery entries={entries} search />
         </Container>
       </section>
     </>

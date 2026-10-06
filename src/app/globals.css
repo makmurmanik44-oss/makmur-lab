@@ -859,6 +859,72 @@ main:focus {
   text-decoration: underline;
   text-underline-offset: 4px;
 }
+.prose h4,
+.prose h5,
+.prose h6 {
+  font-family: "Geist Variable", Arial, sans-serif;
+  margin-top: 24px;
+  scroll-margin-top: 120px;
+}
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+}
+.prose blockquote,
+.reading-callout {
+  padding: 18px 24px;
+  margin: 28px 0;
+  background: var(--tinted);
+  border-left: 3px solid var(--accent);
+  overflow-wrap: anywhere;
+}
+.prose .reading-callout-title {
+  font-family: "Geist Variable", Arial, sans-serif;
+  font-weight: 600;
+  margin-top: 0;
+}
+.reading-callout h3 {
+  margin-top: 0;
+}
+.reading-table-scroll {
+  overflow-x: auto;
+  margin-block: 24px;
+}
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 16px;
+}
+.prose th,
+.prose td {
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  text-align: left;
+}
+.prose th {
+  background: var(--tinted);
+}
+.prose code {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75em;
+  overflow-wrap: anywhere;
+}
+.prose pre {
+  padding: 20px;
+  overflow-x: auto;
+  background: var(--tinted);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  line-height: 1.6;
+}
+.prose pre code {
+  overflow-wrap: normal;
+}
+.prose .reference-list li {
+  scroll-margin-top: 120px;
+  overflow-wrap: anywhere;
+}
 .reading-label {
   font-family: "Geist Variable", Arial, sans-serif;
   font-size: 12px;

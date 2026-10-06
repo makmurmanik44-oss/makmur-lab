@@ -1,0 +1,79 @@
+---
+slug: data-definitions-before-dashboards
+title: Data definitions before dashboards
+summary: Start with the decision and the meaning of a metric before choosing how
+  to visualize it.
+domain: technology
+topic: Information foundations
+tags:
+  - Data
+  - Metrics
+  - Decision visibility
+difficulty: Foundation
+knowledgeStatus: Learning
+contentMaturity: Developing
+updated: 2026-10-06
+lastReviewed: 2026-10-05
+featured: false
+prerequisites: []
+relatedKnowledge:
+  - scope-clarity-before-sourcing
+references:
+  - id: w3c-dqv
+    title: "Data on the Web Best Practices: Data Quality Vocabulary"
+    url: https://www.w3.org/TR/vocab-dqv/
+    publisher: W3C — Working Group Note
+    accessed: 2026-10-06
+    note: Sections 3 and 4 distinguish a quality metric from a measurement and
+      describe metadata for judging fitness for purpose. This supports the
+      general need to describe a measure; it does not validate the procurement
+      definition card or prescribe supplier activity windows.
+revisionHistory:
+  - date: 2026-10-05
+    note:
+      Initial Alpha learning note. Examples are fictional and calculations are
+      not operational business rules.
+  - date: 2026-10-06
+    note: Migrated to MDX and added related W3C reading with its scope and
+      limitations. Field validation remains open.
+published: true
+knowledgeDebt:
+  - Test the proposed definition card against a real management question using
+    sanitized evidence.
+  - Add references specific to purchasing metrics and review their limitations.
+---
+
+## Executive summary
+
+Two charts can be internally correct while telling different stories because they use different definitions. A useful metric needs a management question, a scope, a calculation, a source, and an owner.
+
+## Context
+
+Terms such as active supplier, open order, and realized spend are not self-explanatory. Their meaning depends on time windows, transaction status, and whether taxes or cancellations are included.
+
+## A metric definition card
+
+Capture the definition alongside the data model so it can be reviewed rather than recreated in each chart.
+
+1. Question: which decision should this metric support?
+2. Definition: what is counted, over which period, and with which exclusions?
+3. Source: which records support the calculation?
+4. Ownership: who maintains the definition and investigates exceptions?
+
+## Practical example
+
+In a fictional dashboard, active supplier could mean one order in 3, 6, or 12 months. Those windows answer different questions. Label the chosen window and test it against the category's normal purchasing cycle before treating a supplier as dormant.
+
+## Key takeaways
+
+Review one metric definition before adding another chart. Automation can make a definition repeatable; it cannot establish that the definition is appropriate.
+
+## Related reading
+
+The [W3C Data Quality Vocabulary](#reference-w3c-dqv) distinguishes a metric from a measurement and describes metadata that helps a reader assess fitness for purpose. This Working Group Note offers a useful conceptual connection. Applying that distinction to a purchasing dashboard is an interpretation in this developing note; the source does not prescribe a procurement metric.
+
+<Callout title="Scope of the reference">
+
+The definition card above is a proposed working aid. One related source does not establish that every example or recommendation has been validated.
+
+</Callout>

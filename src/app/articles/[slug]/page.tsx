@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { knowledge, domainTitle } from "@/content/seed";
+import { domainTitle } from "@/content/taxonomy";
+import { getKnowledgeDocument, getKnowledgeEntries } from "@/content/library";
 import { PageIntro } from "@/components/common/page-intro";
 import { Container } from "@/components/ui/primitives";
 import { KnowledgeBadges } from "@/components/knowledge/knowledge-badges";
+import { MdxBody } from "@/components/knowledge/mdx-body";
 
-export function generateStaticParams() {
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const knowledge = await getKnowledgeEntries();
   return knowledge.map((entry) => ({ slug: entry.slug }));
 }
 export async function generateMetadata({
@@ -15,7 +20,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const entry = knowledge.find((item) => item.slug === slug);
+  const entry = (await getKnowledgeDocument(slug))?.entry;
   return entry
     ? {
         title: entry.title,
@@ -30,8 +35,10 @@ export default async function Article({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const entry = knowledge.find((item) => item.slug === slug);
-  if (!entry) notFound();
+  const document = await getKnowledgeDocument(slug);
+  if (!document) notFound();
+  const { entry, compiled } = document;
+  const knowledge = await getKnowledgeEntries();
   return (
     <>
       <PageIntro
@@ -45,12 +52,15 @@ export default async function Article({
             <aside className="reading-sidebar">
               <p className="eyebrow">In this note</p>
               <nav aria-label="Article sections">
-                {entry.sections.map((section, index) => (
-                  <a href={`#section-${index}`} key={section.title}>
-                    {section.title}
-                  </a>
-                ))}
+                {entry.toc
+                  .filter((section) => section.depth <= 3)
+                  .map((section) => (
+                    <a href={`#${section.id}`} key={section.id}>
+                      {section.title}
+                    </a>
+                  ))}
                 <a href="#related">Related knowledge</a>
+                <a href="#references">References & known gaps</a>
                 <a href="#revisions">Revision history</a>
               </nav>
             </aside>
@@ -106,40 +116,60 @@ export default async function Article({
                   </div>
                   <div>
                     <dt>Reference status</dt>
-                    <dd>Editorial framework; external references pending</dd>
+                    <dd>
+                      {entry.references.length
+                        ? `${entry.references.length} related ${entry.references.length === 1 ? "source" : "sources"}`
+                        : "External references pending"}
+                      {entry.knowledgeDebt.length
+                        ? " · evidence gaps remain"
+                        : ""}
+                    </dd>
                   </div>
                 </dl>
               </div>
               <div className="prose">
-                {entry.sections.map((section, index) => (
-                  <section key={section.title}>
-                    <h2 id={`section-${index}`}>{section.title}</h2>
-                    <p>{section.text}</p>
-                    {section.steps && (
-                      <ol>
-                        {section.steps.map((step) => (
-                          <li key={step}>{step}</li>
-                        ))}
-                      </ol>
-                    )}
-                  </section>
-                ))}
+                <MdxBody compiled={compiled} />
                 <h2 id="related">Related knowledge</h2>
-                <div className="related-links">
-                  {entry.relatedKnowledge.map((s) => (
-                    <Link prefetch={false} key={s} href={`/articles/${s}`}>
-                      {knowledge.find((item) => item.slug === s)?.title} →
-                    </Link>
-                  ))}
-                </div>
+                {entry.relatedKnowledge.length ? (
+                  <div className="related-links">
+                    {entry.relatedKnowledge.map((s) => (
+                      <Link prefetch={false} key={s} href={`/articles/${s}`}>
+                        {knowledge.find((item) => item.slug === s)?.title} →
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <p>No related note has been linked yet.</p>
+                )}
                 <h2 id="references">References & known gaps</h2>
-                <p>
-                  These Alpha notes present proposed ways of thinking and
-                  fictional examples. They do not claim to be externally
-                  validated standards. External references and practical
-                  validation remain knowledge debt for the next editorial
-                  review.
-                </p>
+                {entry.references.length ? (
+                  <ol className="reference-list">
+                    {entry.references.map((reference) => (
+                      <li id={`reference-${reference.id}`} key={reference.id}>
+                        <a href={reference.url}>{reference.title}</a>
+                        <p className="reading-label">
+                          {reference.publisher} · Accessed{" "}
+                          <time dateTime={reference.accessed}>
+                            {reference.accessed}
+                          </time>
+                        </p>
+                        <p>{reference.note}</p>
+                      </li>
+                    ))}
+                  </ol>
+                ) : (
+                  <p>No external source has been added to this note yet.</p>
+                )}
+                {entry.knowledgeDebt.length > 0 && (
+                  <div className="reading-callout">
+                    <h3>Open knowledge debt</h3>
+                    <ul>
+                      {entry.knowledgeDebt.map((gap) => (
+                        <li key={gap}>{gap}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 <h2 id="revisions">Revision history</h2>
                 {entry.revisionHistory.map((revision) => (
                   <p className="reading-label" key={revision.date}>

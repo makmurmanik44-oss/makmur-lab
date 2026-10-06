@@ -6,6 +6,10 @@ import type {
 } from "../types/knowledge";
 import { domainTitle, domains } from "../content/taxonomy";
 import type { ResourceDefinition } from "../content/resources";
+import {
+  examplePath,
+  type ResourceExample,
+} from "../content/resource-examples";
 
 export type SearchKind = "article" | "resource";
 export type SearchState = {
@@ -76,6 +80,7 @@ export function writeSearchState(params: URLSearchParams, state: SearchState) {
 export function buildSearchDocuments(
   entries: KnowledgeEntry[],
   resources: ResourceDefinition[],
+  examples: ResourceExample[] = [],
 ): SearchDocument[] {
   const published = entries.filter((entry) => entry.published);
   const visible = new Set(published.map((entry) => entry.slug));
@@ -127,6 +132,46 @@ export function buildSearchDocuments(
           ]),
         ].join(" "),
       })),
+    ...examples
+      .filter((example) =>
+        resources.some(
+          (resource) =>
+            resource.slug === example.resourceSlug &&
+            visible.has(resource.articleSlug),
+        ),
+      )
+      .map((example): SearchDocument => {
+        const resource = resources.find(
+          (item) => item.slug === example.resourceSlug,
+        )!;
+        return {
+          id: `example:${example.resourceSlug}`,
+          href: examplePath(example),
+          title: example.title,
+          summary: example.learningGoal,
+          domain: resource.domain,
+          kind: "resource",
+          format: "Worked example",
+          updated: example.updated,
+          maturity: "Developing",
+          keywords: `${domainTitle(resource.domain)} ${resource.title} fictional filled worked example printable Markdown`,
+          body: [
+            example.scenario,
+            example.limitation,
+            example.conclusion,
+            example.nextStep,
+            ...example.sections.flatMap((section) => [
+              section.reasoning,
+              ...(section.checks || []).map(
+                (check) => `${check.check} ${check.response}`,
+              ),
+              ...(section.fields || []).map(
+                (field) => `${field.label} ${field.value}`,
+              ),
+            ]),
+          ].join(" "),
+        };
+      }),
   ];
 }
 

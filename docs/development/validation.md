@@ -1,5 +1,16 @@
 # Alpha validation
 
+## Worked examples and review milestone 2026-10-06
+
+- Production export, TypeScript, ESLint, Prettier, sixteen test groups, and diff checks pass. All 22 pages have valid canonical URLs and Open Graph assets; the export guard requires the review page, four examples, and byte-consistent example downloads.
+- Four examples answer every original check and field. Tests reject missing/duplicate/mismatched answers, invalid states/dates, empty reasoning, invalid gap metadata, and premature Stable maturity. Search tests cover example answers and supporting-note publication boundaries.
+- All 22 routes return 200 with one H1 and unique DOM IDs at 360, 390, 768, and 1440 pixels. No document overflow or browser JavaScript errors were observed. Desktop/mobile example, catalog, and review layouts were visually inspected.
+- Browser checks pass for all example/blank return links, every answer and fiction notice, four actual Markdown downloads, print invocation, review-to-gap anchors, article-to-review navigation, and Planned/Due today/Overdue transitions at the Jakarta calendar boundary.
+- Search shows four notes and eight resources, including the four worked examples. Filled-answer excerpts, combined filters, actual clipboard copy, reload, result navigation, history restoration, and reset focus pass.
+- Sampled Axe WCAG 2 A/AA and 2.1 AA checks report no violations on Review, Resources, a blank worksheet, an article, matched Search, and all four examples in light and dark themes. This automated sample is not a full accessibility certification.
+- A4 PDFs retain all scenario text, reasoning, questions, answers, limitations, and next steps: scope has three pages; the other examples have two each. Page dimensions, white margins, and text bounds pass; print output remains light when the screen theme is dark.
+- A comparison against the prior commit confirms unchanged article prose, references, original gap descriptions, Developing maturity, blank worksheet definitions, and all 15 original scope checks. No evidence gap was closed by this update.
+
 ## Library discovery milestone 2026-10-06
 
 - Production export, TypeScript, ESLint, Prettier, eleven test groups, and diff checks pass. All 17 page canonicals and Open Graph assets remain valid.

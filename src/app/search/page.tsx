@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/primitives";
 import { LibrarySearch } from "@/components/knowledge/library-search";
 import { getKnowledgeEntries } from "@/content/library";
 import { resources } from "@/content/resources";
+import { resourceExamples } from "@/content/resource-examples";
 import { buildSearchDocuments } from "@/lib/search";
 export const metadata: Metadata = {
   title: "Search",
@@ -23,7 +24,13 @@ export default async function SearchPage() {
       />
       <section className="page-content">
         <Container>
-          <LibrarySearch documents={buildSearchDocuments(entries, resources)} />
+          <LibrarySearch
+            documents={buildSearchDocuments(
+              entries,
+              resources,
+              resourceExamples,
+            )}
+          />
         </Container>
       </section>
     </>

@@ -11,6 +11,21 @@ import { metadataSchema } from "./schema";
 import { learningPaths } from "./taxonomy";
 import { navigation } from "../config/site";
 import { resources, resourcePath } from "./resources";
+import { resourceExamples, examplePath } from "./resource-examples";
+
+function editorialAnchors(
+  entry: Pick<KnowledgeEntry, "references" | "knowledgeDebt">,
+) {
+  return [
+    "related",
+    "references",
+    "revisions",
+    "review-plan",
+    "knowledge-debt",
+    ...entry.references.map((ref) => `reference-${ref.id}`),
+    ...entry.knowledgeDebt.map((gap) => `knowledge-gap-${gap.id}`),
+  ];
+}
 
 type Node = {
   type: string;
@@ -63,12 +78,7 @@ export async function parseKnowledgeFile(
     const inspect = () => (tree: Root) => {
       const root = tree as unknown as Node;
       const slugger = new GithubSlugger();
-      [
-        "related",
-        "references",
-        "revisions",
-        ...metadata.references.map((ref) => `reference-${ref.id}`),
-      ].forEach((id) => slugger.slug(id));
+      editorialAnchors(metadata).forEach((id) => slugger.slug(id));
       walk(root, (node) => {
         if (
           [
@@ -175,10 +185,7 @@ export function validateLibrary(documents: KnowledgeDocument[]) {
     }
     const anchors = new Set([
       ...entry.toc.map((heading) => heading.id),
-      "related",
-      "references",
-      "revisions",
-      ...entry.references.map((ref) => `reference-${ref.id}`),
+      ...editorialAnchors(entry),
     ]);
     for (const link of links) {
       if (
@@ -202,10 +209,7 @@ export function validateLibrary(documents: KnowledgeDocument[]) {
           fragment &&
           !new Set([
             ...target.toc.map((heading) => heading.id),
-            "related",
-            "references",
-            "revisions",
-            ...target.references.map((ref) => `reference-${ref.id}`),
+            ...editorialAnchors(target),
           ]).has(fragment)
         )
           throw new Error(`${entry.slug}: unknown target anchor ${link.url}`);
@@ -254,8 +258,10 @@ export async function loadLibrary(
   const pages = new Set([
     ...navigation.map((item) => item.href),
     "/search",
+    "/review",
     "/case-studies/procurement-control-tower",
     ...resources.map(resourcePath),
+    ...resourceExamples.map(examplePath),
   ]);
   for (const { entry, links } of documents) {
     for (const { url, image } of links) {

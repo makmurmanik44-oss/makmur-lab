@@ -2,6 +2,8 @@
 
 Search includes published learning notes and working aids whose supporting notes are published. The index comes from the existing MDX loader and resource definitions at build time. It adds no search service or operational records.
 
+Fictional filled examples are indexed as resources with the distinct `Worked example` format. Their scenarios, answers, reasoning, limitations, and next steps are searchable. The current collection has four notes, four blank worksheets, and four filled examples. An example is excluded when its supporting note is unpublished.
+
 ## Reader behavior
 
 - Search matches titles, summaries, domains, topics/tags, article prose, and worksheet questions, checks, and field hints.

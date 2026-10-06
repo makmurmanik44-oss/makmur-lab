@@ -91,8 +91,8 @@ export function LibrarySearch({ documents }: { documents: SearchDocument[] }) {
           </span>
         </label>
         <p id="search-help" className="search-help">
-          Search titles, concepts, note text, and worksheet questions. All
-          entered words must match.
+          Search titles, concepts, note text, worksheet questions, and filled
+          examples. All entered words must match.
         </p>
         <div className="library-search-filters">
           <label className="input-label" htmlFor="search-domain">
@@ -134,7 +134,7 @@ export function LibrarySearch({ documents }: { documents: SearchDocument[] }) {
             >
               <option value="all">All content</option>
               <option value="article">Learning notes</option>
-              <option value="resource">Worksheets & checklists</option>
+              <option value="resource">Resources & examples</option>
             </select>
           </label>
           <div className="search-actions">
@@ -190,7 +190,7 @@ export function LibrarySearch({ documents }: { documents: SearchDocument[] }) {
         >
           {hits.length} {hits.length === 1 ? "result" : "results"} · {notes}{" "}
           {notes === 1 ? "learning note" : "learning notes"} · {worksheets}{" "}
-          {worksheets === 1 ? "working aid" : "working aids"}
+          {worksheets === 1 ? "resource" : "resources"}
           {state.query.trim() ? " · Best matches first" : ""}
         </p>
       </div>
@@ -246,7 +246,12 @@ function SearchResult({
       {excerpt && (
         <p className="search-result-excerpt">
           <span>
-            From the {document.kind === "article" ? "note" : "worksheet"}
+            From the{" "}
+            {document.kind === "article"
+              ? "note"
+              : document.format === "Worked example"
+                ? "example"
+                : "worksheet"}
           </span>
           “{excerpt}”
         </p>

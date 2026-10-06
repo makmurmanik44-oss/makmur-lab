@@ -9,6 +9,7 @@ import { domainTitle } from "@/content/taxonomy";
 import { PageIntro } from "@/components/common/page-intro";
 import { Badge, Container } from "@/components/ui/primitives";
 import { PrintButton } from "@/components/resources/print-button";
+import { resourceExamples, examplePath } from "@/content/resource-examples";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -39,6 +40,7 @@ export default async function Worksheet({
   if (!resource) notFound();
   const article = await getKnowledgeDocument(resource.articleSlug);
   if (!article) notFound();
+  const example = resourceExamples.find((item) => item.resourceSlug === slug);
   return (
     <div className="worksheet-page">
       <PageIntro
@@ -54,6 +56,15 @@ export default async function Worksheet({
                 ← All resources
               </Link>
               <div className="resource-actions">
+                {example && (
+                  <Link
+                    prefetch={false}
+                    className="text-link"
+                    href={examplePath(example)}
+                  >
+                    View filled example →
+                  </Link>
+                )}
                 <PrintButton />
                 <a
                   className="button button-primary"

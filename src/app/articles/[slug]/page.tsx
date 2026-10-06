@@ -9,6 +9,8 @@ import { Container } from "@/components/ui/primitives";
 import { KnowledgeBadges } from "@/components/knowledge/knowledge-badges";
 import { MdxBody } from "@/components/knowledge/mdx-body";
 import { resourcePath, resourcesForArticle } from "@/content/resources";
+import { Badge } from "@/components/ui/primitives";
+import { ReviewTiming } from "@/components/knowledge/review-timing";
 
 export const dynamicParams = false;
 
@@ -64,6 +66,7 @@ export default async function Article({
                   ))}
                 <a href="#related">Related knowledge</a>
                 <a href="#references">References & known gaps</a>
+                <a href="#review-plan">Review plan</a>
                 <a href="#revisions">Revision history</a>
               </nav>
             </aside>
@@ -182,12 +185,39 @@ export default async function Article({
                 ) : (
                   <p>No external source has been added to this note yet.</p>
                 )}
+                <div
+                  className="reading-callout review-plan"
+                  aria-labelledby="review-plan"
+                >
+                  <h3 id="review-plan">Next editorial review</h3>
+                  <p>
+                    <time dateTime={entry.nextReview}>{entry.nextReview}</time>{" "}
+                    · <ReviewTiming nextReview={entry.nextReview} />
+                  </p>
+                  <p>
+                    A planned checkpoint to check sources, examples, and open
+                    gaps. Timing uses Asia/Jakarta; it does not indicate a
+                    completed review or validate the framework.
+                  </p>
+                  <Link prefetch={false} className="text-link" href="/review">
+                    View the library review plan →
+                  </Link>
+                </div>
                 {entry.knowledgeDebt.length > 0 && (
-                  <div className="reading-callout">
-                    <h3>Open knowledge debt</h3>
-                    <ul>
+                  <div className="knowledge-debt">
+                    <h3 id="knowledge-debt">Open knowledge debt</h3>
+                    <ul className="review-gaps">
                       {entry.knowledgeDebt.map((gap) => (
-                        <li key={gap}>{gap}</li>
+                        <li id={`knowledge-gap-${gap.id}`} key={gap.id}>
+                          <Badge>{gap.priority} priority</Badge>
+                          <p>{gap.description}</p>
+                          <p>
+                            <strong>Next check:</strong> {gap.nextCheck}
+                          </p>
+                          <p>
+                            <strong>Closure criterion:</strong> {gap.closeWhen}
+                          </p>
+                        </li>
                       ))}
                     </ul>
                   </div>

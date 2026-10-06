@@ -14,6 +14,7 @@ knowledgeStatus: Learning
 contentMaturity: Developing
 updated: 2026-10-06
 lastReviewed: 2026-10-06
+nextReview: 2026-11-06
 featured: true
 prerequisites: []
 relatedKnowledge:
@@ -37,12 +38,27 @@ revisionHistory:
   - date: 2026-10-06
     note: Reviewed primary UN guidance, added source boundaries, and made the
       next review exercise explicit. Maturity remains Developing.
+  - date: 2026-10-06
+    note: Added a planned editorial checkpoint and actionable gap criteria;
+      linked worksheet now includes a fictional filled example. No gap closed.
 published: true
 knowledgeDebt:
-  - Validate the proposed framework in practice before treating it as
-    established guidance.
-  - Test whether the four-question aid captures the necessary acceptance
-    evidence for one low-risk request; record missed questions and revisions.
+  - id: practice-validation
+    description: Validate the proposed framework in practice before treating it
+      as established guidance.
+    priority: High
+    nextCheck: Compare requester and reviewer answers for one safely sanitized
+      low-risk request; record disagreements and missed questions.
+    closeWhen: A human reviewer records the trial evidence, limitations, and
+      resulting revisions; any remaining uncertainties are retained as gaps.
+  - id: acceptance-evidence
+    description: Test whether the four-question aid captures the necessary
+      acceptance evidence for one low-risk request; record missed questions and revisions.
+    priority: Normal
+    nextCheck: Check the aid against the request's agreed acceptance criteria
+      and identify any missing conditions or ownership.
+    closeWhen: Acceptance questions and omitted conditions are documented and
+      the aid is revised or its limits explicitly narrowed after review.
 ---
 
 ## Executive summary

@@ -1,5 +1,13 @@
 # Writing working resources
 
+## Fictional filled examples
+
+`src/content/resource-examples.ts` supplies the four worked examples. Each names its blank worksheet, scenario, learning goal, limitations, conclusion, next step, and section reasoning. Every original check and field must have exactly one answer under the matching section ID. Validation rejects missing, duplicate, or renamed questions and empty answers. If a worksheet question changes, update and review its example too.
+
+Check states are `covered` (addressed only within the invented scenario), `open`, or `not-applicable`. Give a reason for each. Do not imply a real review, supplier qualification, field result, or evidence gap closure. Fictional example dates are distinct from an article's planned editorial review date.
+
+Examples appear at `/resources/<slug>/example/`, with separate `<slug>-example.md` downloads. The same sync/build commands regenerate both blank and example downloads. Review all answers and limitations in the A4 output; filled examples may occupy more pages than blank worksheets. Both formats link back to the supporting note.
+
 `src/content/resources.ts` is the source for worksheet metadata, sections, checks, and response fields. The resource catalog, printable detail pages, article links, and editable Markdown downloads use the same definitions.
 
 Each resource names a published supporting article in the same domain. Its summary, intended use, limitation, and update date must be explicit. Current resources remain Developing; their presence does not change the maturity of the supporting notes.

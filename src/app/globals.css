@@ -1405,6 +1405,88 @@ main:focus {
 .worksheet-print-credit {
   display: none;
 }
+.resource-example-link {
+  margin-top: 18px;
+}
+.example-checks {
+  display: grid;
+  gap: 20px;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.example-checks li > p {
+  margin-top: 6px;
+}
+.example-state {
+  color: var(--accent);
+  font-weight: 600;
+}
+.example-response {
+  padding-top: 8px;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.review-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.review-list {
+  display: grid;
+  gap: 24px;
+  max-width: 950px;
+  margin-inline: auto;
+}
+.review-card h2 {
+  font-size: 24px;
+  line-height: 1.35;
+  margin-bottom: 16px;
+}
+.review-card .review-dates {
+  margin-block: 16px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.review-gaps {
+  display: grid;
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+  margin-block: 20px;
+}
+.review-gaps li {
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 120px;
+}
+.review-gaps li > .badge {
+  margin-bottom: 10px;
+}
+.review-gaps li > a {
+  display: block;
+  font-weight: 600;
+  line-height: 1.65;
+}
+.review-gaps li > p {
+  font-size: 14px;
+  line-height: 1.75;
+  margin-block: 10px 0;
+}
+.review-plan .badge {
+  vertical-align: middle;
+}
+.knowledge-debt {
+  margin-block: 32px;
+}
+.prose .review-gaps {
+  padding: 0;
+}
+.prose .review-gaps li {
+  margin: 0;
+}
 .journal-entry {
   max-width: 850px;
   margin-inline: auto;
@@ -1865,5 +1947,28 @@ main:focus {
     display: block;
     font-size: 8pt;
     overflow-wrap: anywhere;
+  }
+  .worked-example .worksheet-context {
+    break-inside: avoid;
+  }
+  .worked-example .worksheet-section {
+    break-inside: auto;
+  }
+  .worked-example .worksheet-section h2 {
+    break-after: avoid;
+  }
+  .example-checks {
+    gap: 10px;
+    font-size: 10pt;
+    line-height: 1.45;
+  }
+  .example-checks li,
+  .worked-example .worksheet-fields > div {
+    break-inside: avoid;
+  }
+  .example-response {
+    font-size: 10pt;
+    line-height: 1.45;
+    padding-top: 4px;
   }
 }

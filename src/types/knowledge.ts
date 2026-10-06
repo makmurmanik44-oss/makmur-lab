@@ -21,6 +21,7 @@ export type KnowledgeEntry = {
   readingTime: number;
   updated: string;
   lastReviewed: string;
+  nextReview: string;
   featured: boolean;
   published: boolean;
   prerequisites: string[];
@@ -33,7 +34,13 @@ export type KnowledgeEntry = {
     accessed: string;
     note: string;
   }[];
-  knowledgeDebt: string[];
+  knowledgeDebt: {
+    id: string;
+    description: string;
+    priority: "High" | "Normal";
+    nextCheck: string;
+    closeWhen: string;
+  }[];
   toc: { id: string; title: string; depth: number }[];
   searchText: string;
   revisionHistory: { date: string; note: string }[];

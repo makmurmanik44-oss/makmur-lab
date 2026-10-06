@@ -14,6 +14,7 @@ knowledgeStatus: Learning
 contentMaturity: Developing
 updated: 2026-10-06
 lastReviewed: 2026-10-06
+nextReview: 2026-11-06
 featured: false
 published: true
 prerequisites: []
@@ -38,14 +39,29 @@ references:
       with people involved in the process. It supports the next mapping step,
       not a diagnosis of delay or proof of improvement.
 knowledgeDebt:
-  - Compare the fictional map with a safely sanitized observed process and
-    record exceptions that the high-level view misses.
-  - Test the proposed timing definitions and review sampling limitations before
-    making a bottleneck or improvement claim.
+  - id: observed-process
+    description: Compare the fictional map with a safely sanitized observed
+      process and record exceptions that the high-level view misses.
+    priority: High
+    nextCheck: Ask participants to review the boundary, then trace a small
+      safely sanitized sample for returns, missing steps, and exceptional routes.
+    closeWhen: Observed differences, participant feedback, sample limits, and
+      resulting map revisions are documented by a human reviewer.
+  - id: timing-trial
+    description: Test the proposed timing definitions and review sampling
+      limitations before making a bottleneck or improvement claim.
+    priority: Normal
+    nextCheck: Reproduce start and end events on the sample; distinguish
+      elapsed time, active work, and waiting and record coverage limitations.
+    closeWhen: Timing rules and sample exceptions are reviewed and revised;
+      any causal or improvement claim has its own supporting evidence.
 revisionHistory:
   - date: 2026-10-06
     note: Initial source-reviewed learning note with an original fictional SIPOC
       example. No field results or operational performance claims.
+  - date: 2026-10-06
+    note: Added actionable gap criteria and a planned editorial checkpoint;
+      linked a fictional worksheet example without closing evidence gaps.
 ---
 
 ## Executive summary

@@ -1,5 +1,14 @@
 # Development changelog
 
+## Alpha worked examples and review workflow 2026-10-06
+
+- Continued from `12d40401ae41e1453eeef2fd17d54c751eaa0299`; retained all existing article and blank-worksheet URLs, prose, and checks.
+- Added four fully fictional filled examples with section reasoning, explicit open questions, separate Markdown downloads, A4 printing, and search indexing.
+- Added exact question/answer coverage validation and export completeness checks for the example pages and downloads.
+- Preserved the eight original knowledge-gap descriptions while adding stable IDs, editorial priority, next checks, and human-reviewed closure criteria.
+- Added planned next-review dates, `/review`, date-aware Jakarta timing, and a repository review-report command. The first planned checkpoint is 6 November 2026.
+- Retained Developing maturity and open field-validation work; fictional examples do not close gaps or claim operational outcomes.
+
 ## Alpha library discovery 2026-10-06
 
 - Continued from `e256c15254f1f29cf25c1887763e4580c22ac6c8` on the existing migration branch.
@@ -62,5 +71,5 @@
 
 - Test the proposed working aids with safely sanitized examples and document evidence before promoting notes to Stable.
 - Review purchasing-specific metric definitions and category-specific supplier evidence freshness.
-- Add detailed content debt and review scheduling to the editorial workflow.
+- Carry out the planned editorial checkpoint and document gap evidence, limits, and revisions.
 - Configure and verify Vercel, final canonical URLs, domain, analytics choice, and production indexing before retiring the legacy release.

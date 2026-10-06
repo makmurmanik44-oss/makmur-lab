@@ -26,6 +26,9 @@ export function Footer() {
                   {item.label}
                 </Link>
               ))}
+            <Link prefetch={false} href="/review">
+              Content review
+            </Link>
           </nav>
           <div>
             <p className="eyebrow">Curated by Makmur</p>

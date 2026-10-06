@@ -14,6 +14,7 @@ knowledgeStatus: Learning
 contentMaturity: Developing
 updated: 2026-10-06
 lastReviewed: 2026-10-06
+nextReview: 2026-11-06
 featured: false
 prerequisites: []
 relatedKnowledge:
@@ -49,11 +50,26 @@ revisionHistory:
   - date: 2026-10-06
     note: Added primary UK data-quality guidance and separated definition review
       from input-data checks using a fictional example.
+  - date: 2026-10-06
+    note: Added actionable gap criteria and a planned editorial checkpoint;
+      linked a fictional worksheet example without closing evidence gaps.
 published: true
 knowledgeDebt:
-  - Test the proposed definition card against a real management question using
-    sanitized evidence.
-  - Add references specific to purchasing metrics and review their limitations.
+  - id: definition-trial
+    description: Test the proposed definition card against a real management
+      question using sanitized evidence.
+    priority: High
+    nextCheck: Agree one decision and reproduce a sample calculation from
+      safely sanitized underlying records; record missing coverage and exceptions.
+    closeWhen: A human reviewer confirms reproducible rules, documents sample
+      differences and limits, and revises the card where needed.
+  - id: purchasing-sources
+    description: Add references specific to purchasing metrics and review their limitations.
+    priority: Normal
+    nextCheck: Locate primary purchasing-metric definitions and compare their
+      populations, events, exclusions, and intended decisions with this note.
+    closeWhen: Relevant sources and exact claim boundaries are added, with
+      differences and applicability limits recorded in the revision history.
 ---
 
 ## Executive summary

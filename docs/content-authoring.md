@@ -28,6 +28,7 @@ Unpublished notes are checked but excluded from public routes, cards, search, si
 | `updated` / `lastReviewed` | Quoted calendar dates in `YYYY-MM-DD` format; review cannot be later than update                                  |
 | `references`               | Source records with ID, title, HTTPS URL, publisher, access date, and a note explaining relevance and limitations |
 | `knowledgeDebt`            | Specific evidence or reasoning gaps still open                                                                    |
+| `nextReview`               | Planned editorial checkpoint after `lastReviewed`; it may be overdue                                              |
 | `revisionHistory`          | Oldest to newest; the latest date matches `updated`                                                               |
 
 Reading time is derived from the body at 220 words per minute, rounded up. Search uses the Markdown body as well as title, summary, topic, and tags. Headings receive stable text-based anchors; duplicates gain a numeric suffix. Changing a heading can change its anchor. Link to notes using `/articles/<slug>/`; the renderer adds the deployment base path.
@@ -49,6 +50,8 @@ references:
 Link a statement to the displayed source with `[related reading](#reference-w3c-dqv)`. The article lists references and knowledge debt automatically; do not duplicate those sections in the body. Record an update when adding or revising a source. Access dates cannot be later than `updated`.
 
 An unreferenced note must declare its evidence gaps. Stable/Revised notes require references and no unresolved knowledge debt. These checks enforce an editorial contract; they do not prove factual accuracy. A human review still needs to assess each claim, source, and practical limitation before changing maturity.
+
+Each `knowledgeDebt` item is an object with a unique slug-like `id`, nonempty `description`, `priority` (`High` or `Normal`), `nextCheck`, and `closeWhen`. It represents an open gap. Dates and filled examples do not close gaps automatically. Set `nextReview` after the last completed review; an overdue plan remains valid. See the [editorial review workflow](development/content-review.md) for recording evidence, residual uncertainty, and substantive revisions.
 
 ## Build checks and boundaries
 

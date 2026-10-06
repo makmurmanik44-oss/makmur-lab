@@ -11,14 +11,24 @@ knowledgeStatus: Learning
 contentMaturity: Draft
 updated: "2026-10-06"
 lastReviewed: "2026-10-06"
+nextReview: "2026-11-06"
 featured: false
 published: false
 prerequisites: []
 relatedKnowledge: []
 references: []
 knowledgeDebt:
-  - Add and assess relevant primary sources.
-  - Replace the placeholders with a clear explanation and a sanitized example.
+  - id: primary-sources
+    description: Add and assess relevant primary sources.
+    priority: High
+    nextCheck: Find primary sources for each substantive claim and document
+      their applicability and limits.
+    closeWhen: A human reviewer verifies the references and claim boundaries.
+  - id: draft-content
+    description: Replace the placeholders with a clear explanation and a sanitized example.
+    priority: Normal
+    nextCheck: Write the explanation, example, assumptions, and open questions.
+    closeWhen: The draft is reviewed for clarity and evidence boundaries before publication.
 revisionHistory:
   - date: "2026-10-06"
     note: Initial unpublished draft.

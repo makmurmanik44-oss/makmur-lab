@@ -4,6 +4,7 @@ import { ArrowUpRight, Download } from "lucide-react";
 import { asset, canonicalUrl } from "@/config/site";
 import { resources, resourceDownload, resourcePath } from "@/content/resources";
 import { domainTitle } from "@/content/taxonomy";
+import { resourceExamples, examplePath } from "@/content/resource-examples";
 import { PageIntro } from "@/components/common/page-intro";
 import { Badge, Container } from "@/components/ui/primitives";
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export default function Resources() {
       <PageIntro
         eyebrow="Reusable knowledge"
         title="Take the idea into practice."
-        description="Working aids for turning a learning note into questions you can review. Print a blank worksheet or download a copy to edit."
+        description="Working aids for turning a learning note into questions you can review. Read a fictional filled example, then print or download the blank worksheet."
       />
       <section className="page-content">
         <Container>
@@ -29,7 +30,7 @@ export default function Resources() {
               className="text-link"
               href="/search?kind=resource"
             >
-              Search worksheets →
+              Search resources & examples →
             </Link>
           </p>
           <div className="simple-grid resource-grid">
@@ -66,6 +67,17 @@ export default function Resources() {
                     <Download size={16} aria-hidden="true" /> Markdown
                   </a>
                 </div>
+                {resourceExamples.some(
+                  (example) => example.resourceSlug === resource.slug,
+                ) && (
+                  <Link
+                    prefetch={false}
+                    className="text-link resource-example-link"
+                    href={examplePath({ resourceSlug: resource.slug })}
+                  >
+                    View filled example →
+                  </Link>
+                )}
                 <p className="case-note">
                   {resource.intendedUse} Updated{" "}
                   <time dateTime={resource.updated}>{resource.updated}</time>.

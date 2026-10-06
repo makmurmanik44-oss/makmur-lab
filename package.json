@@ -11,6 +11,7 @@
     "postbuild": "npm run export:check",
     "export:check": "node --import tsx scripts/export-check.ts",
     "content:check": "node --import tsx scripts/content-check.ts",
+    "review:report": "node --import tsx scripts/review-report.ts",
     "resources:sync": "node --import tsx scripts/resource-sync.ts",
     "test": "node --import tsx --test tests/*.test.ts",
     "typecheck": "next typegen && tsc --noEmit",

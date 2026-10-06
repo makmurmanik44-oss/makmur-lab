@@ -36,6 +36,7 @@ export const metadataSchema = z
     contentMaturity: z.enum(["Draft", "Developing", "Stable", "Revised"]),
     updated: date,
     lastReviewed: date,
+    nextReview: date,
     featured: z.boolean(),
     published: z.boolean(),
     prerequisites: z.array(slug).refine(unique, "Prerequisites must be unique"),
@@ -59,7 +60,22 @@ export const metadataSchema = z
         })
         .strict(),
     ),
-    knowledgeDebt: z.array(text),
+    knowledgeDebt: z
+      .array(
+        z
+          .object({
+            id: slug,
+            description: text,
+            priority: z.enum(["High", "Normal"]),
+            nextCheck: text,
+            closeWhen: text,
+          })
+          .strict(),
+      )
+      .refine(
+        (gaps) => unique(gaps.map((gap) => gap.id)),
+        "Gap IDs must be unique",
+      ),
     revisionHistory: z.array(z.object({ date, note: text }).strict()).min(1),
   })
   .strict()
@@ -68,6 +84,11 @@ export const metadataSchema = z
       ctx.addIssue({ code: "custom", path: [path], message });
     if (entry.lastReviewed > entry.updated)
       issue("lastReviewed", "Review date cannot be later than the update date");
+    if (entry.nextReview <= entry.lastReviewed)
+      issue(
+        "nextReview",
+        "Next review must be after the last completed review",
+      );
     if (
       new Set(entry.references.map((reference) => reference.id)).size !==
       entry.references.length

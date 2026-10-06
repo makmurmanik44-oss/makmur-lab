@@ -5,6 +5,8 @@ import { site } from "../src/config/site";
 import { loadLibrary } from "../src/content/engine";
 import { renderResourceMarkdown } from "../src/content/resource-engine";
 import { resources } from "../src/content/resources";
+import { resourceExamples } from "../src/content/resource-examples";
+import { renderExampleMarkdown } from "../src/content/example-engine";
 
 async function checkExport() {
   const root = path.resolve("out");
@@ -30,6 +32,40 @@ async function checkExport() {
       );
   }
   let checked = 0;
+  if (!existsSync(path.join(root, "review", "index.html")))
+    throw new Error("Content review page is missing from export");
+  for (const example of resourceExamples) {
+    if (
+      !existsSync(
+        path.join(
+          root,
+          "resources",
+          example.resourceSlug,
+          "example",
+          "index.html",
+        ),
+      )
+    )
+      throw new Error(
+        `Filled example is missing from export: ${example.resourceSlug}`,
+      );
+    const resource = resources.find(
+      (item) => item.slug === example.resourceSlug,
+    )!;
+    const download = path.join(
+      root,
+      "resources",
+      `${example.resourceSlug}-example.md`,
+    );
+    if (
+      !existsSync(download) ||
+      (await readFile(download, "utf8")) !==
+        renderExampleMarkdown(example, resource)
+    )
+      throw new Error(
+        `Example download is missing or stale: ${example.resourceSlug}`,
+      );
+  }
   async function visit(directory: string) {
     for (const item of await readdir(directory, { withFileTypes: true })) {
       const file = path.join(directory, item.name);

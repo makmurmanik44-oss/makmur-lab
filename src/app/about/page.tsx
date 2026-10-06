@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { canonicalUrl } from "@/config/site";
 import { PageIntro } from "@/components/common/page-intro";
 import { Container } from "@/components/ui/primitives";
@@ -78,6 +79,13 @@ export default function About() {
                   dates, and substantive revisions.
                 </li>
               </ul>
+              <p>
+                <Link prefetch={false} href="/review">
+                  View the content review plan
+                </Link>{" "}
+                for planned checkpoints, open gaps, and the checks required
+                before a gap can be closed.
+              </p>
               <h2 id="boundaries">
                 Knowledge and operations have different homes.
               </h2>

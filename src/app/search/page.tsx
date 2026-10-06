@@ -7,11 +7,12 @@ import { getKnowledgeEntries } from "@/content/library";
 import { resources } from "@/content/resources";
 import { resourceExamples } from "@/content/resource-examples";
 import { learningPaths } from "@/content/taxonomy";
+import { journalEntries } from "@/content/journal";
 import { buildSearchDocuments } from "@/lib/search";
 export const metadata: Metadata = {
   title: "Search",
   description:
-    "Find learning notes, working aids, and reading guides by concept, domain, or question.",
+    "Find learning notes, working aids, reading guides, and journal reflections by concept, domain, or question.",
   alternates: { canonical: canonicalUrl("/search") },
 };
 export default async function SearchPage() {
@@ -31,6 +32,7 @@ export default async function SearchPage() {
               resources,
               resourceExamples,
               learningPaths,
+              journalEntries,
             )}
           />
         </Container>

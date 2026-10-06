@@ -4,6 +4,8 @@ import { resources } from "../src/content/resources";
 import { resourceExamples } from "../src/content/resource-examples";
 import { validateExamples } from "../src/content/example-engine";
 import { learningPaths } from "../src/content/taxonomy";
+import { journalEntries } from "../src/content/journal";
+import { publicJournalEntries } from "../src/lib/journal";
 
 loadLibrary()
   .then((documents) => {
@@ -20,6 +22,9 @@ loadLibrary()
     console.log(`Resource links valid: ${resources.length} worksheets.`);
     console.log(`Filled examples valid: ${resourceExamples.length}.`);
     console.log(`Reading guides valid: ${learningPaths.length}.`);
+    console.log(
+      `Journal reflections valid: ${publicJournalEntries(journalEntries).length} published / ${journalEntries.length} total.`,
+    );
   })
   .catch((error: unknown) => {
     console.error(error instanceof Error ? error.message : error);

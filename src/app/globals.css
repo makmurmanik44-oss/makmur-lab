@@ -1685,17 +1685,94 @@ main:focus {
 .prose .review-gaps li {
   margin: 0;
 }
-.journal-entry {
-  max-width: 850px;
-  margin-inline: auto;
+.journal-context {
+  max-width: 760px;
+  margin-bottom: 32px;
+  color: var(--muted);
+  line-height: 1.7;
 }
-.journal-entry > time {
+.journal-context .text-link {
+  margin-top: 14px;
+}
+.journal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 24px;
+}
+.journal-card {
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+.journal-card-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.journal-card-top time {
   font-family: "JetBrains Mono", monospace;
   font-size: 11px;
   color: var(--muted);
 }
-.journal-entry h2 {
-  margin-block: 24px;
+.journal-card h2,
+.journal-card h3 {
+  margin-block: 22px 14px;
+  font-size: 25px;
+  line-height: 1.3;
+  letter-spacing: -0.7px;
+}
+.journal-card h2 a:hover,
+.journal-card h3 a:hover {
+  color: var(--accent);
+}
+.journal-card > p {
+  color: var(--muted);
+  line-height: 1.7;
+}
+.journal-card .card-badges {
+  margin-top: 24px;
+}
+.journal-card .journal-card-meta {
+  margin-top: 16px;
+  font-size: 12px;
+}
+.journal-detail-meta {
+  margin-bottom: 40px;
+}
+.journal-detail-meta > p {
+  margin-block: 22px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.prose .journal-connections {
+  padding: 0;
+  list-style: none;
+}
+.prose .journal-connections li {
+  padding-block: 20px;
+  border-bottom: 1px solid var(--line);
+  margin: 0;
+}
+.prose .journal-connections p {
+  margin: 8px 0 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+.journal-basis {
+  margin-block: 40px;
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 760px) {
+  .journal-grid {
+    grid-template-columns: 1fr;
+  }
+  .journal-card {
+    padding: 24px;
+  }
 }
 .case-note {
   margin-top: 32px;

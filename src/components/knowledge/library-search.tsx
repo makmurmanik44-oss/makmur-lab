@@ -71,6 +71,9 @@ export function LibrarySearch({ documents }: { documents: SearchDocument[] }) {
   const guides = hits.filter(
     ({ document }) => document.kind === "guide",
   ).length;
+  const reflections = hits.filter(
+    ({ document }) => document.kind === "journal",
+  ).length;
   return (
     <div className="library-search" aria-busy={!ready}>
       <div className="library-search-controls">
@@ -97,7 +100,8 @@ export function LibrarySearch({ documents }: { documents: SearchDocument[] }) {
         </label>
         <p id="search-help" className="search-help">
           Search titles, concepts, note text, worksheet questions, filled
-          examples, and reading guides. All entered words must match.
+          examples, reading guides, and journal reflections. All entered words
+          must match.
         </p>
         <div className="library-search-filters">
           <label className="input-label" htmlFor="search-domain">
@@ -141,6 +145,7 @@ export function LibrarySearch({ documents }: { documents: SearchDocument[] }) {
               <option value="article">Learning notes</option>
               <option value="resource">Resources & examples</option>
               <option value="guide">Reading guides</option>
+              <option value="journal">Journal reflections</option>
             </select>
           </label>
           <div className="search-actions">
@@ -197,7 +202,8 @@ export function LibrarySearch({ documents }: { documents: SearchDocument[] }) {
           {hits.length} {hits.length === 1 ? "result" : "results"} · {notes}{" "}
           {notes === 1 ? "learning note" : "learning notes"} · {worksheets}{" "}
           {worksheets === 1 ? "resource" : "resources"} · {guides}{" "}
-          {guides === 1 ? "reading guide" : "reading guides"}
+          {guides === 1 ? "reading guide" : "reading guides"} · {reflections}{" "}
+          {reflections === 1 ? "journal reflection" : "journal reflections"}
           {state.query.trim() ? " · Best matches first" : ""}
         </p>
       </div>
@@ -258,9 +264,11 @@ function SearchResult({
               ? "note"
               : document.kind === "guide"
                 ? "reading guide"
-                : document.format === "Worked example"
-                  ? "example"
-                  : "worksheet"}
+                : document.kind === "journal"
+                  ? "journal reflection"
+                  : document.format === "Worked example"
+                    ? "example"
+                    : "worksheet"}
           </span>
           “{excerpt}”
         </p>
@@ -272,10 +280,14 @@ function SearchResult({
             maturity={document.maturity}
           />
         ) : (
-          <Badge>{document.maturity}</Badge>
+          <Badge>
+            {document.kind === "journal"
+              ? "Developing reflection"
+              : document.maturity}
+          </Badge>
         )}
         <span>
-          {document.kind === "article"
+          {document.kind === "article" || document.kind === "journal"
             ? `${document.readingTime} min read`
             : document.kind === "guide"
               ? `~${document.readingTime} min of note reading`

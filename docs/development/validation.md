@@ -1,5 +1,16 @@
 # Alpha validation
 
+## Structured Learning Journal milestone 2026-10-06
+
+- Production export, TypeScript, ESLint, Prettier, twenty-four test groups, and diff checks pass. All 27 page canonicals and Open Graph assets are valid. Journal export checks require the stream and every published detail, reject draft-page exports, and were verified to reject a missing detail page.
+- Journal tests reject unsafe/duplicate slugs, impossible or reversed dates, unsupported domains/categories, implicit publication, missing basis/limits, empty body/questions, duplicate/reserved section IDs, and missing/duplicate/unpublished connections. Tests cover deterministic chronology, draft exclusion, derived reading time, reflection search/excerpts/URL state, and valid local journal routes.
+- All 27 routes return 200 with one H1 and unique DOM IDs at 360, 390, 768, and 1440 pixels. No document overflow or browser JavaScript errors were observed. Stream, detail, homepage preview, and reflection Search layouts were visually inspected on desktop/mobile, with sampled dark layouts also reviewed.
+- Browser checks pass for the two latest homepage cards, all three stream/detail/return paths, every paragraph/question/basis/limitation, chronological order, section anchors, and all connected-content destinations. The original foundation reflection's paragraphs and three questions were compared with the previous commit and retained.
+- QA found that native journal hash links could restore the journal URL while retaining the connected article body on Back. Framework section links fix the reproduced case. The full anchor → connected content → Back sequence now returns both the URL and the correct body for every reflection.
+- Search contains four notes, eight resources/examples, two guides, and three reflections. Journal/domain filtering, body excerpts, distinct reflection metadata, real clipboard copy, reload, result/return navigation, history restoration, and reset focus pass. Initial/matched/empty reflection Search states fit all four widths.
+- Sampled Axe WCAG 2 A/AA and 2.1 AA checks report no violations on Home, the stream, all three detail pages, and initial/matched/empty reflection Search in light and dark themes. This automated sample is not a full accessibility certification.
+- Article, worksheet/example, guide, evidence-gap, and review content is unchanged. The new entries describe existing public library development; they do not claim field validation or promote article maturity.
+
 ## Guided Knowledge Atlas milestone 2026-10-06
 
 - Production export, TypeScript, ESLint, Prettier, twenty test groups, and diff checks pass. All 24 pages have valid canonical URLs and Open Graph assets; the export guard requires both guide pages.

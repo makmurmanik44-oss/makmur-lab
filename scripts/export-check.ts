@@ -8,11 +8,23 @@ import { resources } from "../src/content/resources";
 import { resourceExamples } from "../src/content/resource-examples";
 import { renderExampleMarkdown } from "../src/content/example-engine";
 import { learningPaths } from "../src/content/taxonomy";
+import { journalEntries } from "../src/content/journal";
 
 async function checkExport() {
   const root = path.resolve("out");
   const base = site.url.replace(/\/+$/, "");
   const documents = await loadLibrary();
+  if (!existsSync(path.join(root, "journal", "index.html")))
+    throw new Error("Learning Journal catalog is missing from export");
+  for (const entry of journalEntries) {
+    const exported = existsSync(
+      path.join(root, "journal", entry.slug, "index.html"),
+    );
+    if (exported !== entry.published)
+      throw new Error(
+        `${entry.slug}: journal export must match publication state`,
+      );
+  }
   for (const guide of learningPaths) {
     if (!existsSync(path.join(root, "atlas", guide.slug, "index.html")))
       throw new Error(`Reading guide is missing from export: ${guide.slug}`);

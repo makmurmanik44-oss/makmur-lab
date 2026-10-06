@@ -6,13 +6,20 @@ import type {
 } from "../types/knowledge";
 import { domainTitle, domains, type LearningPath } from "../content/taxonomy";
 import { guidePath, guideReadingTime } from "./reading-paths";
+import type { JournalEntry } from "../content/journal";
+import {
+  journalPath,
+  journalReadingTime,
+  journalText,
+  resolveJournalConnection,
+} from "./journal";
 import type { ResourceDefinition } from "../content/resources";
 import {
   examplePath,
   type ResourceExample,
 } from "../content/resource-examples";
 
-export type SearchKind = "article" | "resource" | "guide";
+export type SearchKind = "article" | "resource" | "guide" | "journal";
 export type SearchState = {
   query: string;
   domain: DomainId | "all";
@@ -63,7 +70,10 @@ export function readSearchState(params: URLSearchParams): SearchState {
       ? (domain as DomainId)
       : "all",
     kind:
-      kind === "article" || kind === "resource" || kind === "guide"
+      kind === "article" ||
+      kind === "resource" ||
+      kind === "guide" ||
+      kind === "journal"
         ? kind
         : "all",
   };
@@ -86,6 +96,7 @@ export function buildSearchDocuments(
   resources: ResourceDefinition[],
   examples: ResourceExample[] = [],
   paths: LearningPath[] = [],
+  journal: JournalEntry[] = [],
 ): SearchDocument[] {
   const published = entries.filter((entry) => entry.published);
   const visible = new Set(published.map((entry) => entry.slug));
@@ -202,6 +213,28 @@ export function buildSearchDocuments(
             published.find((entry) => entry.slug === step.slug)!.title,
           ]),
         ].join(" "),
+      })),
+    ...journal
+      .filter(
+        (entry) =>
+          entry.published &&
+          entry.connections.every((connection) =>
+            resolveJournalConnection(connection, published),
+          ),
+      )
+      .map((entry): SearchDocument => ({
+        id: `journal:${entry.slug}`,
+        href: journalPath(entry),
+        title: entry.title,
+        summary: entry.summary,
+        domain: entry.domain,
+        kind: "journal",
+        format: "Journal reflection",
+        updated: entry.updated,
+        maturity: "Developing",
+        readingTime: journalReadingTime(entry),
+        keywords: `${domainTitle(entry.domain)} ${entry.category} learning journal reflection open questions`,
+        body: journalText(entry),
       })),
   ];
 }

@@ -1,5 +1,15 @@
 # Development changelog
 
+## Alpha structured Learning Journal 2026-10-06
+
+- Continued from `9bac39b68c72cb372abb3ed65d84a6bf550bbec1`; retained the original foundation reflection's title, date, paragraphs, and questions.
+- Replaced the single hardcoded journal body with a typed catalog, newest-first stream, three static detail pages, reading time, section navigation, basis/limitations, open questions, and resolved connections to existing library content.
+- Added two editorial reflections grounded in the published worksheet/example and Atlas implementations. Neither describes a field trial, operational outcome, or personal experience that has not been recorded.
+- Added a shared journal card and two-entry homepage preview, plus a distinct Journal reflections Search filter, reflection excerpts, URL/history support, and sitemap entries.
+- Used framework navigation for journal section anchors after browser QA found that native hash navigation could restore the journal URL while retaining a connected article's body on Back.
+- Validated journal identities, real ordered dates, domains/categories, explicit publication, complete text, safe section IDs, distinct questions/connections, and published destinations. Export checks require public detail pages and reject draft-page exports.
+- Kept all original article, worksheet/example, guide, gap, and review content intact. Journal reflections remain Developing and do not promote reference-note maturity.
+
 ## Alpha guided Knowledge Atlas 2026-10-06
 
 - Continued from `666a714b0b83e2c244d7606b6875e0910fc5e4fc`; retained the two existing Atlas sequences and all article/resource content.

@@ -4,6 +4,9 @@ import { canonicalUrl } from "@/config/site";
 import { ArrowRight, ArrowUpRight, Layers3, Route } from "lucide-react";
 import { LivingCover } from "@/components/home/living-cover";
 import { ArticleCard } from "@/components/cards/article-card";
+import { JournalCard } from "@/components/cards/journal-card";
+import { journalEntries } from "@/content/journal";
+import { publicJournalEntries } from "@/lib/journal";
 import { Container, SectionHeading, Badge } from "@/components/ui/primitives";
 import { domains } from "@/content/taxonomy";
 import { getKnowledgeEntries } from "@/content/library";
@@ -146,6 +149,24 @@ export default async function Home() {
               </span>
             </div>
           </Link>
+        </Container>
+      </section>
+      <section className="section">
+        <Container>
+          <SectionHeading
+            eyebrow="05 / Learning Journal"
+            title="Leave room for the next question."
+            description="Working reflections on developing the library. Each entry keeps its basis, limitations, and open questions visible."
+            href="/journal"
+            action="Read the journal"
+          />
+          <div className="journal-grid">
+            {publicJournalEntries(journalEntries)
+              .slice(0, 2)
+              .map((entry) => (
+                <JournalCard key={entry.slug} entry={entry} heading="h3" />
+              ))}
+          </div>
         </Container>
       </section>
       <section className="library-principle">

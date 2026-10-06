@@ -44,6 +44,8 @@ Four fictional filled examples answer every worksheet question and include reaso
 
 Knowledge Atlas includes two [reading guides](docs/reading-guides.md), with step rationale, reflection prompts, and worksheet/example links. Articles display their position and previous/next notes in each applicable connection. Search also finds the guides as a distinct content type. Reading-time estimates derive from the included note bodies; this feature does not track reading progress.
 
+Learning Journal now uses one [structured reflection catalog](docs/journal-authoring.md) for its stream, individual pages, homepage preview, search, and sitemap. Three reflections state their basis, limitations, questions, and related reading. The original foundation reflection is retained; the two new entries describe existing library development, not field experience or measured outcomes. Journal publication is separate from the notes' maturity.
+
 ## Quality and status
 
 The four Alpha notes are Developing and identify specific evidence gaps. Reviewed UN, UNGM, W3C, UK Government, and ASQ references explain their support and limitations; field validation and purchasing-specific metric review remain open. The worksheets are original working aids, not validated SOPs. Images and the adapted case use public or sanitized material. Preview metadata is noindex. Analytics is not installed.

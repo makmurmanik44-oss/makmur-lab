@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { canonicalUrl } from "@/config/site";
 import { ArrowRight, ArrowUpRight, Layers3, Route } from "lucide-react";
 import { LivingCover } from "@/components/home/living-cover";
 import { ArticleCard } from "@/components/cards/article-card";
@@ -8,7 +9,9 @@ import { domains } from "@/content/taxonomy";
 import { getKnowledgeEntries } from "@/content/library";
 import { displayDate } from "@/lib/date";
 
-export const metadata: Metadata = { alternates: { canonical: "./" } };
+export const metadata: Metadata = {
+  alternates: { canonical: canonicalUrl("/") },
+};
 
 export default async function Home() {
   const knowledge = await getKnowledgeEntries();

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import { canonicalUrl } from "@/config/site";
 import { PageIntro } from "@/components/common/page-intro";
 import { Container } from "@/components/ui/primitives";
 import { site } from "@/config/site";
 export const metadata: Metadata = {
   title: "About",
-  alternates: { canonical: "./about/" },
+  alternates: { canonical: canonicalUrl("/about") },
 };
 export default function About() {
   return (

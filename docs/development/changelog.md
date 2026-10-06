@@ -9,6 +9,7 @@
 - Added reference rendering, a static Callout, and Markdown table/code/blockquote styling.
 - Added related W3C reading to the data-definition note with explicit relevance and limits; retained Developing maturity.
 - Added the authoring template/guide, content checks before build, and focused rejection tests in CI.
+- Corrected metadata URL issues found during live verification: relative canonicals could repeat the current route, and the Open Graph image repeated the preview base path. Canonical and social-image URLs are now absolute and checked against exported pages/public assets after build.
 
 ## Alpha foundation 2026-10-05
 

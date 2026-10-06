@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import { canonicalUrl } from "@/config/site";
 import { PageIntro } from "@/components/common/page-intro";
 import { Badge, Container } from "@/components/ui/primitives";
 export const metadata: Metadata = {
   title: "Learning Journal",
-  alternates: { canonical: "./journal/" },
+  alternates: { canonical: canonicalUrl("/journal") },
 };
 export default function Journal() {
   return (

@@ -7,6 +7,8 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "prebuild": "npm run content:check",
+    "postbuild": "npm run export:check",
+    "export:check": "node --import tsx scripts/export-check.ts",
     "content:check": "node --import tsx scripts/content-check.ts",
     "test": "node --import tsx --test tests/*.test.ts",
     "typecheck": "next typegen && tsc --noEmit",

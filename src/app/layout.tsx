@@ -5,7 +5,7 @@ import "@fontsource/jetbrains-mono/400.css";
 import "./globals.css";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { site, asset } from "@/config/site";
+import { site, asset, publicAssetUrl } from "@/config/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url + "/"),
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: site.description,
     images: [
       {
-        url: asset("/covers/port-2026.webp"),
+        url: publicAssetUrl("/covers/port-2026.webp"),
         alt: "Container port — Building Foundations",
       },
     ],

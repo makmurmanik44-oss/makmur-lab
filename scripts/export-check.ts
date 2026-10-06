@@ -1,0 +1,50 @@
+import { readdir, readFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import path from "node:path";
+import { site } from "../src/config/site";
+
+async function checkExport() {
+  const root = path.resolve("out");
+  const base = site.url.replace(/\/+$/, "");
+  let checked = 0;
+  async function visit(directory: string) {
+    for (const item of await readdir(directory, { withFileTypes: true })) {
+      const file = path.join(directory, item.name);
+      if (item.isDirectory()) await visit(file);
+      else if (item.name === "index.html") {
+        const route = path.relative(root, directory).split(path.sep).join("/");
+        if (route === "404" || route === "_not-found") continue;
+        const html = await readFile(file, "utf8");
+        const tag = html.match(/<link\b[^>]*\brel="canonical"[^>]*>/)?.[0];
+        const actual = tag?.match(/\bhref="([^"]+)"/)?.[1];
+        const expected = `${base}/${route ? `${route}/` : ""}`;
+        if (actual !== expected)
+          throw new Error(
+            `${path.relative(root, file)}: canonical is ${actual || "missing"}; expected ${expected}`,
+          );
+        const imageTag = html.match(
+          /<meta\b[^>]*\bproperty="og:image"[^>]*>/,
+        )?.[0];
+        const image = imageTag?.match(/\bcontent="([^"]+)"/)?.[1];
+        if (
+          !image?.startsWith(`${base}/`) ||
+          !existsSync(path.join("public", image.slice(base.length + 1)))
+        )
+          throw new Error(
+            `${path.relative(root, file)}: Open Graph image does not resolve to a public asset: ${image}`,
+          );
+        checked++;
+      }
+    }
+  }
+  await visit(root);
+  if (!checked) throw new Error("No exported pages were checked");
+  console.log(
+    `Export valid: ${checked} pages have correct canonical URLs and Open Graph assets.`,
+  );
+}
+
+checkExport().catch((error: unknown) => {
+  console.error(error instanceof Error ? error.message : error);
+  process.exitCode = 1;
+});

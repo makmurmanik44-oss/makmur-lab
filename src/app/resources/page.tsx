@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { canonicalUrl } from "@/config/site";
 import { Download } from "lucide-react";
 import { PageIntro } from "@/components/common/page-intro";
 import { Badge, Container } from "@/components/ui/primitives";
 import { asset } from "@/config/site";
 export const metadata: Metadata = {
   title: "Resources",
-  alternates: { canonical: "./resources/" },
+  alternates: { canonical: canonicalUrl("/resources") },
 };
 export default function Resources() {
   return (

@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import { canonicalUrl } from "@/config/site";
 import { PageIntro } from "@/components/common/page-intro";
 import { Container } from "@/components/ui/primitives";
 import { Discovery } from "@/components/knowledge/discovery";
 import { getKnowledgeEntries } from "@/content/library";
-export const metadata: Metadata = { title: "Search" };
+export const metadata: Metadata = {
+  title: "Search",
+  alternates: { canonical: canonicalUrl("/search") },
+};
 export default async function SearchPage() {
   const entries = await getKnowledgeEntries();
   return (

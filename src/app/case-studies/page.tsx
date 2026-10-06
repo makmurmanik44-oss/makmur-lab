@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { canonicalUrl } from "@/config/site";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PageIntro } from "@/components/common/page-intro";
 import { Badge, Container } from "@/components/ui/primitives";
 export const metadata: Metadata = {
   title: "Case Studies",
-  alternates: { canonical: "./case-studies/" },
+  alternates: { canonical: canonicalUrl("/case-studies") },
 };
 export default function Cases() {
   return (

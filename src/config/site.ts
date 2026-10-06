@@ -23,3 +23,10 @@ export const navigation = [
 export function asset(path: string) {
   return `${site.basePath}${path}`;
 }
+export function canonicalUrl(route: string) {
+  const path = route.replace(/^\/+|\/+$/g, "");
+  return `${site.url.replace(/\/+$/, "")}/${path ? `${path}/` : ""}`;
+}
+export function publicAssetUrl(path: string) {
+  return `${site.url.replace(/\/+$/, "")}/${path.replace(/^\/+/, "")}`;
+}

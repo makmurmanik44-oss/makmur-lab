@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { canonicalUrl } from "@/config/site";
 import Image from "next/image";
 import Link from "next/link";
 import { PageIntro } from "@/components/common/page-intro";
@@ -6,7 +7,9 @@ import { Badge, Container } from "@/components/ui/primitives";
 import { asset } from "@/config/site";
 export const metadata: Metadata = {
   title: "Procurement Control Tower",
-  alternates: { canonical: "./case-studies/procurement-control-tower/" },
+  alternates: {
+    canonical: canonicalUrl("/case-studies/procurement-control-tower"),
+  },
 };
 export default function ControlTower() {
   return (

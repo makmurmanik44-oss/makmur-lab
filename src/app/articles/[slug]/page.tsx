@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { canonicalUrl } from "@/config/site";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { domainTitle } from "@/content/taxonomy";
@@ -25,7 +26,7 @@ export async function generateMetadata({
     ? {
         title: entry.title,
         description: entry.summary,
-        alternates: { canonical: `./articles/${entry.slug}/` },
+        alternates: { canonical: canonicalUrl(`/articles/${entry.slug}`) },
       }
     : {};
 }

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
+import { canonicalUrl } from "@/config/site";
 import { PageIntro } from "@/components/common/page-intro";
 import { Container } from "@/components/ui/primitives";
 import { Discovery } from "@/components/knowledge/discovery";
 import { getKnowledgeEntries } from "@/content/library";
 export const metadata: Metadata = {
   title: "Knowledge",
-  alternates: { canonical: "./articles/" },
+  alternates: { canonical: canonicalUrl("/articles") },
 };
 export default async function Articles() {
   const entries = await getKnowledgeEntries();

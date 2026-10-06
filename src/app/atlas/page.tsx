@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { canonicalUrl } from "@/config/site";
 import Link from "next/link";
 import { domains, learningPaths } from "@/content/taxonomy";
 import { getKnowledgeEntries } from "@/content/library";
@@ -6,7 +7,7 @@ import { PageIntro } from "@/components/common/page-intro";
 import { Container } from "@/components/ui/primitives";
 export const metadata: Metadata = {
   title: "Knowledge Atlas",
-  alternates: { canonical: "./atlas/" },
+  alternates: { canonical: canonicalUrl("/atlas") },
 };
 export default async function Atlas() {
   const knowledge = await getKnowledgeEntries();

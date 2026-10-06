@@ -39,7 +39,7 @@ jobs:
       - name: Checkout Knowledge Alpha
         uses: actions/checkout@v6
         with:
-          ref: ccbe12104232bd9354f0d730d9bd7f5836768441
+          ref: e256c15254f1f29cf25c1887763e4580c22ac6c8
           path: _alpha-source
 
       - name: Set up Node.js for Knowledge Alpha

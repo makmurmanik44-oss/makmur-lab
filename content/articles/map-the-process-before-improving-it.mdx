@@ -1,0 +1,101 @@
+---
+slug: map-the-process-before-improving-it
+title: Map the process before improving it
+summary: Use a bounded SIPOC view to agree what a process includes, then gather
+  evidence before choosing an improvement.
+domain: industrial-engineering
+topic: Process mapping
+tags:
+  - SIPOC
+  - Process boundaries
+  - Improvement
+difficulty: Foundation
+knowledgeStatus: Learning
+contentMaturity: Developing
+updated: 2026-10-06
+lastReviewed: 2026-10-06
+featured: false
+published: true
+prerequisites: []
+relatedKnowledge:
+  - scope-clarity-before-sourcing
+  - data-definitions-before-dashboards
+references:
+  - id: asq-sipoc
+    title: SIPOC+CM Diagram
+    url: https://asq.org/quality-resources/sipoc
+    publisher: American Society for Quality
+    accessed: 2026-10-06
+    note: The definition and procedure explain a high-level current-state view,
+      boundaries, and stakeholder review. The fictional purchasing map below is
+      original; it is not an ASQ case study or a complete SIPOC+CM diagram.
+  - id: asq-flowchart
+    title: What is a Flowchart? Process Flow Diagrams & Maps
+    url: https://asq.org/quality-resources/flowchart
+    publisher: American Society for Quality
+    accessed: 2026-10-06
+    note: The basic procedure covers process boundaries, sequence, and review
+      with people involved in the process. It supports the next mapping step,
+      not a diagnosis of delay or proof of improvement.
+knowledgeDebt:
+  - Compare the fictional map with a safely sanitized observed process and
+    record exceptions that the high-level view misses.
+  - Test the proposed timing definitions and review sampling limitations before
+    making a bottleneck or improvement claim.
+revisionHistory:
+  - date: 2026-10-06
+    note: Initial source-reviewed learning note with an original fictional SIPOC
+      example. No field results or operational performance claims.
+---
+
+## Executive summary
+
+Before improving a process, agree which process is under discussion. A small map can expose different assumptions about the starting event, the required inputs, and the output. It provides a question to investigate, not proof of a bottleneck.
+
+## Start with a boundary
+
+[ASQ describes SIPOC](#reference-asq-sipoc) as a high-level view of an existing process, useful before a detailed flowchart. Its procedure asks the team to define start and end points and review the map with stakeholders.
+
+For this fictional example, the process starts when a complete purchase request is accepted for review and ends when an approved order is released. Delivery, inspection, and payment sit outside that boundary. If a team's question concerns total time from need to receipt, this narrower map would miss important stages.
+
+## A fictional SIPOC view
+
+This table uses the five SIPOC categories for an original purchase-request example. ASQ's extended SIPOC+CM also includes constraints and measures; those additions are not fully modelled here.
+
+| Element   | Example within the chosen boundary                                                                 |
+| --------- | -------------------------------------------------------------------------------------------------- |
+| Suppliers | Requester, technical reviewer, budget owner, bidding vendors                                       |
+| Inputs    | Requirement, acceptance criteria, funding information, vendor offers                               |
+| Process   | Review request → clarify gaps → request offers → evaluate offers → obtain approval → release order |
+| Outputs   | Released order and recorded decision                                                               |
+| Customers | Requester and receiving supplier                                                                   |
+
+Here, supplier means a provider of an input to the process; it can be an internal colleague. The word does not refer only to the vendor receiving the order.
+
+## Turn the map into a question
+
+Suppose a fictional team reports that orders take too long. Someone starts the clock when the first incomplete request arrives; someone else starts when it is accepted as complete. They can disagree about performance while describing the same orders.
+
+A proposed learning exercise is to record both events separately:
+
+1. First request received: include the initial submission even if information is missing.
+2. Complete request accepted: record the agreed readiness check.
+3. Order released: use the agreed release event, not a draft creation time.
+
+Choose calendar or working time explicitly and keep it consistent. Review clarification returns and cancelled requests rather than silently removing them. These are proposed definitions to test, not standard service targets.
+
+## Follow the actual sequence
+
+The [ASQ flowchart procedure](#reference-asq-flowchart) supports detailing the sequence and checking it with people who perform the process. Use that next step to ask where decisions, returns, and handoffs actually occur.
+
+For the example, compare a small sanitized sample with the map. Note whether each event is recorded reliably and whether urgent requests take another route. A few observations can reveal missing questions, but cannot establish a representative delay distribution or a causal explanation.
+
+<Callout title="A map is a starting point">
+
+This fictional map does not identify the bottleneck or show a time saving. An improvement claim would need agreed measures, suitable observations, and evidence that the result relates to the change.
+
+</Callout>
+
+## Key takeaways
+
+Write the boundary first, test the map against an actual sequence, and define the events before timing them. For a related next step, read [Data definitions before dashboards](/articles/data-definitions-before-dashboards).

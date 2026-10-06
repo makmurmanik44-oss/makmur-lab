@@ -172,8 +172,11 @@ export default async function Article({
                   </div>
                 )}
                 <h2 id="revisions">Revision history</h2>
-                {entry.revisionHistory.map((revision) => (
-                  <p className="reading-label" key={revision.date}>
+                {entry.revisionHistory.map((revision, index) => (
+                  <p
+                    className="reading-label"
+                    key={`${revision.date}-${index}`}
+                  >
                     <time dateTime={revision.date}>{revision.date}</time> —{" "}
                     {revision.note}
                   </p>

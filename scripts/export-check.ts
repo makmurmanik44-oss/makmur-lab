@@ -2,10 +2,19 @@ import { readdir, readFile } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { site } from "../src/config/site";
+import { loadLibrary } from "../src/content/engine";
 
 async function checkExport() {
   const root = path.resolve("out");
   const base = site.url.replace(/\/+$/, "");
+  const documents = await loadLibrary();
+  for (const { entry } of documents) {
+    const article = path.join(root, "articles", entry.slug, "index.html");
+    if (!existsSync(article))
+      throw new Error(
+        `Published article is missing from export: ${entry.slug}`,
+      );
+  }
   let checked = 0;
   async function visit(directory: string) {
     for (const item of await readdir(directory, { withFileTypes: true })) {

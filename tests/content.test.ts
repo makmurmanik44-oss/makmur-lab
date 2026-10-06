@@ -24,20 +24,27 @@ function note(patch = {}, body = parts[2], slug = metadata.slug) {
 
 test("existing notes, URLs, references, and Atlas path load from MDX", async () => {
   const documents = await loadLibrary();
-  assert.equal(documents.length, 3);
-  assert.deepEqual(
-    documents.map(({ entry }) => entry.slug),
-    [
-      "data-definitions-before-dashboards",
-      "scope-clarity-before-sourcing",
-      "supplier-count-and-capability",
-    ],
+  const slugs = documents.map(({ entry }) => entry.slug);
+  for (const slug of [
+    "data-definitions-before-dashboards",
+    "scope-clarity-before-sourcing",
+    "supplier-count-and-capability",
+  ])
+    assert.ok(slugs.includes(slug), `Original article URL retained: ${slug}`);
+  const data = documents.find(
+    ({ entry }) => entry.slug === "data-definitions-before-dashboards",
+  )!.entry;
+  assert.equal(
+    data.references.find(({ id }) => id === "w3c-dqv")?.publisher,
+    "W3C — Working Group Note",
   );
-  const data = documents[0].entry;
-  assert.equal(data.references[0].publisher, "W3C — Working Group Note");
   assert.equal(data.contentMaturity, "Developing");
   assert.ok(data.searchText.includes("bearing") === false);
-  assert.ok(documents[1].entry.searchText.includes("bearing replacement"));
+  assert.ok(
+    documents
+      .find(({ entry }) => entry.slug === "scope-clarity-before-sourcing")!
+      .entry.searchText.includes("bearing replacement"),
+  );
   assert.ok(documents.every(({ entry }) => entry.readingTime >= 1));
 });
 
@@ -51,7 +58,7 @@ test("metadata errors fail with the affected file and field", async () => {
     [{ lastReviewed: "2026-10-07" }, /Review date/],
     [{ unexpected: true }, /Unrecognized key/],
     [{ tags: ["Scope", "Scope"] }, /Tags must be unique/],
-    [{ knowledgeDebt: [] }, /evidence gaps/],
+    [{ references: [], knowledgeDebt: [] }, /evidence gaps/],
     [{ contentMaturity: "Stable" }, /Stable\/Revised/],
     [
       { revisionHistory: [{ date: "2026-10-05", note: "Older revision" }] },
@@ -140,14 +147,19 @@ test("broken relationships, prerequisite cycles, unpublished links, and anchors 
   unknown[0].entry.relatedKnowledge = ["missing-note"];
   assert.throws(() => validateLibrary(unknown), /invalid relationship/);
   const cyclic = copy();
-  cyclic[1].entry.prerequisites = ["supplier-count-and-capability"];
+  cyclic.find(
+    ({ entry }) => entry.slug === "scope-clarity-before-sourcing",
+  )!.entry.prerequisites = ["supplier-count-and-capability"];
   assert.throws(() => validateLibrary(cyclic), /cycle/);
   const hidden = await note(
     { published: false, featured: false },
     "## Private draft\n\nUnpublished body.",
     "private-draft",
   );
-  assert.equal(validateLibrary([...documents, hidden]).length, 3);
+  assert.equal(
+    validateLibrary([...documents, hidden]).length,
+    documents.length,
+  );
   const publicToHidden = copy();
   publicToHidden[0].entry.relatedKnowledge = [hidden.entry.slug];
   assert.throws(
@@ -170,8 +182,14 @@ test("broken relationships, prerequisite cycles, unpublished links, and anchors 
   });
   assert.throws(() => validateLibrary(targetFragment), /unknown target anchor/);
   const missingPath = copy();
-  missingPath[0].entry.published = false;
-  missingPath[2].entry.relatedKnowledge = [];
+  for (const { entry } of missingPath) {
+    entry.prerequisites = [];
+    entry.relatedKnowledge = [];
+  }
+  const pathTarget = missingPath.find(
+    ({ entry }) => entry.slug === "scope-clarity-before-sourcing",
+  )!;
+  pathTarget.entry.published = false;
   assert.throws(() => validateLibrary(missingPath), /Atlas path/);
   assert.throws(() => validateLibrary([...documents, documents[0]]), /unique/);
 });

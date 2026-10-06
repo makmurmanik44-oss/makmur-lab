@@ -1,5 +1,15 @@
 # Alpha validation
 
+## Content review milestone 2026-10-06
+
+The source-review record is in [editorial-source-review.md](editorial-source-review.md). All four notes retain Learning/Developing status; only public primary sources and original fictional examples were used. Field validation remains open.
+
+- Production export, TypeScript, ESLint, Prettier, five content-test groups, and diff checks pass.
+- A stale local incremental artifact initially omitted the new article HTML despite listing the route. A clean `.next` build exported all 13 application pages. The strengthened export check was verified to reject the missing article, then passed against the complete export; canonical URLs and Open Graph assets also pass.
+- All 13 routes return 200 with one H1 at 360, 390, 768, and 1440 pixels. No document overflow or browser JavaScript errors were observed.
+- Industrial Engineering filtering, the second Atlas reading path, new-article search, all seven reference records, all article TOC targets, existing body search, menu, and theme persistence pass browser checks.
+- Axe WCAG 2 A/AA and 2.1 AA checks find no violations across seven representative routes in both light and dark themes. This sample includes the new process article and tables; it is not a complete accessibility certification. The mobile SIPOC table was visually reviewed.
+
 ## MDX milestone 2026-10-06
 
 - Production static export, TypeScript, ESLint, Prettier, and `git diff --check` pass.
@@ -24,4 +34,4 @@ Validated on 2026-10-05 against the production static export, using the GitHub P
 
 ## Remaining work
 
-This is an Alpha, not the v1.0 release. The MDX engine and editorial schema are now implemented. Reviewed procurement-specific references, field validation, and a broader real content collection remain open. Vercel deployment and the final production cutover remain pending. Keep the current public homepage until that deployment has been verified.
+This is an Alpha, not the v1.0 release. The MDX engine, editorial schema, and initial primary-source review are implemented. Field validation, purchasing-specific metric review, and a broader content collection remain open. Vercel deployment and the final production cutover remain pending. Keep the current public homepage until that deployment has been verified.

@@ -13,11 +13,12 @@ difficulty: Foundation
 knowledgeStatus: Learning
 contentMaturity: Developing
 updated: 2026-10-06
-lastReviewed: 2026-10-05
+lastReviewed: 2026-10-06
 featured: false
 prerequisites: []
 relatedKnowledge:
   - scope-clarity-before-sourcing
+  - map-the-process-before-improving-it
 references:
   - id: w3c-dqv
     title: "Data on the Web Best Practices: Data Quality Vocabulary"
@@ -28,6 +29,15 @@ references:
       describe metadata for judging fitness for purpose. This supports the
       general need to describe a measure; it does not validate the procurement
       definition card or prescribe supplier activity windows.
+  - id: uk-data-quality
+    title: The Government Data Quality Framework
+    url: https://www.gov.uk/government/publications/the-government-data-quality-framework/the-government-data-quality-framework
+    publisher: UK Government — Government Data Quality Hub
+    accessed: 2026-10-06
+    note:
+      Data quality dimensions and user-needs sections distinguish completeness,
+      timeliness, and accuracy and discuss fitness for purpose. This is guidance
+      for input-data quality, not validation of purchasing KPIs or this card.
 revisionHistory:
   - date: 2026-10-05
     note:
@@ -36,6 +46,9 @@ revisionHistory:
   - date: 2026-10-06
     note: Migrated to MDX and added related W3C reading with its scope and
       limitations. Field validation remains open.
+  - date: 2026-10-06
+    note: Added primary UK data-quality guidance and separated definition review
+      from input-data checks using a fictional example.
 published: true
 knowledgeDebt:
   - Test the proposed definition card against a real management question using
@@ -64,6 +77,20 @@ Capture the definition alongside the data model so it can be reviewed rather tha
 
 In a fictional dashboard, active supplier could mean one order in 3, 6, or 12 months. Those windows answer different questions. Label the chosen window and test it against the category's normal purchasing cycle before treating a supplier as dormant.
 
+## Check the records as well as the definition
+
+The [Government Data Quality Framework](#reference-uk-data-quality) distinguishes completeness, timeliness, and accuracy. Having all required records does not mean their values match reality. Which checks matter depends on the intended use.
+
+For the fictional active-supplier metric, this note proposes the following checks:
+
+| Check        | Example question                                                           |
+| ------------ | -------------------------------------------------------------------------- |
+| Completeness | Are orders from every included site present, with a supplier identifier?   |
+| Timeliness   | Through which date is the extract current?                                 |
+| Accuracy     | Does a sampled order's supplier and date agree with its underlying record? |
+
+Record the extract cutoff and any known missing sites beside the result. These purchasing examples are an interpretation of the framework, not prescribed KPI rules. Even a clean extract still needs an agreed definition of an included order.
+
 ## Key takeaways
 
 Review one metric definition before adding another chart. Automation can make a definition repeatable; it cannot establish that the definition is appropriate.
@@ -74,6 +101,6 @@ The [W3C Data Quality Vocabulary](#reference-w3c-dqv) distinguishes a metric fro
 
 <Callout title="Scope of the reference">
 
-The definition card above is a proposed working aid. One related source does not establish that every example or recommendation has been validated.
+The definition card above is a proposed working aid. The references help explain measurement and data quality; they do not establish that the purchasing examples or chosen activity windows have been validated.
 
 </Callout>

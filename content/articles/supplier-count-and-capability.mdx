@@ -13,25 +13,46 @@ difficulty: Foundation
 knowledgeStatus: Learning
 contentMaturity: Developing
 updated: 2026-10-06
-lastReviewed: 2026-10-05
+lastReviewed: 2026-10-06
 featured: true
 prerequisites:
   - scope-clarity-before-sourcing
 relatedKnowledge:
   - data-definitions-before-dashboards
-references: []
+references:
+  - id: ungm-registration
+    title: The UNGM Glossary — registration and pre-qualification
+    url: https://www.ungm.org/Shared/KnowledgeCenter/Pages/UNGMglossary
+    publisher: United Nations Global Marketplace
+    accessed: 2026-10-06
+    note: The R entries distinguish registration from pre-qualification against
+      defined criteria. This distinction is specific to UNGM; an organisation's
+      own approved-supplier status may include other checks.
+  - id: un-pph-qualification
+    title: UN Procurement Practitioner's Handbook — February 2022
+    url: https://www.ungm.org/Shared/KnowledgeCenter/Document?documentId=1294233&widgetId=3518
+    publisher: UN HLCM Procurement Network via UNGM
+    accessed: 2026-10-06
+    note:
+      Section 6.4, Supplier evaluation, covers contract-specific capacity and
+      qualification. It supports checking evidence, not a universal activity
+      window, supplier score, or rationalization target.
 revisionHistory:
   - date: 2026-10-05
     note: Initial Alpha learning note. No company supplier counts or performance
       metrics are published.
   - date: 2026-10-06
     note: Migrated the existing Alpha note to MDX with explicit editorial gaps.
+  - date: 2026-10-06
+    note:
+      Added UNGM and UN qualification references, an evidence-record example,
+      and limits on what registration or confirmation demonstrates.
 published: true
 knowledgeDebt:
   - Validate the proposed framework in practice before treating it as
     established guidance.
-  - Add sources that address the specific procurement or supplier decision
-    described here.
+  - Define and test category-specific evidence freshness and shared-source
+    exposure checks before using the review for continuity decisions.
 ---
 
 ## Executive summary
@@ -41,6 +62,8 @@ An approved supplier is an option on paper. A usable supplier can meet a defined
 ## Context
 
 A database can retain suppliers that no longer serve a category or cannot respond when demand changes. Counting those records equally may overstate available alternatives.
+
+The [UNGM glossary](#reference-ungm-registration) explicitly separates registration from pre-qualification. The [UN handbook's supplier-evaluation section](#reference-un-pph-qualification) asks whether a supplier can perform the particular contract. These support asking what a status actually verifies; they do not mean every organisation uses the same approval model.
 
 ## A capability review
 
@@ -54,6 +77,22 @@ For a specific requirement, ask what is known and what still needs verification.
 ## Practical example
 
 A fictional delivery lane has eight registered transporters, but only two confirm vehicles for the required dates. The useful decision is how to secure capacity or change the plan; adding six inactive names to a coverage chart does not answer that question.
+
+For that fictional lane, a proposed evidence record could look like this:
+
+| Decision question                      | Evidence to request                                           | What remains uncertain                     |
+| -------------------------------------- | ------------------------------------------------------------- | ------------------------------------------ |
+| Can this vehicle serve the lane?       | Vehicle type and route constraints checked with the requester | Whether other requirements were omitted    |
+| Is it available on the required dates? | Dated confirmation for the named vehicle and period           | Confirmation can change before dispatch    |
+| Is the alternative independent?        | Declared subcontractor or vehicle source                      | Shared dependencies may remain undisclosed |
+
+Keep the verification date and reviewer alongside the record. A confirmation is provisional evidence, not guaranteed delivery. The table is an original working example; the sources do not prescribe it.
+
+## Limits and next review
+
+A last-order date measures transaction history, not current capability. Avoid using one inactivity window across categories without reviewing demand cycles. The exposure question also needs evidence beyond the supplier register: two names may still depend on one vehicle owner or upstream facility.
+
+Try the review on a sanitized category example, record which evidence can actually be obtained, and document unanswered questions before treating the alternatives as available.
 
 ## Key takeaways
 

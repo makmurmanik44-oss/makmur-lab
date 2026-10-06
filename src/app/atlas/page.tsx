@@ -24,10 +24,7 @@ export default async function Atlas() {
             <div className="atlas-path" key={path.title}>
               <p className="eyebrow">A suggested reading connection</p>
               <h2>{path.title}</h2>
-              <p>
-                This introductory sequence connects the requirement, the
-                supplier, and the information used to support a decision.
-              </p>
+              <p>{path.description}</p>
               <ol className="path-steps">
                 {path.steps.map((step) => (
                   <li key={step.slug}>

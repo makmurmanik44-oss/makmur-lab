@@ -26,7 +26,7 @@ export const domains: {
     title: "Industrial Engineering",
     description: "See how processes, constraints, and measurement connect.",
     topics: ["Process mapping", "Constraints", "Improvement"],
-    route: "/atlas#industrial-engineering",
+    route: "/articles?domain=industrial-engineering",
   },
   {
     id: "technology",
@@ -55,6 +55,8 @@ export const learningPaths = [
   {
     domain: "procurement",
     title: "From requirement to decision",
+    description:
+      "This introductory sequence connects the requirement, the supplier, and the information used to support a decision.",
     steps: [
       {
         title: "Define the requirement",
@@ -66,6 +68,22 @@ export const learningPaths = [
       },
       {
         title: "Define the supporting data",
+        slug: "data-definitions-before-dashboards",
+      },
+    ],
+  },
+  {
+    domain: "industrial-engineering",
+    title: "From process boundary to measurement",
+    description:
+      "Agree what the process includes, then define the information needed to investigate it.",
+    steps: [
+      {
+        title: "Map the process boundary",
+        slug: "map-the-process-before-improving-it",
+      },
+      {
+        title: "Define the supporting measure",
         slug: "data-definitions-before-dashboards",
       },
     ],

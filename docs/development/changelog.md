@@ -1,5 +1,17 @@
 # Development changelog
 
+## Alpha content review 2026-10-06
+
+- Continued from `0564a2a2828b9a21e77d6c41d6b8a1e0e63b5459` on the existing migration branch; retained the three original article URLs and explanations.
+- Added reviewed primary UN handbook and UNGM glossary references to the scope and supplier notes, with explicit limits and proposed review exercises.
+- Added UK Government input-data quality guidance and a fictional record-check table to the data-definition note; retained its W3C reference.
+- Published the first Industrial Engineering learning note, “Map the process before improving it”, with ASQ SIPOC and flowchart sources, an original fictional example, and no performance claims.
+- Linked Industrial Engineering to its article filter and added a second Atlas reading connection. Reading-path descriptions now come from taxonomy rather than shared procurement copy.
+- Retained Learning/Developing status and concrete knowledge debt for all four notes. Source review does not imply field validation.
+- Removed test assumptions about exactly three notes and their file order while preserving original-URL and graph-validation checks.
+- Added an export completeness check after browser QA found a missing new-article HTML page in a stale local incremental build. A clean build exported all 13 pages; the guard now rejects a missing published article.
+- Allowed multiple revision entries on the same date without duplicate React keys.
+
 ## Alpha MDX engine 2026-10-06
 
 - Continued from migration commit `0dfe1fca470c4ed315d6ad4b99b3cbb5e244510f` without rebuilding the foundation.
@@ -27,7 +39,7 @@
 
 ## Next sprint
 
-- Add primary-source references and field validation before promoting seed notes to Stable.
-- Improve full-text indexing as the MDX collection grows.
+- Test the proposed working aids with safely sanitized examples and document evidence before promoting notes to Stable.
+- Review purchasing-specific metric definitions and category-specific supplier evidence freshness.
 - Add detailed content debt and review scheduling to the editorial workflow.
 - Configure and verify Vercel, final canonical URLs, domain, analytics choice, and production indexing before retiring the legacy release.

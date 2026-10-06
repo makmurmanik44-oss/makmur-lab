@@ -36,6 +36,35 @@ jobs:
           cp *.html styles.css script.js robots.txt .nojekyll _site/
           cp -R assets _site/assets
 
+      - name: Checkout Knowledge Alpha
+        uses: actions/checkout@v6
+        with:
+          ref: 0dfe1fca470c4ed315d6ad4b99b3cbb5e244510f
+          path: _alpha-source
+
+      - name: Set up Node.js for Knowledge Alpha
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: _alpha-source/package-lock.json
+
+      - name: Install Knowledge Alpha dependencies
+        run: npm ci
+        working-directory: _alpha-source
+
+      - name: Build Knowledge Alpha
+        run: npm run build
+        working-directory: _alpha-source
+        env:
+          NEXT_PUBLIC_BASE_PATH: /makmur-lab/alpha
+          NEXT_PUBLIC_SITE_URL: https://makmurmanik44-oss.github.io/makmur-lab/alpha
+
+      - name: Add Knowledge Alpha preview
+        run: |
+          mkdir _site/alpha
+          cp -R _alpha-source/out/. _site/alpha/
+
       - name: Upload static site
         uses: actions/upload-pages-artifact@v4
         with:

@@ -46,6 +46,8 @@ Knowledge Atlas includes two [reading guides](docs/reading-guides.md), with step
 
 Learning Journal now uses one [structured reflection catalog](docs/journal-authoring.md) for its stream, individual pages, homepage preview, search, and sitemap. Three reflections state their basis, limitations, questions, and related reading. The original foundation reflection is retained; the two new entries describe existing library development, not field experience or measured outcomes. Journal publication is separate from the notes' maturity.
 
+The existing Procurement Control Tower [learning case](docs/case-authoring.md) now uses a typed catalog for its preserved detail URL, case listing, homepage preview, Search, and sitemap. It retains the original explanations and two sanitized visuals while making design tradeoffs, illustrative evidence, proposed checks, questions, and an exercise explicit. The data-definition note links back to the case. No deployment or measured impact is claimed.
+
 ## Quality and status
 
 The four Alpha notes are Developing and identify specific evidence gaps. Reviewed UN, UNGM, W3C, UK Government, and ASQ references explain their support and limitations; field validation and purchasing-specific metric review remain open. The worksheets are original working aids, not validated SOPs. Images and the adapted case use public or sanitized material. Preview metadata is noindex. Analytics is not installed.

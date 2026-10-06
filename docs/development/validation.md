@@ -1,5 +1,16 @@
 # Alpha validation
 
+## Structured learning case milestone 2026-10-06
+
+- Production export, TypeScript, ESLint, Prettier, twenty-eight test groups, and diff checks pass. All 27 pages have valid canonicals and Open Graph assets; the case export guard was verified to reject a missing published detail.
+- Tests cover case identities/publication, real dates and revision chronology, complete option reasoning, evidence distinctions, safe visual metadata/IDs, explained public connections, reciprocal article discovery, draft/dependency exclusion, case-only search/excerpts, and search URL round trips. Article MDX accepts the retained case URL and rejects unknown case routes.
+- A comparison against the prior case source confirms retention of its fifteen original explanations, constraint/lesson items, captions, and revision note. The two existing visual assets, four MDX articles, resource/example definitions and downloads, guides, journal entries, eight gaps, and planned review dates remain unchanged.
+- All 27 routes return 200. Home, case listing/detail, the supporting data-definition note, a second article without a reciprocal case, and initial/matched/empty case Search pass at 360, 390, 768, and 1440 pixels with one H1, unique IDs, no document overflow, and no browser JavaScript errors.
+- Browser checks cover the shared home/list case cards, existing detail URL, all case text, both option records, four explicit evidence records, both illustrations, derived reading time, every case/supporting-note section anchor, all four connected pages, and case/article Back/Forward restoring both URL and body.
+- Search shows eighteen documents, including one distinct learning case. Technology filtering, body-only tradeoff excerpts, Developing case/read-time metadata, actual clipboard copy, shared-link reload, result return, filter history, and reset focus pass. Journal reflections retain their separate content type.
+- Sampled Axe WCAG 2 A/AA and 2.1 AA checks find no violations on Home, the case listing/detail, supporting note, and initial/matched/empty case Search in both themes. Desktop/mobile layouts and dark option styling were visually reviewed. This automated sample is not a full accessibility certification.
+- The case remains Developing with illustrative and proposed-check evidence only. No operational deployment, completed practical check, or measured impact is asserted.
+
 ## Structured Learning Journal milestone 2026-10-06
 
 - Production export, TypeScript, ESLint, Prettier, twenty-four test groups, and diff checks pass. All 27 page canonicals and Open Graph assets are valid. Journal export checks require the stream and every published detail, reject draft-page exports, and were verified to reject a missing detail page.

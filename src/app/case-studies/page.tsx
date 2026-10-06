@@ -3,7 +3,10 @@ import { canonicalUrl } from "@/config/site";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { PageIntro } from "@/components/common/page-intro";
-import { Badge, Container } from "@/components/ui/primitives";
+import { Container } from "@/components/ui/primitives";
+import { CaseStudyCard } from "@/components/cards/case-study-card";
+import { caseStudies } from "@/content/case-studies";
+import { publicCaseStudies } from "@/lib/case-studies";
 export const metadata: Metadata = {
   title: "Case Studies",
   alternates: { canonical: canonicalUrl("/case-studies") },
@@ -18,27 +21,20 @@ export default function Cases() {
       />
       <section className="page-content">
         <Container>
+          <p className="resource-context">
+            Explore the reasoning and what remains unverified.{" "}
+            <Link
+              prefetch={false}
+              className="text-link"
+              href="/search?kind=case"
+            >
+              Search case studies →
+            </Link>
+          </p>
           <div className="simple-grid">
-            <article className="simple-card">
-              <Badge tone="green">Procurement analytics</Badge>
-              <h2>Procurement Control Tower</h2>
-              <p>
-                Explore a shared information model for supplier, purchasing,
-                contract, and category questions.
-              </p>
-              <Link
-                prefetch={false}
-                className="text-link"
-                href="/case-studies/procurement-control-tower"
-              >
-                Read the developing case{" "}
-                <ArrowUpRight size={16} aria-hidden="true" />
-              </Link>
-              <p className="case-note">
-                Sanitized learning case · illustrative visuals · updated
-                2026-10-05
-              </p>
-            </article>
+            {publicCaseStudies(caseStudies).map((entry) => (
+              <CaseStudyCard key={entry.slug} entry={entry} />
+            ))}
             <div className="simple-card">
               <p className="eyebrow">Editorial approach</p>
               <h2>Reasoning before results.</h2>

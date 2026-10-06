@@ -17,6 +17,9 @@ import { guidePath } from "../lib/reading-paths";
 import { journalEntries } from "./journal";
 import { publicJournalEntries, journalPath } from "../lib/journal";
 import { validateJournal } from "./journal-engine";
+import { caseStudies } from "./case-studies";
+import { validateCaseStudies } from "./case-engine";
+import { casePath, publicCaseStudies } from "../lib/case-studies";
 
 function editorialAnchors(
   entry: Pick<KnowledgeEntry, "references" | "knowledgeDebt">,
@@ -24,6 +27,7 @@ function editorialAnchors(
   return [
     "related",
     "reading-connections",
+    "related-cases",
     "references",
     "revisions",
     "review-plan",
@@ -242,6 +246,10 @@ export function validateLibrary(documents: KnowledgeDocument[]) {
     journalEntries,
     documents.map(({ entry }) => entry),
   );
+  validateCaseStudies(
+    caseStudies,
+    documents.map(({ entry }) => entry),
+  );
   return documents.filter(({ entry }) => entry.published);
 }
 
@@ -265,12 +273,20 @@ export async function loadLibrary(
     ...navigation.map((item) => item.href),
     "/search",
     "/review",
-    "/case-studies/procurement-control-tower",
+    ...publicCaseStudies(caseStudies).map(casePath),
     ...resources.map(resourcePath),
     ...resourceExamples.map(examplePath),
     ...learningPaths.map(guidePath),
     ...publicJournalEntries(journalEntries).map(journalPath),
   ]);
+  for (const entry of caseStudies) {
+    for (const visual of entry.visuals) {
+      if (!existsSync(path.join(publicRoot, visual.src)))
+        throw new Error(
+          `Case ${entry.slug}: missing public visual ${visual.src}`,
+        );
+    }
+  }
   for (const { entry, links } of documents) {
     for (const { url, image } of links) {
       if (!url.startsWith("/")) continue;

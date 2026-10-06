@@ -1,12 +1,16 @@
 # Library discovery
 
+Learning cases use the distinct `case` kind and Case studies filter. Their context, constraints, option tradeoffs, decision rationale, evidence status, lessons, questions, and exercises are searchable. The primary domain describes the case subject: the Control Tower design belongs to Technology, while its topic is Procurement analytics. Drafts and cases with unavailable supporting content are excluded. Case results show Developing case and reading time, without assigning a knowledge-experience status.
+
 Journal reflections are also indexed as the distinct `journal` kind. Search includes their basis, limitations, body sections, open questions, and connection explanations. Readers can combine Journal reflections with text/domain filters and share the same query URL. Draft reflections are omitted; a reflection is also omitted if a related note, worksheet, example, or guide is unavailable. The primary journal domain identifies its subject, without turning it into a reference article or assigning a knowledge-experience status.
 
 Search includes published learning notes and working aids whose supporting notes are published. The index comes from the existing MDX loader and resource definitions at build time. It adds no search service or operational records.
 
 Fictional filled examples are indexed as resources with the distinct `Worked example` format. Their scenarios, answers, reasoning, limitations, and next steps are searchable. The current collection has four notes, four blank worksheets, and four filled examples. An example is excluded when its supporting note is unpublished.
 
-Two Atlas reading guides add a distinct `Reading guide` format and `kind=guide` filter. Their rationale, reflection questions, and exercises are searchable. A guide's domain is its primary domain; its steps may cross domains. Any unpublished included note excludes that guide. The complete collection now has fourteen search documents. See [reading guides](reading-guides.md).
+Two Atlas reading guides add a distinct `Reading guide` format and `kind=guide` filter. Their rationale, reflection questions, and exercises are searchable. A guide's domain is its primary domain; its steps may cross domains. Any unpublished included note excludes that guide. See [reading guides](reading-guides.md).
+
+The complete collection has eighteen search documents: four notes, four worksheets, four worked examples, two reading guides, three journal reflections, and one learning case.
 
 ## Reader behavior
 

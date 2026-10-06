@@ -1,12 +1,15 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { canonicalUrl } from "@/config/site";
-import { ArrowRight, ArrowUpRight, Layers3, Route } from "lucide-react";
+import { ArrowUpRight, Route } from "lucide-react";
 import { LivingCover } from "@/components/home/living-cover";
 import { ArticleCard } from "@/components/cards/article-card";
 import { JournalCard } from "@/components/cards/journal-card";
 import { journalEntries } from "@/content/journal";
 import { publicJournalEntries } from "@/lib/journal";
+import { CaseStudyCard } from "@/components/cards/case-study-card";
+import { caseStudies } from "@/content/case-studies";
+import { publicCaseStudies } from "@/lib/case-studies";
 import { Container, SectionHeading, Badge } from "@/components/ui/primitives";
 import { domains } from "@/content/taxonomy";
 import { getKnowledgeEntries } from "@/content/library";
@@ -117,38 +120,12 @@ export default async function Home() {
             href="/case-studies"
             action="Explore cases"
           />
-          <Link
-            prefetch={false}
-            href="/case-studies/procurement-control-tower"
-            className="case-feature"
-          >
-            <div className="case-visual" aria-hidden="true">
-              <span className="eyebrow">From data to decision</span>
-              <Layers3 size={52} strokeWidth={1} />
-              <div className="case-flow">
-                <span>Source</span>
-                <ArrowRight size={14} />
-                <span>Model</span>
-                <ArrowRight size={14} />
-                <span>Decision</span>
-              </div>
-            </div>
-            <div className="case-feature-copy">
-              <div className="card-badges">
-                <Badge tone="green">Procurement analytics</Badge>
-                <Badge>Developing case</Badge>
-              </div>
-              <h3>Procurement Control Tower</h3>
-              <p>
-                How fragmented purchasing information can become a shared
-                foundation for procurement questions.
-              </p>
-              <span className="text-link">
-                Explore the learning case{" "}
-                <ArrowUpRight size={18} aria-hidden="true" />
-              </span>
-            </div>
-          </Link>
+          {publicCaseStudies(caseStudies)
+            .filter((entry) => entry.featured)
+            .slice(0, 1)
+            .map((entry) => (
+              <CaseStudyCard key={entry.slug} entry={entry} featured />
+            ))}
         </Container>
       </section>
       <section className="section">

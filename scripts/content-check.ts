@@ -6,6 +6,8 @@ import { validateExamples } from "../src/content/example-engine";
 import { learningPaths } from "../src/content/taxonomy";
 import { journalEntries } from "../src/content/journal";
 import { publicJournalEntries } from "../src/lib/journal";
+import { caseStudies } from "../src/content/case-studies";
+import { publicCaseStudies } from "../src/lib/case-studies";
 
 loadLibrary()
   .then((documents) => {
@@ -24,6 +26,9 @@ loadLibrary()
     console.log(`Reading guides valid: ${learningPaths.length}.`);
     console.log(
       `Journal reflections valid: ${publicJournalEntries(journalEntries).length} published / ${journalEntries.length} total.`,
+    );
+    console.log(
+      `Learning cases valid: ${publicCaseStudies(caseStudies).length} published / ${caseStudies.length} total.`,
     );
   })
   .catch((error: unknown) => {

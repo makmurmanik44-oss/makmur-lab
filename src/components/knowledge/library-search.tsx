@@ -74,6 +74,7 @@ export function LibrarySearch({ documents }: { documents: SearchDocument[] }) {
   const reflections = hits.filter(
     ({ document }) => document.kind === "journal",
   ).length;
+  const cases = hits.filter(({ document }) => document.kind === "case").length;
   return (
     <div className="library-search" aria-busy={!ready}>
       <div className="library-search-controls">
@@ -100,8 +101,8 @@ export function LibrarySearch({ documents }: { documents: SearchDocument[] }) {
         </label>
         <p id="search-help" className="search-help">
           Search titles, concepts, note text, worksheet questions, filled
-          examples, reading guides, and journal reflections. All entered words
-          must match.
+          examples, reading guides, journal reflections, and case studies. All
+          entered words must match.
         </p>
         <div className="library-search-filters">
           <label className="input-label" htmlFor="search-domain">
@@ -146,6 +147,7 @@ export function LibrarySearch({ documents }: { documents: SearchDocument[] }) {
               <option value="resource">Resources & examples</option>
               <option value="guide">Reading guides</option>
               <option value="journal">Journal reflections</option>
+              <option value="case">Case studies</option>
             </select>
           </label>
           <div className="search-actions">
@@ -203,7 +205,8 @@ export function LibrarySearch({ documents }: { documents: SearchDocument[] }) {
           {notes === 1 ? "learning note" : "learning notes"} · {worksheets}{" "}
           {worksheets === 1 ? "resource" : "resources"} · {guides}{" "}
           {guides === 1 ? "reading guide" : "reading guides"} · {reflections}{" "}
-          {reflections === 1 ? "journal reflection" : "journal reflections"}
+          {reflections === 1 ? "journal reflection" : "journal reflections"} ·{" "}
+          {cases} {cases === 1 ? "case study" : "case studies"}
           {state.query.trim() ? " · Best matches first" : ""}
         </p>
       </div>
@@ -266,9 +269,11 @@ function SearchResult({
                 ? "reading guide"
                 : document.kind === "journal"
                   ? "journal reflection"
-                  : document.format === "Worked example"
-                    ? "example"
-                    : "worksheet"}
+                  : document.kind === "case"
+                    ? "case study"
+                    : document.format === "Worked example"
+                      ? "example"
+                      : "worksheet"}
           </span>
           “{excerpt}”
         </p>
@@ -283,11 +288,15 @@ function SearchResult({
           <Badge>
             {document.kind === "journal"
               ? "Developing reflection"
-              : document.maturity}
+              : document.kind === "case"
+                ? "Developing case"
+                : document.maturity}
           </Badge>
         )}
         <span>
-          {document.kind === "article" || document.kind === "journal"
+          {document.kind === "article" ||
+          document.kind === "journal" ||
+          document.kind === "case"
             ? `${document.readingTime} min read`
             : document.kind === "guide"
               ? `~${document.readingTime} min of note reading`

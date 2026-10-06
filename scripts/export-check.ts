@@ -9,11 +9,23 @@ import { resourceExamples } from "../src/content/resource-examples";
 import { renderExampleMarkdown } from "../src/content/example-engine";
 import { learningPaths } from "../src/content/taxonomy";
 import { journalEntries } from "../src/content/journal";
+import { caseStudies } from "../src/content/case-studies";
 
 async function checkExport() {
   const root = path.resolve("out");
   const base = site.url.replace(/\/+$/, "");
   const documents = await loadLibrary();
+  if (!existsSync(path.join(root, "case-studies", "index.html")))
+    throw new Error("Case Studies catalog is missing from export");
+  for (const entry of caseStudies) {
+    const exported = existsSync(
+      path.join(root, "case-studies", entry.slug, "index.html"),
+    );
+    if (exported !== entry.published)
+      throw new Error(
+        `${entry.slug}: case export must match publication state`,
+      );
+  }
   if (!existsSync(path.join(root, "journal", "index.html")))
     throw new Error("Learning Journal catalog is missing from export");
   for (const entry of journalEntries) {

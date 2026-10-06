@@ -12,6 +12,8 @@ import { resourcePath, resourcesForArticle } from "@/content/resources";
 import { Badge } from "@/components/ui/primitives";
 import { ReviewTiming } from "@/components/knowledge/review-timing";
 import { ReadingConnections } from "@/components/knowledge/reading-connections";
+import { caseStudies } from "@/content/case-studies";
+import { casePath, casesForArticle } from "@/lib/case-studies";
 
 export const dynamicParams = false;
 
@@ -45,6 +47,7 @@ export default async function Article({
   const { entry, compiled } = document;
   const knowledge = await getKnowledgeEntries();
   const workingResources = resourcesForArticle(slug);
+  const relatedCases = casesForArticle(slug, caseStudies, knowledge);
   return (
     <>
       <PageIntro
@@ -61,15 +64,34 @@ export default async function Article({
                 {entry.toc
                   .filter((section) => section.depth <= 3)
                   .map((section) => (
-                    <a href={`#${section.id}`} key={section.id}>
+                    <Link
+                      prefetch={false}
+                      href={`#${section.id}`}
+                      key={section.id}
+                    >
                       {section.title}
-                    </a>
+                    </Link>
                   ))}
-                <a href="#reading-connections">Reading connections</a>
-                <a href="#related">Related knowledge</a>
-                <a href="#references">References & known gaps</a>
-                <a href="#review-plan">Review plan</a>
-                <a href="#revisions">Revision history</a>
+                <Link prefetch={false} href="#reading-connections">
+                  Reading connections
+                </Link>
+                {relatedCases.length > 0 && (
+                  <Link prefetch={false} href="#related-cases">
+                    Related learning cases
+                  </Link>
+                )}
+                <Link prefetch={false} href="#related">
+                  Related knowledge
+                </Link>
+                <Link prefetch={false} href="#references">
+                  References & known gaps
+                </Link>
+                <Link prefetch={false} href="#review-plan">
+                  Review plan
+                </Link>
+                <Link prefetch={false} href="#revisions">
+                  Revision history
+                </Link>
               </nav>
             </aside>
             <article>
@@ -157,6 +179,36 @@ export default async function Article({
               <div className="prose">
                 <MdxBody compiled={compiled} />
                 <ReadingConnections slug={slug} entries={knowledge} />
+                {relatedCases.length > 0 && (
+                  <section
+                    className="reading-connection"
+                    aria-labelledby="related-cases"
+                  >
+                    <h2 id="related-cases">Related learning cases</h2>
+                    {relatedCases.map((item) => (
+                      <div key={item.slug}>
+                        <h3>
+                          <Link prefetch={false} href={casePath(item)}>
+                            {item.title} →
+                          </Link>
+                        </h3>
+                        <p>
+                          {
+                            item.connections.find(
+                              (connection) =>
+                                connection.kind === "article" &&
+                                connection.slug === slug,
+                            )!.why
+                          }
+                        </p>
+                        <p className="reading-label">
+                          Developing case · illustrative design · no measured
+                          impact published
+                        </p>
+                      </div>
+                    ))}
+                  </section>
+                )}
                 <h2 id="related">Related knowledge</h2>
                 {entry.relatedKnowledge.length ? (
                   <div className="related-links">

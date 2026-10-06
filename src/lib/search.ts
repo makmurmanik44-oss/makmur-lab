@@ -7,6 +7,13 @@ import type {
 import { domainTitle, domains, type LearningPath } from "../content/taxonomy";
 import { guidePath, guideReadingTime } from "./reading-paths";
 import type { JournalEntry } from "../content/journal";
+import type { CaseStudy } from "../content/case-studies";
+import {
+  casePath,
+  caseReadingTime,
+  caseText,
+  resolveCaseConnection,
+} from "./case-studies";
 import {
   journalPath,
   journalReadingTime,
@@ -19,7 +26,7 @@ import {
   type ResourceExample,
 } from "../content/resource-examples";
 
-export type SearchKind = "article" | "resource" | "guide" | "journal";
+export type SearchKind = "article" | "resource" | "guide" | "journal" | "case";
 export type SearchState = {
   query: string;
   domain: DomainId | "all";
@@ -73,7 +80,8 @@ export function readSearchState(params: URLSearchParams): SearchState {
       kind === "article" ||
       kind === "resource" ||
       kind === "guide" ||
-      kind === "journal"
+      kind === "journal" ||
+      kind === "case"
         ? kind
         : "all",
   };
@@ -97,6 +105,7 @@ export function buildSearchDocuments(
   examples: ResourceExample[] = [],
   paths: LearningPath[] = [],
   journal: JournalEntry[] = [],
+  cases: CaseStudy[] = [],
 ): SearchDocument[] {
   const published = entries.filter((entry) => entry.published);
   const visible = new Set(published.map((entry) => entry.slug));
@@ -235,6 +244,28 @@ export function buildSearchDocuments(
         readingTime: journalReadingTime(entry),
         keywords: `${domainTitle(entry.domain)} ${entry.category} learning journal reflection open questions`,
         body: journalText(entry),
+      })),
+    ...cases
+      .filter(
+        (entry) =>
+          entry.published &&
+          entry.connections.every((connection) =>
+            resolveCaseConnection(connection, published),
+          ),
+      )
+      .map((entry): SearchDocument => ({
+        id: `case:${entry.slug}`,
+        href: casePath(entry),
+        title: entry.title,
+        summary: entry.summary,
+        domain: entry.domain,
+        kind: "case",
+        format: "Learning case",
+        updated: entry.updated,
+        maturity: "Developing",
+        readingTime: caseReadingTime(entry),
+        keywords: `${domainTitle(entry.domain)} ${entry.topic} case study illustrative design decision evidence`,
+        body: caseText(entry),
       })),
   ];
 }

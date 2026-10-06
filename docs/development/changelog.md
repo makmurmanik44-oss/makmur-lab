@@ -1,5 +1,15 @@
 # Development changelog
 
+## Alpha structured learning case 2026-10-06
+
+- Continued from `4368febb849cddedc1be33919ce2c758d44036df`; preserved the Control Tower URL, original explanations, constraints, lessons, and sanitized visuals.
+- Moved the existing case into a typed catalog and static detail renderer, with shared homepage/list cards, primary-domain metadata, derived reading time, update dates, and revision history.
+- Made the two existing design options explicit through potential benefits, tradeoffs, and applicable conditions. Decision logic remains a proposal rather than an approved or verified implementation.
+- Distinguished two illustrative artifacts from two proposed checks; added open questions and a fictional/sanitized exercise. No deployment, operational outcome, measured impact, or new private facts were added.
+- Connected the case to the existing data-definition note, metric worksheet and example, and process-to-measurement guide. Added the reciprocal note link and framework section navigation to preserve hash/history returns.
+- Added a distinct Case studies Search filter, case-body excerpts, publication/dependency boundaries, and catalog-derived sitemap/export checks.
+- Added authoring validation for dates/revisions, complete option reasoning, evidence states, safe IDs/visuals, and supporting connections. Other article, resource/example, guide, journal, gap, and review content remains intact.
+
 ## Alpha structured Learning Journal 2026-10-06
 
 - Continued from `9bac39b68c72cb372abb3ed65d84a6bf550bbec1`; retained the original foundation reflection's title, date, paragraphs, and questions.

@@ -1,102 +1,40 @@
+# Makmur Lab Knowledge Alpha
 
-# Makmur Lab v2.1
+A living knowledge library for procurement, supply chain, industrial engineering, and continuous learning. Makmur is the curator; knowledge is the product. SLGP is a separate product and is outside this repository's application scope.
 
-This version adds a homepage background image system to the hero section.
+This branch implements the Foundation and Living Cover milestone from the approved Development Handoff v1.0. It is an Alpha, not completion of the full v1.0 MVP.
 
-## Included
-- multi-page website
-- dark mode
-- responsive design
-- homepage with visual background hero
-- placeholder asset that can be swapped later
+## Development
 
-## Files
-- index.html
-- about.html
-- projects.html
-- notes.html
-- styles.css
-- script.js
-- assets/hero-background.svg
-- HERO_BACKGROUND_GUIDE.md
+Requirements: Node.js 22 or later and npm.
 
-## Recommended next step
-Replace the placeholder background with:
-1. a professional personal photo,
-2. a workspace image, or
-3. an industrial / systems visual.
+```sh
+npm ci
+npm run dev
+```
 
-Then continue with the flagship project page:
-Procurement Control Tower.
+```sh
+npm run lint
+npm run typecheck
+npm run format:check
+npm run build
+```
 
+The build generates static files in `out/`. Build-time variables:
 
-## v2.2 additions
-- Homepage visual direction changed to a dark professional workspace / desk photo.
-- Added `procurement-control-tower.html` as the first full flagship case study.
-- The flagship case includes:
-  - context
-  - problem framing
-  - hypothesis
-  - system architecture
-  - module breakdown
-  - before / after decision flow
-  - personal role
-  - lessons learned
-  - next-version roadmap
-- Added `IMAGE_CREDITS.md`.
+- `NEXT_PUBLIC_BASE_PATH`: empty for a root deployment; `/makmur-lab/alpha` for the isolated Pages preview.
+- `NEXT_PUBLIC_SITE_URL`: the absolute URL of the same deployment, without a trailing slash.
 
-## Recommended next content improvement
-Use anonymized screenshots / mockups of the actual dashboard in the Procurement Control Tower case study.
+Vercel can build this static Next.js application from this branch with the root path configuration. Final production hosting remains pending verification; the current public HTML release stays available.
 
+## Content and components
 
-## v2.3 additions
-- Added complete source files `styles.css` and `script.js`.
-- Added visual evidence assets for the flagship case study:
-  - `assets/control-tower-dashboard-mockup.svg`
-  - `assets/control-tower-architecture.svg`
-  - `assets/control-tower-flow.svg`
-- Embedded those visuals into `procurement-control-tower.html`.
-- Strengthened the flagship page so it reads more like a public-safe professional case study than a text-only project page.
+`src/content/seed.ts` supplies typed representative notes, taxonomy, and learning relationships. UI consumes that registry. Draft relationships and date metadata are checked at import/build time. MDX authoring is the next content-engine milestone.
 
-## Why these visuals are mockups
-The goal is to communicate structure and thinking without exposing internal supplier data, spend details, or company-sensitive information.
+`src/components/ui` is a small semantic primitive layer. Shared layout, home, card, and discovery components use the same design tokens from `src/app/globals.css`.
 
+## Quality and status
 
-## v2.4 Release Candidate
+The Alpha notes are Developing and explicitly identify missing references. They are not validated industry standards or measured company outcomes. Images and the adapted case use public or sanitized material. Preview metadata is noindex. Analytics is not installed.
 
-This release focuses on credibility and deployment readiness.
-
-### Flagship case improvements
-- Added real-world constraints.
-- Sharpened personal role and ownership.
-- Added Impact & Evidence section.
-- Explicitly separates demonstrated outcomes from metrics that are not yet measured.
-- Added public confidentiality statement.
-
-### Publish-readiness
-- Added favicon.
-- Added social-card visual asset.
-- Added Open Graph / Twitter text metadata.
-- Added `404.html`.
-- Added `robots.txt`.
-- Added `.nojekyll`.
-- Added `netlify.toml`.
-- Added `DEPLOYMENT.md`.
-- Added `PRE_PUBLISH_CHECKLIST.md`.
-
-No final custom-domain URLs are hard-coded yet because the final domain has not been confirmed.
-
-
-## v2.5 — Live Deploy Ready
-
-The repository now includes:
-
-`.github/workflows/pages.yml`
-
-This workflow deploys the static website to GitHub Pages from the `main` branch using GitHub's Pages actions.
-
-See:
-
-`FIRST_LIVE_DEPLOY.md`
-
-for the exact first-publication steps.
+See `docs/adr/001-knowledge-alpha-migration.md` and `docs/development/changelog.md` for migration and scope decisions.

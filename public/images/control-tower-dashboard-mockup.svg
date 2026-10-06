@@ -1,0 +1,76 @@
+<svg width="1400" height="1000" viewBox="0 0 1400 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1400" height="1000" rx="28" fill="#111411"/>
+<rect x="36" y="36" width="1328" height="928" rx="24" fill="#171A16" stroke="#2D322C" stroke-width="2"/>
+<rect x="68" y="68" width="1264" height="74" rx="18" fill="#1E231E"/>
+<text x="98" y="110" fill="#F3F4EE" font-family="Arial, sans-serif" font-size="32" font-weight="700">Procurement Control Tower</text>
+<text x="1010" y="112" fill="#9EA49A" font-family="Arial, sans-serif" font-size="14" font-weight="700">Illustrative public-safe mockup</text>
+
+<rect x="68" y="170" width="290" height="118" rx="20" fill="#212720"/>
+<rect x="376" y="170" width="290" height="118" rx="20" fill="#212720"/>
+<rect x="684" y="170" width="290" height="118" rx="20" fill="#212720"/>
+<rect x="992" y="170" width="340" height="118" rx="20" fill="#DDE7DA"/>
+
+<text x="96" y="203" fill="#96A095" font-family="Arial, sans-serif" font-size="14" font-weight="700">TOTAL SUPPLIERS</text>
+<text x="96" y="253" fill="#F3F4EE" font-family="Arial, sans-serif" font-size="44" font-weight="700">248</text>
+<text x="96" y="275" fill="#96A095" font-family="Arial, sans-serif" font-size="13">Active, new, dormant, one-time</text>
+
+<text x="404" y="203" fill="#96A095" font-family="Arial, sans-serif" font-size="14" font-weight="700">OPEN PO VALUE</text>
+<text x="404" y="253" fill="#F3F4EE" font-family="Arial, sans-serif" font-size="44" font-weight="700">IDR 12.6B</text>
+<text x="404" y="275" fill="#96A095" font-family="Arial, sans-serif" font-size="13">Aging and receipt visibility</text>
+
+<text x="712" y="203" fill="#96A095" font-family="Arial, sans-serif" font-size="14" font-weight="700">ACTIVE CONTRACTS</text>
+<text x="712" y="253" fill="#F3F4EE" font-family="Arial, sans-serif" font-size="44" font-weight="700">37</text>
+<text x="712" y="275" fill="#96A095" font-family="Arial, sans-serif" font-size="13">Expiry monitoring and follow-up</text>
+
+<text x="1020" y="203" fill="#5F725C" font-family="Arial, sans-serif" font-size="14" font-weight="700">MANAGEMENT QUESTION</text>
+<text x="1020" y="242" fill="#141512" font-family="Arial, sans-serif" font-size="22" font-weight="700">Where should procurement attention go this week?</text>
+<text x="1020" y="272" fill="#435B43" font-family="Arial, sans-serif" font-size="13">Not just what data exists.</text>
+
+<rect x="68" y="320" width="632" height="290" rx="22" fill="#1E231E"/>
+<text x="94" y="352" fill="#96A095" font-family="Arial, sans-serif" font-size="14" font-weight="700">SPEND TREND · MONTHLY</text>
+<polyline points="104,546 165,522 226,533 287,478 348,492 409,430 470,454 531,412 592,392 653,360" fill="none" stroke="#DDE7DA" stroke-width="5" stroke-linecap="round"/>
+<circle cx="653" cy="360" r="6" fill="#DDE7DA"/>
+<line x1="104" y1="560" x2="660" y2="560" stroke="#39403A" />
+<line x1="104" y1="510" x2="660" y2="510" stroke="#2A302A" />
+<line x1="104" y1="460" x2="660" y2="460" stroke="#2A302A" />
+<line x1="104" y1="410" x2="660" y2="410" stroke="#2A302A" />
+<text x="104" y="590" fill="#96A095" font-family="Arial, sans-serif" font-size="12">Jan</text>
+<text x="194" y="590" fill="#96A095" font-family="Arial, sans-serif" font-size="12">Mar</text>
+<text x="284" y="590" fill="#96A095" font-family="Arial, sans-serif" font-size="12">May</text>
+<text x="374" y="590" fill="#96A095" font-family="Arial, sans-serif" font-size="12">Jul</text>
+<text x="464" y="590" fill="#96A095" font-family="Arial, sans-serif" font-size="12">Sep</text>
+<text x="554" y="590" fill="#96A095" font-family="Arial, sans-serif" font-size="12">Nov</text>
+
+<rect x="718" y="320" width="614" height="290" rx="22" fill="#1E231E"/>
+<text x="744" y="352" fill="#96A095" font-family="Arial, sans-serif" font-size="14" font-weight="700">SUPPLIER LIFECYCLE</text>
+<rect x="760" y="390" width="190" height="42" rx="12" fill="#252C25"/><text x="782" y="416" fill="#F3F4EE" font-family="Arial, sans-serif" font-size="15" font-weight="700">Active Suppliers</text><text x="910" y="416" fill="#DDE7DA" font-family="Arial, sans-serif" font-size="15" font-weight="700">138</text>
+<rect x="760" y="445" width="190" height="42" rx="12" fill="#252C25"/><text x="782" y="471" fill="#F3F4EE" font-family="Arial, sans-serif" font-size="15" font-weight="700">New Suppliers</text><text x="916" y="471" fill="#DDE7DA" font-family="Arial, sans-serif" font-size="15" font-weight="700">16</text>
+<rect x="760" y="500" width="190" height="42" rx="12" fill="#252C25"/><text x="782" y="526" fill="#F3F4EE" font-family="Arial, sans-serif" font-size="15" font-weight="700">Dormant</text><text x="925" y="526" fill="#DDE7DA" font-family="Arial, sans-serif" font-size="15" font-weight="700">72</text>
+<rect x="760" y="555" width="190" height="42" rx="12" fill="#252C25"/><text x="782" y="581" fill="#F3F4EE" font-family="Arial, sans-serif" font-size="15" font-weight="700">One-time</text><text x="920" y="581" fill="#DDE7DA" font-family="Arial, sans-serif" font-size="15" font-weight="700">22</text>
+<circle cx="1110" cy="492" r="86" fill="#252C25"/>
+<circle cx="1110" cy="492" r="86" stroke="#39403A"/>
+<path d="M1110 406 A86 86 0 0 1 1191 459 L1110 492 Z" fill="#DDE7DA"/>
+<path d="M1191 459 A86 86 0 0 1 1168 564 L1110 492 Z" fill="#9BB096"/>
+<path d="M1168 564 A86 86 0 0 1 1054 557 L1110 492 Z" fill="#72866F"/>
+<path d="M1054 557 A86 86 0 0 1 1026 444 L1110 492 Z" fill="#576854"/>
+<path d="M1026 444 A86 86 0 0 1 1110 406 L1110 492 Z" fill="#435B43"/>
+
+<rect x="68" y="642" width="1264" height="286" rx="22" fill="#1E231E"/>
+<text x="94" y="674" fill="#96A095" font-family="Arial, sans-serif" font-size="14" font-weight="700">OPEN PO MONITORING · SAMPLE VIEW</text>
+<rect x="94" y="704" width="1212" height="46" rx="12" fill="#252C25"/>
+<text x="116" y="732" fill="#96A095" font-family="Arial, sans-serif" font-size="13" font-weight="700">SUPPLIER</text>
+<text x="390" y="732" fill="#96A095" font-family="Arial, sans-serif" font-size="13" font-weight="700">CATEGORY</text>
+<text x="610" y="732" fill="#96A095" font-family="Arial, sans-serif" font-size="13" font-weight="700">OPEN VALUE</text>
+<text x="848" y="732" fill="#96A095" font-family="Arial, sans-serif" font-size="13" font-weight="700">RECEIVED %</text>
+<text x="1056" y="732" fill="#96A095" font-family="Arial, sans-serif" font-size="13" font-weight="700">AGING</text>
+<text x="1194" y="732" fill="#96A095" font-family="Arial, sans-serif" font-size="13" font-weight="700">ACTION</text>
+
+<g fill="#F3F4EE" font-family="Arial, sans-serif" font-size="13">
+<text x="116" y="788">Vendor A</text><text x="390" y="788">Packaging</text><text x="610" y="788">IDR 530M</text><text x="848" y="788">62%</text><text x="1056" y="788">18 days</text><text x="1194" y="788">Review</text>
+<text x="116" y="832">Vendor B</text><text x="390" y="832">Transport</text><text x="610" y="832">IDR 870M</text><text x="848" y="832">41%</text><text x="1056" y="832">27 days</text><text x="1194" y="832">Follow-up</text>
+<text x="116" y="876">Vendor C</text><text x="390" y="876">Indirect Material</text><text x="610" y="876">IDR 190M</text><text x="848" y="876">88%</text><text x="1056" y="876">9 days</text><text x="1194" y="876">Monitor</text>
+</g>
+<line x1="94" y1="768" x2="1306" y2="768" stroke="#2D322C"/>
+<line x1="94" y1="812" x2="1306" y2="812" stroke="#2D322C"/>
+<line x1="94" y1="856" x2="1306" y2="856" stroke="#2D322C"/>
+</svg>

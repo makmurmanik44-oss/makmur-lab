@@ -1,5 +1,16 @@
 # Alpha validation
 
+## Working resources milestone 2026-10-06
+
+The existing MDX library remains intact. Four resources use one definition for their screen, print, and editable download content.
+
+- Production export, TypeScript, ESLint, Prettier, seven test groups, and diff checks pass. All 15 original scope-checklist checks were compared with the previous commit and retained in order.
+- Clearing both generated `.next` and `out` artifacts resolved a local route omission. The export check rejects missing resource HTML and missing or stale downloads; the complete build validates all 17 page canonicals and Open Graph assets.
+- All 17 routes return 200 with one H1 at 360, 390, 768, and 1440 pixels. No horizontal document overflow or browser JavaScript errors were observed.
+- All four article/worksheet round trips and browser downloads pass. Download filenames and bytes match exported Markdown, including limitations and supporting-note URLs. The print button invokes the browser print action.
+- All four worksheets produce two-page A4 PDFs with writing space, limitations, and a supporting-note credit. Header, footer, and action controls are hidden in worksheet print mode; dark-theme printing uses a white page and white margins. PDF dimensions, every section/check/field label, and sampled margin pixels were checked, and the process worksheet was visually reviewed across both pages.
+- Axe WCAG 2 A/AA and 2.1 AA checks find no violations on the catalog, all four worksheets, and two related article pages in both light and dark themes. This automated sample is not a complete accessibility certification.
+
 ## Content review milestone 2026-10-06
 
 The source-review record is in [editorial-source-review.md](editorial-source-review.md). All four notes retain Learning/Developing status; only public primary sources and original fictional examples were used. Field validation remains open.

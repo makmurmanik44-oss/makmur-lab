@@ -1,5 +1,16 @@
 # Development changelog
 
+## Alpha working resources 2026-10-06
+
+- Continued from `ccbe12104232bd9354f0d730d9bd7f5836768441`; preserved the MDX collection and existing application.
+- Expanded Resources from one download to four working aids: scope review, supplier capability evidence, metric definitions, and process boundaries/SIPOC.
+- Added static worksheet detail pages, screen and A4 print layouts, browser print/save-PDF controls, and editable Markdown downloads.
+- Preserved the original scope-download URL and all 15 original checks. Resource definitions supply both the pages and generated downloads.
+- Linked every article to its related resource and each worksheet back to its supporting note; included all resource pages in the sitemap.
+- Added resource validation, build-time download synchronization, export completeness/content checks, and focused publication/download tests.
+- Added `build:clean` for clearing generated local build/export artifacts before route expansions; the normal build keeps its cache and CI uses a fresh checkout.
+- Kept Developing maturity and explicit intended uses and limitations. The blank templates collect no responses.
+
 ## Alpha content review 2026-10-06
 
 - Continued from `0564a2a2828b9a21e77d6c41d6b8a1e0e63b5459` on the existing migration branch; retained the three original article URLs and explanations.

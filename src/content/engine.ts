@@ -10,6 +10,7 @@ import type { KnowledgeEntry } from "../types/knowledge";
 import { metadataSchema } from "./schema";
 import { learningPaths } from "./taxonomy";
 import { navigation } from "../config/site";
+import { resources, resourcePath } from "./resources";
 
 type Node = {
   type: string;
@@ -254,6 +255,7 @@ export async function loadLibrary(
     ...navigation.map((item) => item.href),
     "/search",
     "/case-studies/procurement-control-tower",
+    ...resources.map(resourcePath),
   ]);
   for (const { entry, links } of documents) {
     for (const { url, image } of links) {

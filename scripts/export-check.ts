@@ -3,6 +3,8 @@ import { existsSync } from "node:fs";
 import path from "node:path";
 import { site } from "../src/config/site";
 import { loadLibrary } from "../src/content/engine";
+import { renderResourceMarkdown } from "../src/content/resource-engine";
+import { resources } from "../src/content/resources";
 
 async function checkExport() {
   const root = path.resolve("out");
@@ -13,6 +15,18 @@ async function checkExport() {
     if (!existsSync(article))
       throw new Error(
         `Published article is missing from export: ${entry.slug}`,
+      );
+  }
+  for (const resource of resources) {
+    if (!existsSync(path.join(root, "resources", resource.slug, "index.html")))
+      throw new Error(`Worksheet is missing from export: ${resource.slug}`);
+    const download = path.join(root, "resources", `${resource.slug}.md`);
+    if (
+      !existsSync(download) ||
+      (await readFile(download, "utf8")) !== renderResourceMarkdown(resource)
+    )
+      throw new Error(
+        `Worksheet download is missing or stale: ${resource.slug}`,
       );
   }
   let checked = 0;

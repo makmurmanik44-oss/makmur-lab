@@ -1037,6 +1037,166 @@ main:focus {
   color: var(--muted);
   margin-bottom: 24px;
 }
+.resource-context {
+  max-width: 780px;
+  margin-bottom: 32px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.resource-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.resource-card {
+  display: flex;
+  flex-direction: column;
+}
+.resource-card > .eyebrow {
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.resource-card .case-note {
+  margin-bottom: 0;
+}
+.resource-card .resource-actions {
+  margin-top: auto;
+}
+.resource-actions,
+.worksheet-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.resource-actions .text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.article-resources {
+  padding: 20px 24px;
+  margin: -18px 0 36px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.article-resources > .eyebrow {
+  margin-bottom: 12px;
+}
+.article-resources > p:last-child {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+.worksheet-shell {
+  max-width: 850px;
+  margin-inline: auto;
+}
+.worksheet-actions {
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+.worksheet-context {
+  padding: 24px;
+  background: var(--tinted);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.worksheet-context p {
+  margin-top: 16px;
+}
+.worksheet-instructions {
+  color: var(--muted);
+}
+.worksheet-identification {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-block: 36px;
+  font-size: 13px;
+}
+.worksheet-line {
+  display: block;
+  min-height: 34px;
+  border-bottom: 1px solid var(--line);
+}
+.worksheet-section {
+  padding-block: 30px;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 120px;
+}
+.worksheet-section h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.worksheet-section h2 > span {
+  color: var(--accent);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 15px;
+}
+.worksheet-section > p {
+  margin-bottom: 20px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.worksheet-checks {
+  display: grid;
+  gap: 16px;
+  padding: 0;
+  list-style: none;
+}
+.worksheet-checks li {
+  display: flex;
+  align-items: start;
+  gap: 14px;
+  font-size: 15px;
+  line-height: 1.65;
+}
+.worksheet-check-box {
+  flex: 0 0 16px;
+  height: 16px;
+  border: 1px solid var(--muted);
+  margin-top: 4px;
+}
+.worksheet-fields {
+  display: grid;
+  gap: 24px;
+  margin-top: 24px;
+}
+.worksheet-fields dt {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.65;
+}
+.worksheet-fields dd {
+  margin: 0;
+}
+.worksheet-hint {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.worksheet-source {
+  margin-top: 28px;
+  padding: 24px;
+  background: var(--tinted);
+  border-radius: var(--radius);
+  line-height: 1.7;
+}
+.worksheet-source h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+.worksheet-source > p {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.worksheet-print-credit {
+  display: none;
+}
 .journal-entry {
   max-width: 850px;
   margin-inline: auto;
@@ -1355,5 +1515,147 @@ main:focus {
   *::after {
     transition: none !important;
     animation: none !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .resource-grid {
+    grid-template-columns: 1fr;
+  }
+  .worksheet-identification {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .worksheet-context,
+  .worksheet-source {
+    padding: 20px;
+  }
+  .worksheet-actions .resource-actions {
+    align-items: stretch;
+    width: 100%;
+  }
+  .worksheet-actions .button {
+    flex-grow: 1;
+  }
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+  body:has(.worksheet-page) .site-header,
+  body:has(.worksheet-page) .site-footer,
+  body:has(.worksheet-page) .skip-link,
+  .worksheet-actions {
+    display: none !important;
+  }
+  .worksheet-page {
+    --text: #17201c;
+    --muted: #49564f;
+    --accent: #215d45;
+    --line: #a8b1ac;
+    --tinted: #ffffff;
+    color: var(--text);
+    background: #ffffff;
+    font-size: 10pt;
+  }
+  html:has(.worksheet-page),
+  body:has(.worksheet-page) {
+    color-scheme: light;
+    background: #ffffff !important;
+  }
+  .worksheet-page .container {
+    width: 100%;
+    max-width: none;
+  }
+  .worksheet-page .page-intro,
+  .worksheet-page .page-content {
+    padding: 0;
+  }
+  .worksheet-page .page-intro {
+    border: none;
+    margin-bottom: 16px;
+  }
+  .worksheet-page .page-intro h1 {
+    font-size: 24pt;
+    line-height: 1.15;
+    margin-block: 8px;
+  }
+  .worksheet-page .page-intro .intro-copy {
+    max-width: none;
+    font-size: 11pt;
+  }
+  .worksheet-context,
+  .worksheet-source {
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 0;
+    background: #ffffff;
+    font-size: 9pt;
+  }
+  .worksheet-context p,
+  .worksheet-source > p {
+    margin-top: 8px;
+    font-size: 9pt;
+  }
+  .worksheet-context .badge {
+    background: #ffffff;
+    border-color: var(--line);
+    color: var(--text);
+    font-size: 8pt;
+  }
+  .worksheet-identification {
+    grid-template-columns: 1fr 1fr;
+    margin-block: 16px;
+    font-size: 9pt;
+  }
+  .worksheet-section {
+    padding-block: 14px;
+    break-inside: avoid;
+  }
+  .worksheet-section h2 {
+    font-size: 13pt;
+    margin-bottom: 10px;
+  }
+  .worksheet-section h2 > span {
+    font-size: 9pt;
+  }
+  .worksheet-section > p,
+  .worksheet-fields dt,
+  .worksheet-hint,
+  .worksheet-checks li {
+    font-size: 10pt;
+    line-height: 1.45;
+  }
+  .worksheet-checks,
+  .worksheet-fields {
+    gap: 10px;
+  }
+  .worksheet-fields {
+    margin-top: 12px;
+  }
+  .worksheet-line {
+    min-height: 24px;
+  }
+  .worksheet-check-box {
+    flex-basis: 12px;
+    height: 12px;
+    margin-top: 3px;
+  }
+  .worksheet-source {
+    break-inside: avoid;
+    margin-top: 16px;
+  }
+  .worksheet-source h2 {
+    font-size: 11pt;
+  }
+  .worksheet-source a {
+    color: var(--text);
+  }
+  .worksheet-source .worksheet-print-credit {
+    display: block;
+    font-size: 8pt;
+    overflow-wrap: anywhere;
   }
 }

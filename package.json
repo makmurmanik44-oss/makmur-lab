@@ -6,10 +6,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build --webpack",
-    "prebuild": "npm run content:check",
+    "build:clean": "node scripts/clean-build.mjs && npm run build",
+    "prebuild": "npm run content:check && npm run resources:sync",
     "postbuild": "npm run export:check",
     "export:check": "node --import tsx scripts/export-check.ts",
     "content:check": "node --import tsx scripts/content-check.ts",
+    "resources:sync": "node --import tsx scripts/resource-sync.ts",
     "test": "node --import tsx --test tests/*.test.ts",
     "typecheck": "next typegen && tsc --noEmit",
     "lint": "eslint .",

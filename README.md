@@ -36,8 +36,10 @@ Use [the authoring guide](docs/content-authoring.md) and `content/templates/lear
 
 `src/components/ui` is a small semantic primitive layer. Shared layout, home, card, and discovery components use the same design tokens from `src/app/globals.css`.
 
+`src/content/resources.ts` supplies four working aids with printable detail pages, editable Markdown downloads, and links to their supporting articles. Run `npm run resources:sync` after editing a definition; the production build also regenerates the downloads. See [resource authoring](docs/resource-authoring.md).
+
 ## Quality and status
 
-The Alpha notes are Developing and identify specific evidence gaps. One data-definition note includes related W3C reading with its scope and limitations; practical validation and procurement-specific sources remain open. Images and the adapted case use public or sanitized material. Preview metadata is noindex. Analytics is not installed.
+The four Alpha notes are Developing and identify specific evidence gaps. Reviewed UN, UNGM, W3C, UK Government, and ASQ references explain their support and limitations; field validation and purchasing-specific metric review remain open. The worksheets are original working aids, not validated SOPs. Images and the adapted case use public or sanitized material. Preview metadata is noindex. Analytics is not installed.
 
 See `docs/adr/001-knowledge-alpha-migration.md` and `docs/development/changelog.md` for migration and scope decisions.

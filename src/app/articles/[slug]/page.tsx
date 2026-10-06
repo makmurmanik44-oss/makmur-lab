@@ -8,6 +8,7 @@ import { PageIntro } from "@/components/common/page-intro";
 import { Container } from "@/components/ui/primitives";
 import { KnowledgeBadges } from "@/components/knowledge/knowledge-badges";
 import { MdxBody } from "@/components/knowledge/mdx-body";
+import { resourcePath, resourcesForArticle } from "@/content/resources";
 
 export const dynamicParams = false;
 
@@ -40,6 +41,7 @@ export default async function Article({
   if (!document) notFound();
   const { entry, compiled } = document;
   const knowledge = await getKnowledgeEntries();
+  const workingResources = resourcesForArticle(slug);
   return (
     <>
       <PageIntro
@@ -128,6 +130,25 @@ export default async function Article({
                   </div>
                 </dl>
               </div>
+              {workingResources.length > 0 && (
+                <aside
+                  className="article-resources"
+                  aria-label="Working resources for this note"
+                >
+                  <p className="eyebrow">Put the idea into practice</p>
+                  {workingResources.map((resource) => (
+                    <Link
+                      prefetch={false}
+                      className="text-link"
+                      key={resource.slug}
+                      href={resourcePath(resource)}
+                    >
+                      {resource.title} →
+                    </Link>
+                  ))}
+                  <p>Printable working aid · Developing</p>
+                </aside>
+              )}
               <div className="prose">
                 <MdxBody compiled={compiled} />
                 <h2 id="related">Related knowledge</h2>

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { canonicalUrl } from "@/config/site";
-import { Download } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, Download } from "lucide-react";
+import { asset, canonicalUrl } from "@/config/site";
+import { resources, resourceDownload, resourcePath } from "@/content/resources";
+import { domainTitle } from "@/content/taxonomy";
 import { PageIntro } from "@/components/common/page-intro";
 import { Badge, Container } from "@/components/ui/primitives";
-import { asset } from "@/config/site";
 export const metadata: Metadata = {
   title: "Resources",
   alternates: { canonical: canonicalUrl("/resources") },
@@ -14,34 +16,55 @@ export default function Resources() {
       <PageIntro
         eyebrow="Reusable knowledge"
         title="Take the idea into practice."
-        description="Simple frameworks and working checklists, with a clear intended use and revision status."
+        description="Working aids for turning a learning note into questions you can review. Print a blank worksheet or download a copy to edit."
       />
       <section className="page-content">
         <Container>
-          <div className="simple-grid">
-            <article className="simple-card">
-              <div className="card-badges">
-                <Badge tone="green">Checklist</Badge>
-                <Badge>Markdown · Developing</Badge>
-              </div>
-              <h2>Scope review before sourcing</h2>
-              <p>
-                A one-page working checklist covering the need, scope boundary,
-                acceptance evidence, ownership, and changes. Adapt it to the
-                complexity of the work.
-              </p>
-              <a
-                className="button button-primary"
-                href={asset("/resources/scope-review-checklist.md")}
-                download
+          <p className="resource-context">
+            Use fictional or sanitized examples. These Developing aids are
+            proposed frameworks; their supporting notes explain the sources and
+            open evidence gaps.
+          </p>
+          <div className="simple-grid resource-grid">
+            {resources.map((resource) => (
+              <article
+                className="simple-card resource-card"
+                key={resource.slug}
               >
-                <Download size={16} aria-hidden="true" /> Download checklist
-              </a>
-              <p className="case-note">
-                Intended use: early requirement review · updated 2026-10-05 ·
-                proposed framework, not a company SOP
-              </p>
-            </article>
+                <p className="eyebrow">{domainTitle(resource.domain)}</p>
+                <div className="card-badges">
+                  <Badge tone="green">{resource.kind}</Badge>
+                  <Badge>Developing</Badge>
+                </div>
+                <h2>
+                  <Link prefetch={false} href={resourcePath(resource)}>
+                    {resource.title}
+                  </Link>
+                </h2>
+                <p>{resource.summary}</p>
+                <div className="resource-actions">
+                  <Link
+                    prefetch={false}
+                    className="button button-primary"
+                    href={resourcePath(resource)}
+                  >
+                    Open worksheet <ArrowUpRight size={16} aria-hidden="true" />
+                  </Link>
+                  <a
+                    className="text-link"
+                    href={asset(resourceDownload(resource))}
+                    download
+                    aria-label={`Download ${resource.title} as Markdown`}
+                  >
+                    <Download size={16} aria-hidden="true" /> Markdown
+                  </a>
+                </div>
+                <p className="case-note">
+                  {resource.intendedUse} Updated{" "}
+                  <time dateTime={resource.updated}>{resource.updated}</time>.
+                </p>
+              </article>
+            ))}
           </div>
         </Container>
       </section>

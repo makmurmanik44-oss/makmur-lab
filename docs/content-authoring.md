@@ -54,7 +54,7 @@ An unreferenced note must declare its evidence gaps. Stable/Revised notes requir
 
 The validator rejects unknown frontmatter fields, invalid statuses/dates, duplicate YAML keys/slugs/tags/reference IDs, missing relationships, self-links, prerequisite cycles, missing Atlas steps, links to unpublished notes, and broken article anchors. Local images/downloads must exist in `public/`. Ordinary application links must point to known pages.
 
-After the build, the export check requires an HTML page for every published article and validates exported canonical URLs and Open Graph assets. If an added article is missing from a local incremental export, remove the generated `.next` directory and rerun the build. This resolved a stale local artifact during the first collection expansion; CI builds from a fresh checkout. A missing article is a failed build, not a publishable preview.
+After the build, the export check requires an HTML page for every published article and worksheet, verifies generated downloads, and validates exported canonical URLs and Open Graph assets. If an added route is missing from a local incremental export, use `npm run build:clean` to clear the generated `.next` and `out` directories before building again. A complete clean build resolved stale local artifacts during collection expansion; CI builds from a fresh checkout. A missing page is a failed build, not a publishable preview.
 
 Article MDX is deliberately limited to Markdown and the approved Callout. JavaScript expressions, imports, exports, arbitrary JSX, raw HTML, executable URLs, and protocol-relative links fail validation before evaluation. The repository content is the authoring source; the application does not compile submitted or remotely fetched content.
 

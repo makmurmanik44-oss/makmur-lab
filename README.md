@@ -2,7 +2,7 @@
 
 A living knowledge library for procurement, supply chain, industrial engineering, and continuous learning. Makmur is the curator; knowledge is the product. SLGP is a separate product and is outside this repository's application scope.
 
-This branch implements the Foundation, Living Cover, and MDX content-engine milestones from the approved Development Handoff v1.0. It is an Alpha, not completion of the full v1.0 MVP.
+This branch develops the knowledge-first Alpha from the approved Development Handoff v1.0, including the Foundation, Living Cover, MDX content engine, working resources, and library discovery. It is not completion of the full v1.0 MVP.
 
 ## Development
 
@@ -37,6 +37,8 @@ Use [the authoring guide](docs/content-authoring.md) and `content/templates/lear
 `src/components/ui` is a small semantic primitive layer. Shared layout, home, card, and discovery components use the same design tokens from `src/app/globals.css`.
 
 `src/content/resources.ts` supplies four working aids with printable detail pages, editable Markdown downloads, and links to their supporting articles. Run `npm run resources:sync` after editing a definition; the production build also regenerates the downloads. See [resource authoring](docs/resource-authoring.md).
+
+Search indexes published note bodies and worksheet questions together. Readers can filter by domain/content type, follow relevant excerpts, and share a URL that restores the query and filters. See [library discovery](docs/discovery.md) for matching and navigation behavior.
 
 ## Quality and status
 

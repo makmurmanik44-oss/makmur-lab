@@ -1,5 +1,13 @@
 # Alpha validation
 
+## Library discovery milestone 2026-10-06
+
+- Production export, TypeScript, ESLint, Prettier, eleven test groups, and diff checks pass. All 17 page canonicals and Open Graph assets remain valid.
+- Search indexes four published notes and four working aids. Tests cover unpublished content exclusion, article prose/worksheet fields, all-word matching, title relevance, stable ordering, punctuation/accents, combined filters, and query/filter URL round trips.
+- Browser checks pass for suggested searches, type/domain filters, query URL synchronization, shared-link hydration, reload, Back/Forward through filters, Back from a result page, reset focus, real clipboard copy, and clipboard-failure guidance. The original article-body search and Knowledge domain filter also pass.
+- All 17 routes return 200 with one H1 at 360, 390, 768, and 1440 pixels. Search match and empty states also fit these widths; no horizontal document overflow or browser JavaScript errors were observed.
+- Sampled Axe WCAG 2 A/AA and 2.1 AA checks find no violations on initial/matched/empty Search, Resources, and Knowledge in light and dark themes. This automated sample is not a complete accessibility certification.
+
 ## Working resources milestone 2026-10-06
 
 The existing MDX library remains intact. Four resources use one definition for their screen, print, and editable download content.

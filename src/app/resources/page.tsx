@@ -23,7 +23,14 @@ export default function Resources() {
           <p className="resource-context">
             Use fictional or sanitized examples. These Developing aids are
             proposed frameworks; their supporting notes explain the sources and
-            open evidence gaps.
+            open evidence gaps.{" "}
+            <Link
+              prefetch={false}
+              className="text-link"
+              href="/search?kind=resource"
+            >
+              Search worksheets →
+            </Link>
           </p>
           <div className="simple-grid resource-grid">
             {resources.map((resource) => (

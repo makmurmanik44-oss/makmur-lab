@@ -1,5 +1,15 @@
 # Development changelog
 
+## Alpha library discovery 2026-10-06
+
+- Continued from `e256c15254f1f29cf25c1887763e4580c22ac6c8` on the existing migration branch.
+- Expanded Search to find published learning notes and working aids, including article prose and worksheet checks, field labels, and hints.
+- Added visible domain and content-type filters, distinct result types, relevance ordering, source excerpts for body-only matches, and clear/reset controls.
+- Added query/filter URLs, reload and Back/Forward restoration, suggested searches, and an explicit Copy search link action with a clipboard fallback.
+- Added a worksheet-search entry from Resources and responsive search controls/results in both themes.
+- Added four focused search-test groups for publication boundaries, matching/ranking, combined filters, and shared URLs. Existing MDX and worksheet data remain the index sources.
+- Documented the matching rules and their limits; the search remains a small local collection with no semantic-answer claims.
+
 ## Alpha working resources 2026-10-06
 
 - Continued from `ccbe12104232bd9354f0d730d9bd7f5836768441`; preserved the MDX collection and existing application.

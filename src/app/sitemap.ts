@@ -3,6 +3,8 @@ import { canonicalUrl, navigation } from "@/config/site";
 import { getKnowledgeEntries } from "@/content/library";
 import { resources, resourcePath } from "@/content/resources";
 import { resourceExamples, examplePath } from "@/content/resource-examples";
+import { learningPaths } from "@/content/taxonomy";
+import { guidePath } from "@/lib/reading-paths";
 export const dynamic = "force-static";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const knowledge = await getKnowledgeEntries();
@@ -14,6 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...knowledge.map((entry) => `/articles/${entry.slug}`),
     ...resources.map(resourcePath),
     ...resourceExamples.map(examplePath),
+    ...learningPaths.map(guidePath),
   ];
   return routes.map((route) => ({
     url: canonicalUrl(route),
@@ -22,6 +25,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       resources.find((resource) => route === resourcePath(resource))?.updated ||
       resourceExamples.find((example) => route === examplePath(example))
         ?.updated ||
+      learningPaths.find((path) => route === guidePath(path))?.updated ||
       "2026-10-06",
     changeFrequency: "monthly",
   }));

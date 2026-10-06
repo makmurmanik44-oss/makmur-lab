@@ -1,0 +1,13 @@
+# Knowledge Atlas reading guides
+
+The existing two Atlas connections now have individual guides at `/atlas/requirement-to-decision/` and `/atlas/process-boundary-to-measurement/`. The original titles, domains, and note order remain unchanged. Each guide explains its intended reader, a learning question, the reason for each step, reflection prompts, and a fictional exercise. Worksheet and filled-example links derive from the existing resource catalogs; article titles, prerequisite links, status, and reading time derive from MDX.
+
+`src/content/taxonomy.ts` remains the single source for the guide's stable slug, primary domain, descriptions, update date, and ordered steps. Each step needs `title`, article `slug`, `why`, `question`, and `exercise`. Content validation rejects unsafe/duplicate guide slugs, invalid domains/dates, empty explanations, fewer than two notes, repeated notes, missing/unpublished notes, and an included prerequisite placed after its dependent note. A prerequisite outside the guide is displayed as prior reading; a guide does not claim to cover every prerequisite.
+
+Articles expose Reading connections after their original body. A shared note displays each applicable connection separately, with its own previous/next links and overview. The first/last note states the sequence boundary instead of linking to an undefined destination. This is navigation position, not tracked reading progress or evidence of competence. Bookmarks, accounts, and progress tracking remain backlog.
+
+Search includes guides as the distinct `guide` kind. Readers can choose Reading guides and combine it with a domain filter or text query; shared URL/history behavior is unchanged. Domain filtering uses the guide's primary domain even when its steps cross domains. Guide text includes its rationale, reflection questions, and exercises. A guide is excluded from the search index if any included note is unpublished.
+
+Reading-time estimates sum only the included published note bodies. Exercises, guide text, worksheets, and source review take additional time. All connections and their supporting notes remain Developing; the guides do not qualify suppliers, establish KPI targets, identify bottlenecks, or close the existing knowledge gaps.
+
+After editing a connection, run content checks, tests, and a production build. The export guard requires every guide HTML page and validates its canonical URL and social image. Check Atlas-to-guide, guide-to-note/resource/example, article previous/next/overview links, sidebar anchors, and filtered search. Review mobile and both themes before publishing.

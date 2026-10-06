@@ -1,5 +1,15 @@
 # Development changelog
 
+## Alpha guided Knowledge Atlas 2026-10-06
+
+- Continued from `666a714b0b83e2c244d7606b6875e0910fc5e4fc`; retained the two existing Atlas sequences and all article/resource content.
+- Added two reading-guide pages with intended use, learning aims, step rationale, reflection prompts, fictional exercises, prerequisites, and worksheet/example links.
+- Connected each article to its guide and previous/next notes. The shared data-definition note retains both reading connections and their separate navigation.
+- Derived guide reading-time estimates from MDX; estimates cover note bodies only and do not track reader progress or competence.
+- Added guide identities, metadata, explanation, publication, and prerequisite-order validation, plus guide export checks and sitemap entries.
+- Added Reading guides to Search with guide text indexing, a distinct type filter, primary-domain filtering, and the existing share/history behavior.
+- Kept Developing maturity, eight open evidence gaps, Alpha noindex, and the separate SLGP boundary. Progress tracking and bookmarks remain backlog.
+
 ## Alpha worked examples and review workflow 2026-10-06
 
 - Continued from `12d40401ae41e1453eeef2fd17d54c751eaa0299`; retained all existing article and blank-worksheet URLs, prose, and checks.

@@ -6,11 +6,12 @@ import { LibrarySearch } from "@/components/knowledge/library-search";
 import { getKnowledgeEntries } from "@/content/library";
 import { resources } from "@/content/resources";
 import { resourceExamples } from "@/content/resource-examples";
+import { learningPaths } from "@/content/taxonomy";
 import { buildSearchDocuments } from "@/lib/search";
 export const metadata: Metadata = {
   title: "Search",
   description:
-    "Find learning notes and printable working aids by concept, domain, or question.",
+    "Find learning notes, working aids, and reading guides by concept, domain, or question.",
   alternates: { canonical: canonicalUrl("/search") },
 };
 export default async function SearchPage() {
@@ -20,7 +21,7 @@ export default async function SearchPage() {
       <PageIntro
         eyebrow="Discovery"
         title="What are you thinking about?"
-        description="Find a learning note, follow a concept, or choose a worksheet to put an idea into practice."
+        description="Find a learning note, follow a reading connection, or choose a worksheet to put an idea into practice."
       />
       <section className="page-content">
         <Container>
@@ -29,6 +30,7 @@ export default async function SearchPage() {
               entries,
               resources,
               resourceExamples,
+              learningPaths,
             )}
           />
         </Container>

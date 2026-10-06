@@ -12,12 +12,15 @@ import { learningPaths } from "./taxonomy";
 import { navigation } from "../config/site";
 import { resources, resourcePath } from "./resources";
 import { resourceExamples, examplePath } from "./resource-examples";
+import { validateLearningPaths } from "./path-engine";
+import { guidePath } from "../lib/reading-paths";
 
 function editorialAnchors(
   entry: Pick<KnowledgeEntry, "references" | "knowledgeDebt">,
 ) {
   return [
     "related",
+    "reading-connections",
     "references",
     "revisions",
     "review-plan",
@@ -228,14 +231,10 @@ export function validateLibrary(documents: KnowledgeDocument[]) {
     visited.add(slug);
   };
   bySlug.forEach((_, slug) => checkPrerequisites(slug));
-  for (const learningPath of learningPaths) {
-    for (const step of learningPath.steps) {
-      if (!bySlug.get(step.slug)?.entry.published)
-        throw new Error(
-          `Atlas path ${learningPath.title}: missing published note ${step.slug}`,
-        );
-    }
-  }
+  validateLearningPaths(
+    learningPaths,
+    documents.map(({ entry }) => entry),
+  );
   return documents.filter(({ entry }) => entry.published);
 }
 
@@ -262,6 +261,7 @@ export async function loadLibrary(
     "/case-studies/procurement-control-tower",
     ...resources.map(resourcePath),
     ...resourceExamples.map(examplePath),
+    ...learningPaths.map(guidePath),
   ]);
   for (const { entry, links } of documents) {
     for (const { url, image } of links) {

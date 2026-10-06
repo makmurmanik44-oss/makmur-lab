@@ -65,7 +65,12 @@ export function LibrarySearch({ documents }: { documents: SearchDocument[] }) {
   const notes = hits.filter(
     ({ document }) => document.kind === "article",
   ).length;
-  const worksheets = hits.length - notes;
+  const worksheets = hits.filter(
+    ({ document }) => document.kind === "resource",
+  ).length;
+  const guides = hits.filter(
+    ({ document }) => document.kind === "guide",
+  ).length;
   return (
     <div className="library-search" aria-busy={!ready}>
       <div className="library-search-controls">
@@ -91,8 +96,8 @@ export function LibrarySearch({ documents }: { documents: SearchDocument[] }) {
           </span>
         </label>
         <p id="search-help" className="search-help">
-          Search titles, concepts, note text, worksheet questions, and filled
-          examples. All entered words must match.
+          Search titles, concepts, note text, worksheet questions, filled
+          examples, and reading guides. All entered words must match.
         </p>
         <div className="library-search-filters">
           <label className="input-label" htmlFor="search-domain">
@@ -135,6 +140,7 @@ export function LibrarySearch({ documents }: { documents: SearchDocument[] }) {
               <option value="all">All content</option>
               <option value="article">Learning notes</option>
               <option value="resource">Resources & examples</option>
+              <option value="guide">Reading guides</option>
             </select>
           </label>
           <div className="search-actions">
@@ -190,7 +196,8 @@ export function LibrarySearch({ documents }: { documents: SearchDocument[] }) {
         >
           {hits.length} {hits.length === 1 ? "result" : "results"} · {notes}{" "}
           {notes === 1 ? "learning note" : "learning notes"} · {worksheets}{" "}
-          {worksheets === 1 ? "resource" : "resources"}
+          {worksheets === 1 ? "resource" : "resources"} · {guides}{" "}
+          {guides === 1 ? "reading guide" : "reading guides"}
           {state.query.trim() ? " · Best matches first" : ""}
         </p>
       </div>
@@ -249,9 +256,11 @@ function SearchResult({
             From the{" "}
             {document.kind === "article"
               ? "note"
-              : document.format === "Worked example"
-                ? "example"
-                : "worksheet"}
+              : document.kind === "guide"
+                ? "reading guide"
+                : document.format === "Worked example"
+                  ? "example"
+                  : "worksheet"}
           </span>
           “{excerpt}”
         </p>
@@ -268,7 +277,9 @@ function SearchResult({
         <span>
           {document.kind === "article"
             ? `${document.readingTime} min read`
-            : "Print / Markdown"}{" "}
+            : document.kind === "guide"
+              ? `~${document.readingTime} min of note reading`
+              : "Print / Markdown"}{" "}
           · Updated{" "}
           <time dateTime={document.updated}>
             {displayDate(document.updated)}

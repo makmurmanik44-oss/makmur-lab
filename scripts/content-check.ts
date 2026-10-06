@@ -3,6 +3,7 @@ import { validateResources } from "../src/content/resource-engine";
 import { resources } from "../src/content/resources";
 import { resourceExamples } from "../src/content/resource-examples";
 import { validateExamples } from "../src/content/example-engine";
+import { learningPaths } from "../src/content/taxonomy";
 
 loadLibrary()
   .then((documents) => {
@@ -18,6 +19,7 @@ loadLibrary()
       );
     console.log(`Resource links valid: ${resources.length} worksheets.`);
     console.log(`Filled examples valid: ${resourceExamples.length}.`);
+    console.log(`Reading guides valid: ${learningPaths.length}.`);
   })
   .catch((error: unknown) => {
     console.error(error instanceof Error ? error.message : error);

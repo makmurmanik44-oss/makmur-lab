@@ -4,14 +4,15 @@ import type {
   KnowledgeEntry,
   KnowledgeStatus,
 } from "../types/knowledge";
-import { domainTitle, domains } from "../content/taxonomy";
+import { domainTitle, domains, type LearningPath } from "../content/taxonomy";
+import { guidePath, guideReadingTime } from "./reading-paths";
 import type { ResourceDefinition } from "../content/resources";
 import {
   examplePath,
   type ResourceExample,
 } from "../content/resource-examples";
 
-export type SearchKind = "article" | "resource";
+export type SearchKind = "article" | "resource" | "guide";
 export type SearchState = {
   query: string;
   domain: DomainId | "all";
@@ -61,7 +62,10 @@ export function readSearchState(params: URLSearchParams): SearchState {
     domain: domains.some((item) => item.id === domain)
       ? (domain as DomainId)
       : "all",
-    kind: kind === "article" || kind === "resource" ? kind : "all",
+    kind:
+      kind === "article" || kind === "resource" || kind === "guide"
+        ? kind
+        : "all",
   };
 }
 
@@ -81,6 +85,7 @@ export function buildSearchDocuments(
   entries: KnowledgeEntry[],
   resources: ResourceDefinition[],
   examples: ResourceExample[] = [],
+  paths: LearningPath[] = [],
 ): SearchDocument[] {
   const published = entries.filter((entry) => entry.published);
   const visible = new Set(published.map((entry) => entry.slug));
@@ -172,6 +177,32 @@ export function buildSearchDocuments(
           ].join(" "),
         };
       }),
+    ...paths
+      .filter((path) => path.steps.every((step) => visible.has(step.slug)))
+      .map((path): SearchDocument => ({
+        id: `guide:${path.slug}`,
+        href: guidePath(path),
+        title: path.title,
+        summary: path.description,
+        domain: path.domain,
+        kind: "guide",
+        format: "Reading guide",
+        updated: path.updated,
+        maturity: "Developing",
+        readingTime: guideReadingTime(path, published),
+        keywords: `${domainTitle(path.domain)} reading guide knowledge atlas connection ${path.steps.map((step) => step.title).join(" ")}`,
+        body: [
+          path.intendedFor,
+          path.outcome,
+          path.limitation,
+          ...path.steps.flatMap((step) => [
+            step.why,
+            step.question,
+            step.exercise,
+            published.find((entry) => entry.slug === step.slug)!.title,
+          ]),
+        ].join(" "),
+      })),
   ];
 }
 

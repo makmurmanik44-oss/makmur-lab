@@ -11,6 +11,7 @@ import { MdxBody } from "@/components/knowledge/mdx-body";
 import { resourcePath, resourcesForArticle } from "@/content/resources";
 import { Badge } from "@/components/ui/primitives";
 import { ReviewTiming } from "@/components/knowledge/review-timing";
+import { ReadingConnections } from "@/components/knowledge/reading-connections";
 
 export const dynamicParams = false;
 
@@ -64,6 +65,7 @@ export default async function Article({
                       {section.title}
                     </a>
                   ))}
+                <a href="#reading-connections">Reading connections</a>
                 <a href="#related">Related knowledge</a>
                 <a href="#references">References & known gaps</a>
                 <a href="#review-plan">Review plan</a>
@@ -154,6 +156,7 @@ export default async function Article({
               )}
               <div className="prose">
                 <MdxBody compiled={compiled} />
+                <ReadingConnections slug={slug} entries={knowledge} />
                 <h2 id="related">Related knowledge</h2>
                 {entry.relatedKnowledge.length ? (
                   <div className="related-links">

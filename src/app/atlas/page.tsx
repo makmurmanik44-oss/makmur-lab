@@ -5,6 +5,8 @@ import { domains, learningPaths } from "@/content/taxonomy";
 import { getKnowledgeEntries } from "@/content/library";
 import { PageIntro } from "@/components/common/page-intro";
 import { Container } from "@/components/ui/primitives";
+import { Badge } from "@/components/ui/primitives";
+import { guidePath, guideReadingTime } from "@/lib/reading-paths";
 export const metadata: Metadata = {
   title: "Knowledge Atlas",
   alternates: { canonical: canonicalUrl("/atlas") },
@@ -21,10 +23,21 @@ export default async function Atlas() {
       <section className="page-content">
         <Container>
           {learningPaths.map((path) => (
-            <div className="atlas-path" key={path.title}>
+            <div className="atlas-path" key={path.slug}>
               <p className="eyebrow">A suggested reading connection</p>
-              <h2>{path.title}</h2>
+              <h2>
+                <Link prefetch={false} href={guidePath(path)}>
+                  {path.title}
+                </Link>
+              </h2>
               <p>{path.description}</p>
+              <div className="card-badges atlas-path-meta">
+                <Badge>{path.steps.length} notes</Badge>
+                <Badge>
+                  ~{guideReadingTime(path, knowledge)} min of note reading
+                </Badge>
+                <Badge>Developing connection</Badge>
+              </div>
               <ol className="path-steps">
                 {path.steps.map((step) => (
                   <li key={step.slug}>
@@ -34,6 +47,15 @@ export default async function Atlas() {
                   </li>
                 ))}
               </ol>
+              <div className="atlas-path-actions">
+                <Link
+                  prefetch={false}
+                  className="button button-primary"
+                  href={guidePath(path)}
+                >
+                  Open reading guide →
+                </Link>
+              </div>
             </div>
           ))}
           <div className="atlas-domains">

@@ -1,5 +1,15 @@
 # Alpha validation
 
+## Guided Knowledge Atlas milestone 2026-10-06
+
+- Production export, TypeScript, ESLint, Prettier, twenty test groups, and diff checks pass. All 24 pages have valid canonical URLs and Open Graph assets; the export guard requires both guide pages.
+- Guide validation rejects unsafe/duplicate identities, incomplete explanations, invalid domains/dates, fewer than two notes, repeated or unpublished targets, and prerequisites placed after their dependent notes. Tests also cover shared-note connections, sequence boundaries, reading-time derivation, guide search/publication filters, URL round trips, and local guide routes.
+- All 24 routes return 200 with one H1 and unique DOM IDs at 360, 390, 768, and 1440 pixels. No document overflow or browser JavaScript errors were observed. Atlas, both guides, and guide Search were visually inspected at desktop and mobile widths.
+- Browser checks pass for both Atlas-to-guide paths, every included note in order, step rationale, all guide article/resource/example/review links and anchors, previous/next navigation, explicit first/last boundaries, and return to the guide. The shared data-definition note keeps two independent reading connections.
+- Search exposes four notes, eight resources/examples, and two guides. Guide/domain filters, exercise excerpts, actual clipboard copy, reload, result navigation, history restoration, and reset focus pass. Guide initial/matched/empty states fit all four viewport widths.
+- Sampled Axe WCAG 2 A/AA and 2.1 AA checks report no violations on Atlas, both guides, the shared article, and guide initial/matched/empty Search in light and dark themes. This automated sample is not a full accessibility certification.
+- Original MDX notes, resource/example definitions, downloads, evidence gaps, and review dates are unchanged. The guides remain Developing; reading navigation does not track progress or demonstrate competence.
+
 ## Worked examples and review milestone 2026-10-06
 
 - Production export, TypeScript, ESLint, Prettier, sixteen test groups, and diff checks pass. All 22 pages have valid canonical URLs and Open Graph assets; the export guard requires the review page, four examples, and byte-consistent example downloads.

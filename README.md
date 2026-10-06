@@ -42,6 +42,8 @@ Search indexes published note bodies and worksheet questions together. Readers c
 
 Four fictional filled examples answer every worksheet question and include reasoning, limitations, open items, printable pages, and separate Markdown downloads. Search also indexes their answers. `/review` lists planned editorial checkpoints and actionable knowledge gaps; `npm run review:report` supports the same workflow from the repository. See [content review](docs/development/content-review.md). Neither examples nor dates change maturity automatically.
 
+Knowledge Atlas includes two [reading guides](docs/reading-guides.md), with step rationale, reflection prompts, and worksheet/example links. Articles display their position and previous/next notes in each applicable connection. Search also finds the guides as a distinct content type. Reading-time estimates derive from the included note bodies; this feature does not track reading progress.
+
 ## Quality and status
 
 The four Alpha notes are Developing and identify specific evidence gaps. Reviewed UN, UNGM, W3C, UK Government, and ASQ references explain their support and limitations; field validation and purchasing-specific metric review remain open. The worksheets are original working aids, not validated SOPs. Images and the adapted case use public or sanitized material. Preview metadata is noindex. Analytics is not installed.

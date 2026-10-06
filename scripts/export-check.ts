@@ -7,11 +7,16 @@ import { renderResourceMarkdown } from "../src/content/resource-engine";
 import { resources } from "../src/content/resources";
 import { resourceExamples } from "../src/content/resource-examples";
 import { renderExampleMarkdown } from "../src/content/example-engine";
+import { learningPaths } from "../src/content/taxonomy";
 
 async function checkExport() {
   const root = path.resolve("out");
   const base = site.url.replace(/\/+$/, "");
   const documents = await loadLibrary();
+  for (const guide of learningPaths) {
+    if (!existsSync(path.join(root, "atlas", guide.slug, "index.html")))
+      throw new Error(`Reading guide is missing from export: ${guide.slug}`);
+  }
   for (const { entry } of documents) {
     const article = path.join(root, "articles", entry.slug, "index.html");
     if (!existsSync(article))

@@ -4,6 +4,8 @@ Search includes published learning notes and working aids whose supporting notes
 
 Fictional filled examples are indexed as resources with the distinct `Worked example` format. Their scenarios, answers, reasoning, limitations, and next steps are searchable. The current collection has four notes, four blank worksheets, and four filled examples. An example is excluded when its supporting note is unpublished.
 
+Two Atlas reading guides add a distinct `Reading guide` format and `kind=guide` filter. Their rationale, reflection questions, and exercises are searchable. A guide's domain is its primary domain; its steps may cross domains. Any unpublished included note excludes that guide. The complete collection now has fourteen search documents. See [reading guides](reading-guides.md).
+
 ## Reader behavior
 
 - Search matches titles, summaries, domains, topics/tags, article prose, and worksheet questions, checks, and field hints.

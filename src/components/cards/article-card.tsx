@@ -4,17 +4,20 @@ import { domainTitle } from "@/content/taxonomy";
 import { KnowledgeBadges } from "@/components/knowledge/knowledge-badges";
 import type { KnowledgeEntry } from "@/types/knowledge";
 import { displayDate } from "@/lib/date";
+import { SaveNoteButton } from "@/components/knowledge/save-note-button";
 
 export function ArticleCard({
   entry,
   featured = false,
   excerpt,
   showUpdated = false,
+  onRemove,
 }: {
   entry: KnowledgeEntry;
   featured?: boolean;
   excerpt?: string;
   showUpdated?: boolean;
+  onRemove?: () => void;
 }) {
   return (
     <article
@@ -51,6 +54,11 @@ export function ArticleCard({
           <time dateTime={entry.updated}>{displayDate(entry.updated)}</time>
         </p>
       )}
+      <SaveNoteButton
+        slug={entry.slug}
+        title={entry.title}
+        onRemove={onRemove}
+      />
     </article>
   );
 }

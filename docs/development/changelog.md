@@ -1,5 +1,13 @@
 # Development changelog
 
+## Alpha saved learning notes 2026-10-07
+
+- Continued from `8e0ae05b3f285073bd2186b368db975616051b02`; preserved all current content and URLs.
+- Added Save note controls on homepage/catalog cards and article Knowledge Cards, plus a newest-first collection at `/saved/` reached through the header, footer, catalog, and note pages.
+- Added browser-local persistence, tab synchronization, reversible removals with focus restoration, current-publication filtering, and recovery from invalid records. Storage failure keeps saves in the current tab with explicit reload limits.
+- Added accessible pressed states, status announcements, JavaScript-free reading access, and a required saved-page export guard.
+- Kept eighteen Search documents, Learning/Developing status, eight gaps, review dates, Alpha noindex, and release boundaries. Accounts, cross-device sync, and reading progress remain future work.
+
 ## Alpha Knowledge reading lists 2026-10-07
 
 - Continued from `77459b85ce62f7f15327432048e942472ed497dc`; retained all existing content and article URLs.

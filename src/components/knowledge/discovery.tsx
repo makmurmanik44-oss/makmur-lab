@@ -178,6 +178,9 @@ export function Discovery({ entries }: { entries: KnowledgeEntry[] }) {
           </label>
         </div>
         <div className="discovery-actions">
+          <Link prefetch={false} className="text-link" href="/saved">
+            View saved notes →
+          </Link>
           <button
             type="button"
             className="button button-outline"

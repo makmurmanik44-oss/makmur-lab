@@ -15,6 +15,8 @@ async function checkExport() {
   const root = path.resolve("out");
   const base = site.url.replace(/\/+$/, "");
   const documents = await loadLibrary();
+  if (!existsSync(path.join(root, "saved", "index.html")))
+    throw new Error("Saved notes page is missing from export");
   if (!existsSync(path.join(root, "case-studies", "index.html")))
     throw new Error("Case Studies catalog is missing from export");
   for (const entry of caseStudies) {

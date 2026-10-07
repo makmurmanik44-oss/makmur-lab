@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   BookOpen,
+  Bookmark,
   Menu,
   Moon,
   Search,
@@ -132,6 +133,15 @@ export function Navbar() {
           </Link>
         </nav>
         <div className="header-actions">
+          <Link
+            prefetch={false}
+            href="/saved"
+            className="icon-button"
+            aria-label="View saved notes"
+            aria-current={pathname === "/saved" ? "page" : undefined}
+          >
+            <Bookmark size={18} aria-hidden="true" />
+          </Link>
           <Link
             prefetch={false}
             href="/search"

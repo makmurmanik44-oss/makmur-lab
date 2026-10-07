@@ -1,5 +1,15 @@
 # Alpha validation
 
+## Saved learning notes milestone 2026-10-07
+
+- Production export, TypeScript, ESLint, Prettier, thirty-six test groups, and diff checks pass. An initial local export omitted the new saved page; its required-page guard rejected that output. A subsequent clean build exports all 28 application pages with valid canonicals and Open Graph assets.
+- Saved-note tests cover current published identities, deduplication/order, malformed/unsupported/oversized records, reversible newest-first changes, capacity bounds, draft/retired exclusion, and preservation of source content and input collections.
+- Browser QA verifies real localStorage records, homepage/catalog/detail saving, reload persistence, detail/Back navigation, newest-first cards, reversible removals, and keyboard focus after collection removal. Native storage events synchronize another tab's additions/removals and cleared storage; a separate browser context has an independent collection.
+- Invalid records recover; unsafe/retired identities never supply rendered destinations. Storage-read denial and write-quota failure preserve the open-tab collection across client navigation, display explicit reload limits, and retain the expected saved state after reload. JavaScript-free fallback reaches all four static published notes with disabled save controls.
+- All 28 application routes return 200 with one H1, unique IDs, and a saved-collection header link. Home, Knowledge initial/matched, the scope note, Search, a reading guide, and populated/empty Saved notes fit 360, 390, 768, and 1440 pixels without document overflow. No browser JavaScript errors were observed; the mobile menu still closes with Escape.
+- Sampled Axe WCAG 2 A/AA and 2.1 AA checks find no violations on those representative surfaces and empty/populated Saved notes in both themes, plus storage-limited saved states. Desktop/mobile and dark collection layouts were visually reviewed. This automated sample is not a full accessibility certification.
+- All MDX note content, resource/example definitions and downloads, guides, journals, the learning case, visuals, maturity, eight knowledge gaps, and planned review dates remain unchanged. Saved notes do not enter Search or sitemap and do not record reading completion.
+
 ## Knowledge reading lists milestone 2026-10-07
 
 - Production export, TypeScript, ESLint, Prettier, thirty-two test groups, and diff checks pass. All 27 page canonicals and Open Graph assets remain valid; the eighteen-document library and existing export guards remain intact.

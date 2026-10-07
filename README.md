@@ -42,6 +42,8 @@ Search indexes published note bodies and worksheet questions together. Readers c
 
 Knowledge also supports shareable reading lists: full-note search, domain and reading-level filters, recommended/latest/title/shortest-read order, body excerpts, and visible update dates. Reload and browser history restore the same list, and readers can transfer their text/domain to whole-library Search.
 
+Readers can save published learning notes from homepage/catalog cards and note pages, then return through `/saved/`. Saves are local to the current browser, newest-first, and synchronized between its tabs. Storage failures fall back to the open tab with visible guidance. See [saved notes](docs/saved-notes.md) for behavior and limits.
+
 Four fictional filled examples answer every worksheet question and include reasoning, limitations, open items, printable pages, and separate Markdown downloads. Search also indexes their answers. `/review` lists planned editorial checkpoints and actionable knowledge gaps; `npm run review:report` supports the same workflow from the repository. See [content review](docs/development/content-review.md). Neither examples nor dates change maturity automatically.
 
 Knowledge Atlas includes two [reading guides](docs/reading-guides.md), with step rationale, reflection prompts, and worksheet/example links. Articles display their position and previous/next notes in each applicable connection. Search also finds the guides as a distinct content type. Reading-time estimates derive from the included note bodies; this feature does not track reading progress.

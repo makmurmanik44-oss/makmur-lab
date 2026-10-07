@@ -14,6 +14,7 @@ import { ReviewTiming } from "@/components/knowledge/review-timing";
 import { ReadingConnections } from "@/components/knowledge/reading-connections";
 import { caseStudies } from "@/content/case-studies";
 import { casePath, casesForArticle } from "@/lib/case-studies";
+import { SaveNoteButton } from "@/components/knowledge/save-note-button";
 
 export const dynamicParams = false;
 
@@ -156,6 +157,12 @@ export default async function Article({
                     </dd>
                   </div>
                 </dl>
+                <div className="article-save-actions">
+                  <SaveNoteButton slug={entry.slug} title={entry.title} />
+                  <Link prefetch={false} className="text-link" href="/saved">
+                    View saved notes →
+                  </Link>
+                </div>
               </div>
               {workingResources.length > 0 && (
                 <aside

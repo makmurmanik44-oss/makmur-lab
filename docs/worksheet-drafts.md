@@ -16,6 +16,18 @@ Each written response is limited to 2,000 characters and the example label to 12
 
 **Print / save PDF** prints the currently displayed view. With a draft open, print output contains full response text instead of clipped textarea controls. With the blank worksheet displayed, it prints the original writing spaces. Draft print output labels the answers as personal learning responses and retains the supporting note and limitations. Screen controls are hidden and print output stays light in either screen theme.
 
+## Back up and restore in another browser
+
+**Download draft backup** saves a separate `<worksheet>-draft-backup.json` file containing the current label, exercise date, field responses, check states/reasons, worksheet identity, and template signature. Move this file yourself to another device/browser, open the same worksheet, and choose it through **Restore draft backup**. This is manual file transfer; browser drafts are not synchronised across devices.
+
+The file is read locally and is limited to 512 KB. A current version and exactly matching worksheet/questions are required. A Markdown/PDF reading copy, another worksheet's backup, an outdated template, an unsupported version, missing answer keys, unsupported states, and malformed/oversized records cannot be restored. Rejection leaves the current draft untouched.
+
+Selecting a valid file opens a replacement preview without changing storage. It shows current/backup labels, exercise dates, and counts of responses with text or an exercise state. These counts do not measure completion or understanding. **Inspect backup answers** reveals every check, field, hint, answer, and remaining blank. Response text is displayed literally. Download the current backup first if you need to retain both versions.
+
+**Keep current draft** or Escape cancels the preview. **Confirm restore draft** replaces only the selected worksheet and opens its answers, preserving other worksheets and Saved notes. If the open draft changed after file selection, the first confirmation requires a new review and a second confirmation. If another tab changed its saved record, resolve the existing conflict choice before restoring. A storage failure retains the confirmed answers only in the open tab, with the existing reload limit displayed; a backup can still be downloaded.
+
+Backup files are private response copies, separate from published content, editorial maturity, and field validation. Restoring an exercise never establishes supplier qualification, approves a decision, or closes a knowledge gap.
+
 ## Storage and two tabs
 
 If browser storage cannot be read or written, edits remain in memory across client navigation in the same open tab. Reloading or closing the tab can lose these changes, and an older saved record may return. The page displays this limit; download the draft to keep a copy.

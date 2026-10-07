@@ -1,5 +1,14 @@
 # Development changelog
 
+## Alpha worksheet backup and restore 2026-10-07
+
+- Continued from `6174fa6ef4322a35d93f1cb28f034135f821f4a4` on the existing migration branch.
+- Added separate JSON backup downloads for every existing worksheet draft. The versioned file retains all known answers, exercise states/reasons, example label, exercise date, and current-template identity for manual browser/device transfer.
+- Added local file reading with a 512 KB bound and the existing exact-question validation. Markdown/PDF copies, another worksheet, unsupported/malformed/oversized records, and changed templates are rejected without applying answers.
+- Added current/backup labels, dates, response-state counts, and an expandable full-answer preview. Selection alone changes no record; cancel/Escape keeps the current draft, while explicit confirmation restores only that worksheet.
+- Protected restoration from edits since selection and from another tab's saved changes. Storage limits retain confirmed imports in the open tab with recovery/export guidance. Other worksheets and Saved notes remain separate.
+- Reserved restore-control IDs in resource validation. Kept original content definitions, blank/example downloads, printed responses, eighteen Search documents, eight open gaps, Learning/Developing maturity, and planned checkpoints. Reader trial remains prepared, not conducted.
+
 ## Alpha browser-local worksheet drafts 2026-10-07
 
 - Continued from `8dcef94aafe92ab0a15b012245bacfaabdcca4b3` on the existing migration branch.

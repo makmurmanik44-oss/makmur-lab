@@ -47,6 +47,12 @@ test("resource publication rejects missing or unpublished articles and invalid w
   const reserved = copy();
   reserved[0].sections[0].id = "worksheet-working-area";
   assert.throws(() => validateResources(reserved, entries), /Section IDs/);
+  const restoreCollision = copy();
+  restoreCollision[0].sections[0].id = "draft-restore-file";
+  assert.throws(
+    () => validateResources(restoreCollision, entries),
+    /Section IDs/,
+  );
   const controlCollision = copy();
   controlCollision[0].sections[1].id = "draft-need-check-0";
   assert.throws(

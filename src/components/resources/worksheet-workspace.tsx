@@ -2,15 +2,20 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { ResourceDefinition } from "@/content/resources";
+import { WorksheetBackupAnswers } from "./worksheet-backup-answers";
 import {
   blankWorksheetDraft,
   draftAnswerKey,
   draftCheckLabels,
   draftLabelLimit,
   draftTextLimit,
+  draftBackupByteLimit,
   readWorksheetDraft,
+  readWorksheetDraftBackup,
   renderWorksheetDraftMarkdown,
+  renderWorksheetDraftBackup,
   worksheetDraftHasAnswers,
+  worksheetDraftResponseCount,
   worksheetDraftKey,
   type DraftCheckState,
   type WorksheetDraft,
@@ -62,13 +67,31 @@ export function WorksheetWorkspace({
   const [editing, setEditing] = useState(false);
   const [confirmClear, setConfirmClear] = useState(false);
   const [notice, setNotice] = useState("");
+  const [restoreMessage, setRestoreMessage] = useState("");
+  const [readingBackup, setReadingBackup] = useState(false);
+  const [restorePreview, setRestorePreview] = useState<{
+    draft: WorksheetDraft;
+    filename: string;
+    expectedDraft: string;
+  } | null>(null);
   const current = useRef(initial);
   const stored = useRef<string | null>(null);
   const toggleButton = useRef<HTMLButtonElement>(null);
   const clearButton = useRef<HTMLButtonElement>(null);
   const labelInput = useRef<HTMLInputElement>(null);
   const cancelButton = useRef<HTMLButtonElement>(null);
+  const restoreInput = useRef<HTMLInputElement>(null);
+  const restoreCancelButton = useRef<HTMLButtonElement>(null);
+  const fileReadId = useRef(0);
   const key = worksheetDraftKey(resource.slug);
+  const pendingBackup = restorePreview?.draft;
+  useEffect(() => {
+    if (!pendingBackup) return;
+    const frame = requestAnimationFrame(() =>
+      restoreCancelButton.current?.focus(),
+    );
+    return () => cancelAnimationFrame(frame);
+  }, [pendingBackup]);
   function apply(next: WorkspaceState) {
     current.current = next;
     tabDrafts.set(key, { state: next, raw: stored.current });
@@ -127,6 +150,7 @@ export function WorksheetWorkspace({
     }
     window.addEventListener("storage", synchronize);
     return () => {
+      fileReadId.current += 1;
       cancelAnimationFrame(frame);
       window.removeEventListener("storage", synchronize);
     };
@@ -234,6 +258,98 @@ export function WorksheetWorkspace({
     setConfirmClear(false);
     clearButton.current?.focus();
   }
+  async function selectBackup(file: File | undefined) {
+    const readId = ++fileReadId.current;
+    setRestorePreview(null);
+    setRestoreMessage("");
+    setReadingBackup(false);
+    if (!file) return;
+    if (file.size > draftBackupByteLimit) {
+      setReadingBackup(false);
+      setRestoreMessage(
+        "Choose a JSON backup no larger than 512 KB. Your draft was not changed.",
+      );
+      return;
+    }
+    const expectedDraft = JSON.stringify(current.current.draft);
+    setReadingBackup(true);
+    try {
+      const raw = await file.text();
+      if (readId !== fileReadId.current) return;
+      const imported = readWorksheetDraftBackup(raw, resource);
+      if (!imported) {
+        setRestoreMessage(
+          "This file is not a backup for this worksheet's current questions. Choose its JSON backup; your draft was not changed.",
+        );
+        return;
+      }
+      setConfirmClear(false);
+      setRestorePreview({
+        draft: imported,
+        filename: file.name.slice(0, 160),
+        expectedDraft,
+      });
+      setRestoreMessage(
+        "Backup checked. Review the replacement before confirming.",
+      );
+    } catch {
+      if (readId === fileReadId.current)
+        setRestoreMessage(
+          "The backup file could not be read. Your draft was not changed.",
+        );
+    } finally {
+      if (readId === fileReadId.current) setReadingBackup(false);
+    }
+  }
+  function cancelRestore() {
+    fileReadId.current += 1;
+    setRestorePreview(null);
+    setRestoreMessage("Restore cancelled. Your current draft was kept.");
+    restoreInput.current?.focus();
+  }
+  function restoreDraft() {
+    if (!restorePreview || current.current.conflict) return;
+    const expectedDraft = JSON.stringify(current.current.draft);
+    if (expectedDraft !== restorePreview.expectedDraft) {
+      setRestorePreview({ ...restorePreview, expectedDraft });
+      setRestoreMessage(
+        "Your open draft changed after selecting the backup. Review the current and backup details, then confirm again if you want to replace it.",
+      );
+      return;
+    }
+    let mode = current.current.mode;
+    if (mode === "persistent") {
+      try {
+        if (localStorage.getItem(key) !== stored.current) {
+          apply({ ...current.current, conflict: true });
+          setRestoreMessage(
+            "Another tab changed the saved draft. Resolve that choice before restoring this backup.",
+          );
+          return;
+        }
+        const raw = JSON.stringify(restorePreview.draft);
+        localStorage.setItem(key, raw);
+        stored.current = raw;
+      } catch {
+        mode = "session";
+      }
+    }
+    apply({
+      draft: restorePreview.draft,
+      ready: true,
+      mode,
+      conflict: false,
+      invalid: false,
+    });
+    setEditing(true);
+    setRestorePreview(null);
+    setRestoreMessage(
+      mode === "persistent"
+        ? "Backup restored in this browser."
+        : "Backup restored in this open tab only. Download a backup to keep it before reload; browser storage is unavailable.",
+    );
+    requestAnimationFrame(() => labelInput.current?.focus());
+  }
   const { draft } = state;
   const hasAnswers = worksheetDraftHasAnswers(draft);
   return (
@@ -282,10 +398,28 @@ export function WorksheetWorkspace({
                 Download draft Markdown
               </button>
               <button
+                type="button"
+                className="button button-outline"
+                onClick={() => {
+                  downloadText(
+                    renderWorksheetDraftBackup(resource, draft),
+                    `${resource.slug}-draft-backup.json`,
+                    "application/json;charset=utf-8",
+                  );
+                  setNotice(
+                    "Draft backup download requested. Use Restore draft backup on this worksheet to continue in another browser.",
+                  );
+                }}
+              >
+                Download draft backup
+              </button>
+              <button
                 ref={clearButton}
                 type="button"
                 className="button button-outline"
-                disabled={state.conflict}
+                disabled={
+                  state.conflict || Boolean(restorePreview) || readingBackup
+                }
                 onClick={() => {
                   setConfirmClear(true);
                   requestAnimationFrame(() => cancelButton.current?.focus());
@@ -375,6 +509,96 @@ export function WorksheetWorkspace({
               </button>
             </div>
           </div>
+        )}
+        <div className="draft-backup-tools">
+          <label htmlFor="draft-restore-file">Restore draft backup</label>
+          <p id="draft-restore-help">
+            Choose this worksheet&apos;s JSON backup, up to 512 KB. The file is
+            read on this device. Preview and confirm before replacing your
+            current draft; Markdown and PDF copies are for reading.
+          </p>
+          <input
+            ref={restoreInput}
+            id="draft-restore-file"
+            type="file"
+            accept=".json,application/json"
+            className="draft-file-input"
+            disabled={!state.ready || readingBackup}
+            aria-describedby="draft-restore-help"
+            onChange={(event) => {
+              const file = event.target.files?.[0];
+              event.target.value = "";
+              void selectBackup(file);
+            }}
+          />
+          <p role="status" className="draft-storage">
+            {readingBackup ? "Reading backup…" : restoreMessage}
+          </p>
+        </div>
+        {restorePreview && (
+          <section
+            className="draft-restore-preview"
+            aria-labelledby="draft-restore-title"
+            onKeyDown={(event) => {
+              if (event.key === "Escape") cancelRestore();
+            }}
+          >
+            <h2 id="draft-restore-title">Review draft replacement</h2>
+            <p>
+              <strong>{resource.title}</strong> · {restorePreview.filename}
+            </p>
+            <dl className="draft-restore-summary">
+              <div>
+                <dt>Current draft</dt>
+                <dd>
+                  {draft.label || "No example label"}
+                  <br />
+                  {draft.date || "No review date"}
+                  <br />
+                  {worksheetDraftResponseCount(draft)} responses with text or an
+                  exercise state
+                </dd>
+              </div>
+              <div>
+                <dt>Backup draft</dt>
+                <dd>
+                  {restorePreview.draft.label || "No example label"}
+                  <br />
+                  {restorePreview.draft.date || "No review date"}
+                  <br />
+                  {worksheetDraftResponseCount(restorePreview.draft)} responses
+                  with text or an exercise state
+                </dd>
+              </div>
+            </dl>
+            <WorksheetBackupAnswers
+              resource={resource}
+              draft={restorePreview.draft}
+            />
+            <p>
+              This replaces only this worksheet&apos;s current draft. Download
+              its backup first if you want to keep both copies. Restoring does
+              not validate the exercise or change the published example.
+            </p>
+            <div className="resource-actions">
+              <button
+                ref={restoreCancelButton}
+                type="button"
+                className="button button-outline"
+                onClick={cancelRestore}
+              >
+                Keep current draft
+              </button>
+              <button
+                type="button"
+                className="button button-primary"
+                disabled={state.conflict}
+                onClick={restoreDraft}
+              >
+                Confirm restore draft
+              </button>
+            </div>
+          </section>
         )}
         <p className="visually-hidden" role="status" aria-live="polite">
           {notice}

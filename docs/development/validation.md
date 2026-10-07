@@ -1,5 +1,16 @@
 # Alpha validation
 
+## Worksheet backup and restore milestone 2026-10-07
+
+- Clean production export, TypeScript, ESLint, Prettier, forty-one test groups, and diff checks pass. All 28 application pages retain valid canonicals and Open Graph assets, eighteen Search documents, and eight open editorial gaps.
+- Backup tests cover exact Unicode/multiline answer transfer for all four templates, input preservation, current-question and worksheet matching, malformed/unsupported/incomplete files, bounded UTF-8 byte size, actual dates, supported exercise states, and ignored metadata that cannot supply routes. Resource validation rejects restore-control ID collisions.
+- Real-browser downloads from all four editors match the backup renderer exactly. An independent browser context restores every response, check state/reason, label, and exercise date after explicit confirmation; reload and the answer-bearing Markdown export retain the same draft. Selecting a file, inspecting its full answers, and cancel/Escape leave storage unchanged and restore chooser focus.
+- Wrong-worksheet, malformed, Markdown, oversized, and unsupported files reject without replacing the draft. Edits after selection require renewed review and another confirmation. Actual changes in another tab block confirmation while retaining the open answers until the existing conflict choice is resolved. Restoration preserves other worksheet records and Saved notes.
+- Storage-read denial and write-quota cases retain confirmed imports across client navigation in the open tab, disclose reload limits, and download reusable backups. Literal response HTML is escaped. Observed requests remain GET requests with no answer-bearing query or file upload.
+- All four expanded previews fit 360, 390, 768, and 1440 pixels with one H1, unique DOM IDs, no document overflow, and no browser JavaScript errors. Sampled Axe WCAG 2 A/AA and 2.1 AA checks report no violations for all four previews in both themes. Mobile/desktop summaries and full-answer previews plus the dark file chooser were visually reviewed; this is not a full accessibility certification.
+- Browser QA exposed a timing failure when preview focus was scheduled before the asynchronously read file's preview DOM committed. Focus now runs from an effect after the preview renders; cancel focus and restored-editor focus pass on all four worksheets.
+- Printing excludes transfer controls and the pending replacement preview while retaining the current draft. Without JavaScript all four original blank worksheets remain readable and file restoration is disabled. Comparison against `6174fa6` confirms unchanged note bodies, resource/example definitions, journal, case, taxonomy, and all eight original downloads. Backup transfer is manual; it adds no account or automatic synchronization. The human reader trial remains prepared, not conducted.
+
 ## Browser-local worksheet drafts milestone 2026-10-07
 
 - Production export, TypeScript, ESLint, Prettier, thirty-nine test groups, and diff checks pass. All 28 application pages retain valid canonicals and Open Graph assets. No published route or Search document was added; all eight editorial gaps remain open.

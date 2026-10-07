@@ -5,6 +5,10 @@ import {
   blankWorksheetDraft,
   draftAnswerKey,
   draftTextLimit,
+  draftBackupByteLimit,
+  readWorksheetDraftBackup,
+  renderWorksheetDraftBackup,
+  worksheetDraftResponseCount,
   readWorksheetDraft,
   renderWorksheetDraftMarkdown,
   worksheetDraftHasAnswers,
@@ -37,6 +41,114 @@ test("drafts round-trip each current worksheet without assigning answers to a di
   assert.equal(
     new Set(resources.map((resource) => worksheetDraftKey(resource.slug))).size,
     resources.length,
+  );
+});
+
+test("worksheet backups transfer every response without mutating the draft or using another template", () => {
+  for (const resource of resources) {
+    const draft = blankWorksheetDraft(resource);
+    draft.label = "Fictional 日本語 & <img>";
+    draft.date = "2026-10-07";
+    for (const [key, index] of Object.keys(draft.fields).map(
+      (key, index) => [key, index] as const,
+    ))
+      draft.fields[key] =
+        `Answer ${index}\n\t日本語 with \"quotes\", backticks \`\`\`, and <script>literal</script>`;
+    for (const key of Object.keys(draft.checks))
+      draft.checks[key] = { state: "open", note: "Missing evidence — 未確認" };
+    const original = structuredClone(draft),
+      backup = renderWorksheetDraftBackup(resource, draft);
+    assert.ok(
+      new TextEncoder().encode(backup).byteLength <= draftBackupByteLimit,
+    );
+    assert.deepEqual(readWorksheetDraftBackup(backup, resource), draft);
+    assert.deepEqual(draft, original);
+    assert.equal(
+      worksheetDraftResponseCount(draft),
+      Object.keys(draft.fields).length + Object.keys(draft.checks).length,
+    );
+    assert.equal(worksheetDraftResponseCount(blankWorksheetDraft(resource)), 0);
+    for (const other of resources.filter((r) => r.slug !== resource.slug))
+      assert.equal(readWorksheetDraftBackup(backup, other), null);
+    const changed = structuredClone(resource);
+    changed.sections[0].title += " revised";
+    assert.equal(readWorksheetDraftBackup(backup, changed), null);
+    assert.equal(
+      readWorksheetDraftBackup(JSON.stringify(draft), resource),
+      null,
+    );
+    assert.equal(
+      readWorksheetDraftBackup(
+        renderWorksheetDraftMarkdown(resource, draft),
+        resource,
+      ),
+      null,
+    );
+  }
+});
+
+test("backup imports reject unsafe, oversized, malformed, unsupported, and incomplete files", () => {
+  const resource = resources[1],
+    draft = blankWorksheetDraft(resource);
+  const base = JSON.parse(renderWorksheetDraftBackup(resource, draft));
+  const rejects = (mutate: (backup: typeof base) => void) => {
+    const value = structuredClone(base);
+    mutate(value);
+    assert.equal(
+      readWorksheetDraftBackup(JSON.stringify(value), resource),
+      null,
+    );
+  };
+  for (const raw of [
+    "",
+    "broken",
+    "null",
+    "[]",
+    "{}",
+    " ".repeat(draftBackupByteLimit + 1),
+  ])
+    assert.equal(readWorksheetDraftBackup(raw, resource), null);
+  const unicodePadding =
+    renderWorksheetDraftBackup(resource, draft) +
+    " ".repeat(draftBackupByteLimit);
+  assert.equal(readWorksheetDraftBackup(unicodePadding, resource), null);
+  const largeUtf8 = JSON.stringify({ ...base, extra: "日".repeat(180000) });
+  assert.ok(largeUtf8.length < draftBackupByteLimit);
+  assert.equal(readWorksheetDraftBackup(largeUtf8, resource), null);
+  rejects((value) => {
+    value.version = 2;
+  });
+  rejects((value) => {
+    value.format = "another-project";
+  });
+  rejects((value) => {
+    delete value.draft;
+  });
+  rejects((value) => {
+    value.draft.date = "2026-02-30";
+  });
+  rejects((value) => {
+    value.draft.slug = "../other";
+  });
+  rejects((value) => {
+    delete value.draft.fields[Object.keys(draft.fields)[0]];
+  });
+  rejects((value) => {
+    value.draft.fields.__injected = "unrecognised";
+  });
+  rejects((value) => {
+    value.draft.checks[Object.keys(draft.checks)[0]].state = "approved";
+  });
+  const withIgnoredExtra = structuredClone(base);
+  withIgnoredExtra.draft.externalUrl = "javascript:ignored";
+  assert.deepEqual(
+    readWorksheetDraftBackup(JSON.stringify(withIgnoredExtra), resource),
+    draft,
+  );
+  draft.slug = "different";
+  assert.throws(
+    () => renderWorksheetDraftBackup(resource, draft),
+    /current worksheet/,
   );
 });
 

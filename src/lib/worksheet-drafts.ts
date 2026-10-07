@@ -3,6 +3,7 @@ import { canonicalUrl } from "../config/site";
 
 export const draftTextLimit = 2000;
 export const draftLabelLimit = 120;
+export const draftBackupByteLimit = 512 * 1024;
 export const draftCheckLabels = {
   unreviewed: "Not reviewed",
   addressed: "Addressed in this exercise",
@@ -128,6 +129,51 @@ export function worksheetDraftHasAnswers(draft: WorksheetDraft) {
     Object.values(draft.checks).some(
       (answer) => answer.state !== "unreviewed" || answer.note,
     ),
+  );
+}
+
+export function renderWorksheetDraftBackup(
+  resource: ResourceDefinition,
+  draft: WorksheetDraft,
+) {
+  const checked = readWorksheetDraft(JSON.stringify(draft), resource);
+  if (!checked) throw new Error("Draft does not match the current worksheet");
+  return `${JSON.stringify({ format: "makmur-lab-worksheet-backup", version: 1, draft: checked }, null, 2)}\n`;
+}
+
+export function readWorksheetDraftBackup(
+  raw: string,
+  resource: ResourceDefinition,
+): WorksheetDraft | null {
+  if (
+    raw.length > draftBackupByteLimit ||
+    new TextEncoder().encode(raw).byteLength > draftBackupByteLimit
+  )
+    return null;
+  try {
+    const backup: unknown = JSON.parse(raw);
+    if (
+      typeof backup !== "object" ||
+      backup === null ||
+      !("format" in backup) ||
+      backup.format !== "makmur-lab-worksheet-backup" ||
+      !("version" in backup) ||
+      backup.version !== 1 ||
+      !("draft" in backup)
+    )
+      return null;
+    return readWorksheetDraft(JSON.stringify(backup.draft), resource);
+  } catch {
+    return null;
+  }
+}
+
+export function worksheetDraftResponseCount(draft: WorksheetDraft) {
+  return (
+    Object.values(draft.fields).filter((value) => value.trim()).length +
+    Object.values(draft.checks).filter(
+      (answer) => answer.state !== "unreviewed" || answer.note.trim(),
+    ).length
   );
 }
 

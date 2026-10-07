@@ -44,6 +44,9 @@ export function validateResources(
       "worksheet-working-area",
       "draft-example-label",
       "draft-review-date",
+      "draft-restore-file",
+      "draft-restore-help",
+      "draft-restore-title",
     ]);
     for (const section of resource.sections) {
       if (

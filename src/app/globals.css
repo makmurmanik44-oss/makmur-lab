@@ -2650,3 +2650,113 @@ main:focus {
     widows: 3;
   }
 }
+
+.draft-backup-tools {
+  border-top: 1px solid var(--line);
+  margin-top: 20px;
+  padding-top: 20px;
+}
+.draft-backup-tools > label {
+  display: block;
+  font-weight: 600;
+}
+.draft-backup-tools > p {
+  margin-block: 8px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.draft-file-input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 16px;
+  background: var(--page);
+  color: var(--ink);
+}
+.draft-file-input::file-selector-button {
+  padding: 8px 12px;
+  margin-right: 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+.draft-file-input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.draft-restore-preview {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+.draft-restore-preview h2 {
+  font-size: 21px;
+  margin-bottom: 12px;
+}
+.draft-restore-preview p {
+  margin-block: 14px;
+}
+.draft-restore-summary {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-block: 18px;
+}
+.draft-restore-summary > div {
+  padding: 16px;
+  background: var(--tinted);
+  border-radius: 4px;
+}
+.draft-restore-summary dt {
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.draft-restore-summary dd {
+  margin: 0;
+}
+@media (max-width: 700px) {
+  .draft-restore-summary {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
+.draft-backup-answers {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  margin-block: 18px;
+  padding: 16px;
+}
+.draft-backup-answers summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+.draft-backup-answers summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.draft-backup-answers section {
+  border-top: 1px solid var(--line);
+  margin-top: 18px;
+  padding-top: 18px;
+}
+.draft-backup-answers h3 {
+  font-size: 17px;
+  line-height: 1.7;
+}
+.draft-backup-answers section > div {
+  margin-block: 18px;
+}
+.draft-backup-answers p {
+  margin-block: 6px;
+}
+.draft-backup-response {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

@@ -102,7 +102,7 @@ export const learningPaths: LearningPath[] = [
         question:
           "Which part of the requirement does each piece of evidence demonstrate, and which dependencies are still unknown?",
         exercise:
-          "Read the anonymous print-option example. Separate its directory entry, similar proof, and capacity message; list the checks still needed.",
+          "Read the anonymous print-option example, then compare the note's added evidence contrast and separate shared-source follow-up. Distinguish capability, period-specific capacity, and dependencies; write a decision sentence that retains missing checks.",
       },
       {
         title: "Define the supporting data",

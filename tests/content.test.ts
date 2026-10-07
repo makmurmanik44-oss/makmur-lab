@@ -187,9 +187,14 @@ test("broken relationships, prerequisite cycles, unpublished links, and anchors 
   });
   assert.throws(() => validateLibrary(targetFragment), /unknown target anchor/);
   const missingPath = copy();
-  for (const { entry } of missingPath) {
-    entry.prerequisites = [];
-    entry.relatedKnowledge = [];
+  for (const document of missingPath) {
+    document.entry.prerequisites = [];
+    document.entry.relatedKnowledge = [];
+    // Isolate the guide's dependency check from direct article links.
+    document.links = document.links.filter(
+      ({ url }) =>
+        url.split("#")[0] !== "/articles/scope-clarity-before-sourcing",
+    );
   }
   const pathTarget = missingPath.find(
     ({ entry }) => entry.slug === "scope-clarity-before-sourcing",

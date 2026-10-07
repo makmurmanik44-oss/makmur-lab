@@ -16,3 +16,5 @@ At a checkpoint:
 6. Run content checks, tests, and a production export. Check public pages and downloads after publishing.
 
 This workflow does not schedule notifications or store operational records.
+
+For reader feedback, use the separate [proposed reader trial](reader-trial.md). Its three tasks and blank record are prepared, not completed. Reader navigation and explanations can reveal clarity problems; they do not replace the observed practical evidence or human review required to close a knowledge gap.

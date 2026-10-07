@@ -1,5 +1,17 @@
 # Alpha validation
 
+## Supplier evidence and reference navigation milestone 2026-10-07
+
+- Clean production export, TypeScript, ESLint, Prettier, thirty-six test groups, and diff checks pass. All 28 page canonicals and Open Graph assets are valid. The collection retains four notes, four worksheets/examples, two guides, three journal reflections, one learning case, and eight open gaps.
+- The existing guide-dependency rejection fixture now isolates its Atlas dependency from direct note links. The new valid supplier-to-scope body link otherwise caused an earlier unpublished-link rejection; separate direct-link rejection checks remain.
+- Browser QA reproduced a reference-history failure: an inline MDX reference jump, worksheet navigation, and Back restored the note URL with the worksheet body. Framework links now handle same-page MDX anchors. That exact sequence restores both URL and article body in all four notes.
+- Homepage and guide reading estimates derive from the expanded note. All four new section anchors, five connected note/worksheet/example/guide links, and the added primary-reference link work. The original filled example still reports its unknown dependency and no real review.
+- Actual browser-local saving survives reload and the saved-collection return. A body-only Print Shop P query finds the supplier note; its shared Search URL restores after reload. The expanded article and worksheet link also work without JavaScript.
+- Home, the requirement-to-decision guide, supplier note, its blank worksheet and filled example, matched Search, and Review fit 360, 390, 768, and 1440 pixels with one H1 and unique DOM IDs. No document overflow or browser JavaScript errors were observed.
+- Sampled Axe WCAG 2 A/AA and 2.1 AA checks report no violations on the supplier note, guide, and matched Search in light and dark themes. Comparison and callout layouts were visually reviewed on mobile/desktop, with the dark comparison sampled. This engineering QA is not a full accessibility certification or a conducted reader trial.
+- A source comparison retains the original supplier paragraphs except the explicitly corrected opening claim, its original fictional lane table, the other three notes, worksheet/example definitions, journals, case, and all gap records. Supplier source/editorial review advances to 7 October; Learning/Developing maturity and the 6 November checkpoint remain.
+- The proposed three-task reader trial and blank observation record are prepared only. Its fictional tasks and the added comparison/shared-production exercise supply no human trial results, observed supplier assessment, or practical gap closure.
+
 ## Reader orientation and Scope Clarity milestone 2026-10-07
 
 - Production export, TypeScript, ESLint, Prettier, thirty-six test groups, and diff checks pass. All 28 application pages retain valid canonicals and Open Graph assets. Content checks retain four published notes, four worksheets/examples, two guides, three journal reflections, one learning case, and eight open gaps.

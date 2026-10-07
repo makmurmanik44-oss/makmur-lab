@@ -1,5 +1,16 @@
 # Development changelog
 
+## Alpha supplier evidence and reader-trial preparation 2026-10-07
+
+- Continued from `fa689a643ae9749b575372b2ec9eeeefbe2c18b5` on the existing migration branch.
+- Deepened the existing supplier note with an original fictional evidence comparison, scope/change/recheck prompts, a separate shared-production follow-up, and a decision exercise connected to the retained worksheet and example.
+- Qualified the original opening claim: an organisation's supplier approval may already include technical or capacity checks; its exact assessment scope matters.
+- Rechecked UN/UNGM status and contract-specific supplier evaluation. Added reviewed primary UK resilience guidance with explicit application limits. Advanced the supplier note's actual editorial/source review to 7 October; both gaps and its planned checkpoint remain.
+- Updated the existing requirement-to-decision guide's supplier exercise; its URL, ordered notes, starting question, and existing relationships remain. Reading estimates still derive from the current MDX bodies.
+- Prepared a three-task reader-trial guide and blank observation record. Navigation, understanding, technical limitations, and field-validation evidence are kept distinct; no trial results are fabricated.
+- Fixed an observed MDX reference-history bug: after an inline reference jump and worksheet navigation, Back could restore the note URL while retaining the worksheet body. Same-page MDX anchors now use framework navigation, matching internal page links.
+- Kept the other three notes, all worksheet/example definitions and downloads, original supplier lane example, journals, case, Saved notes behavior, eight gap records, Learning/Developing maturity, and Alpha release boundary.
+
 ## Alpha reader orientation and Scope Clarity 2026-10-07
 
 - Continued from `60508b55f827f5033967d2ea31c8906ea6a2a2d8` on the existing migration branch.

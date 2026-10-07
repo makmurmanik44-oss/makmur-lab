@@ -7,7 +7,7 @@ import { asset } from "@/config/site";
 
 const components = {
   a: ({ href = "", children, ...props }: ComponentProps<"a">) =>
-    href.startsWith("/") ? (
+    href.startsWith("/") || href.startsWith("#") ? (
       <Link href={href} prefetch={false} {...props}>
         {children}
       </Link>

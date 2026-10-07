@@ -1,5 +1,16 @@
 # Development changelog
 
+## Alpha browser-local worksheet drafts 2026-10-07
+
+- Continued from `8dcef94aafe92ab0a15b012245bacfaabdcca4b3` on the existing migration branch.
+- Added optional draft editing to all four existing worksheet URLs. The editor reuses each original section, check, field, prompt, and hint; it adds an example label, learning review date, exercise states, and reasons or missing evidence.
+- Added one browser-local draft per worksheet, immediate saves, reload/return restoration, and a tab-memory fallback when storage cannot be used. Responses are not submitted and do not enter Search or shared URLs.
+- Added explicit cross-tab conflict choices so another tab cannot silently replace the open draft. Clear affects only the selected worksheet, with a cancel step and keyboard-focus restoration.
+- Added separate answer-bearing Markdown downloads and draft print rendering. Original blank and fictional-example downloads remain unchanged. Text responses stay literal in the app and use bounded code fences in draft Markdown.
+- Added current-template record validation, bounded text, unsupported/malformed-record handling with an untouched-record download, and draft-control ID collision validation for resource authors.
+- Added bounded retries to generated-directory cleanup after a local clean build encountered a transient nonempty cache directory. Only ignored build directories are removed.
+- Retained all article content, worksheet/example definitions, guide order, journals, case, eighteen Search documents, eight gaps, Learning/Developing maturity, and the planned checkpoint. No reader trial or field-validation result is claimed.
+
 ## Alpha supplier evidence and reader-trial preparation 2026-10-07
 
 - Continued from `fa689a643ae9749b575372b2ec9eeeefbe2c18b5` on the existing migration branch.

@@ -18,6 +18,10 @@ Keep identifiable feedback and any practical records outside this public reposit
 
 Give the task first without showing the route. Use a prompt only after the reader requests help or cannot proceed; record exactly what assistance was needed. Do not infer understanding merely from reaching a page or checking a box.
 
+## Optional worksheet-draft probe
+
+If the reader wants to try the new draft mode, ask them to enter one fictional supplier answer and mark one check Still open with a reason. Ask them to download the draft, leave and return, and explain where the answers are stored. Observe whether they distinguish their browser-local draft from the published filled example and from field validation. Use the same blank record below. This is an optional proposed task; no observation or success result has been entered.
+
 ## Record observations
 
 Use this blank record per task. No sample results have been inserted.

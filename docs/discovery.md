@@ -37,3 +37,5 @@ The query is limited to 200 characters. The Alpha is a small local collection, s
 ## Validation
 
 `npm test` covers publication boundaries, worksheet/body indexing, all-word matching, relevance ordering, normalization, combined filters, and URL round trips. Browser QA additionally checks reload/history, result links, actual clipboard behavior, reset focus, small screens, and accessible names/status updates.
+
+Personal worksheet drafts are browser-local responses, separate from unpublished editorial content. They do not enter Search, the sitemap, or shared URLs. Search continues to index the eighteen published library documents.

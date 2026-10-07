@@ -1,5 +1,17 @@
 # Alpha validation
 
+## Browser-local worksheet drafts milestone 2026-10-07
+
+- Production export, TypeScript, ESLint, Prettier, thirty-nine test groups, and diff checks pass. All 28 application pages retain valid canonicals and Open Graph assets. No published route or Search document was added; all eight editorial gaps remain open.
+- Draft tests cover exact current-question identities, cross-resource/template rejection, malformed/unsupported/oversized records, missing/extra answer keys, unsupported states, actual calendar dates, bounded response text, input preservation, complete draft exports, and literal response fences. Resource validation rejects collisions with workspace and generated input IDs.
+- Real-browser checks pass on all four worksheets for opt-in editing and focus, all fields/check reasons, immediate browser storage, reload restoration, blank/draft switching, original supporting-note/Back navigation, and separate Markdown downloads matching the current responses exactly.
+- Actual cross-tab edits retain the open answers until an explicit keep/use-other choice. Clear has cancel/Escape and focus restoration; only that worksheet is removed, preserving other draft records and Saved notes. A separate browser context has no copy of the draft.
+- Invalid stored text stays untouched and can be downloaded before replacement. A rejected original record also remains recoverable across client navigation while another tab's changed record waits for a choice. Response HTML remains literal. Read-denied and write-quota cases retain edits across client navigation in the open tab, allow a copy to be downloaded, and explain reload loss or old-record return.
+- All four editable worksheets fit 360, 390, 768, and 1440 pixels with one H1, unique DOM IDs, no document overflow, and no browser JavaScript errors. Sampled Axe WCAG 2 A/AA and 2.1 AA checks report no violations on the four editors in both themes. Mobile/desktop inputs and controls plus dark fields were visually reviewed; this is not a full accessibility certification.
+- All four draft PDFs retain original questions, prompts, hints, states, reasons, responses, limitations, and links without screen controls or clipped textarea content. A4 dimensions and page text bounds pass. The scope sample uses three pages; the other draft samples use two. A supplier draft print page was visually reviewed. Page counts depend on response length.
+- Without JavaScript, all original blank questions and downloads remain available with online drafting disabled. A comparison against `8dcef94` confirms unchanged article bodies, resource/example definitions, all eight original downloads, guide catalog, journal, and case. Local answers do not enter Search, shared URLs, maturity, or gap closure.
+- A local clean build encountered a transient nonempty generated-cache directory. Bounded deletion retries now clear only the ignored build directories; the subsequent clean production build succeeds. The reader-trial guide adds an optional draft task but remains prepared, not conducted.
+
 ## Supplier evidence and reference navigation milestone 2026-10-07
 
 - Clean production export, TypeScript, ESLint, Prettier, thirty-six test groups, and diff checks pass. All 28 page canonicals and Open Graph assets are valid. The collection retains four notes, four worksheets/examples, two guides, three journal reflections, one learning case, and eight open gaps.

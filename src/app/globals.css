@@ -1864,6 +1864,95 @@ main:focus {
 .worksheet-print-credit {
   display: none;
 }
+.draft-controls {
+  margin-block: 28px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  line-height: 1.7;
+  font-size: 14px;
+}
+.draft-controls > p {
+  margin-block: 12px;
+}
+.draft-controls > .eyebrow {
+  margin-top: 0;
+}
+.draft-controls .resource-actions {
+  margin-top: 18px;
+}
+.draft-storage,
+.draft-instructions {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+}
+.draft-notice {
+  border-top: 1px solid var(--line);
+  margin-top: 18px;
+  padding-top: 18px;
+}
+.draft-editor label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.7;
+}
+.draft-editor input,
+.draft-editor select,
+.draft-editor textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin-top: 8px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font: inherit;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--page);
+}
+.draft-editor input,
+.draft-editor select {
+  min-height: 48px;
+}
+.draft-editor textarea {
+  resize: vertical;
+}
+.draft-editor input:focus-visible,
+.draft-editor select:focus-visible,
+.draft-editor textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+.draft-check {
+  min-width: 0;
+  padding: 20px;
+  margin: 24px 0;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.draft-check legend {
+  padding-inline: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.7;
+}
+.draft-check label + label {
+  margin-top: 18px;
+}
+.draft-fields {
+  display: grid;
+  gap: 24px;
+}
+.draft-print {
+  display: none;
+}
+
 .resource-example-link {
   margin-top: 18px;
 }
@@ -2510,5 +2599,54 @@ main:focus {
     font-size: 10pt;
     line-height: 1.45;
     padding-top: 4px;
+  }
+}
+
+@media (max-width: 700px) {
+  .draft-controls {
+    padding: 20px;
+  }
+  .draft-controls .resource-actions {
+    align-items: stretch;
+  }
+  .draft-controls .button {
+    width: 100%;
+  }
+  .draft-check {
+    padding: 16px;
+  }
+}
+@media print {
+  .draft-controls,
+  .draft-editor,
+  .worksheet-page .worksheet-instructions {
+    display: none !important;
+  }
+  .draft-print {
+    display: block;
+    font-size: 10pt;
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+  }
+  .draft-print > p {
+    margin-block: 12px;
+  }
+  .draft-print .worksheet-section {
+    break-inside: auto;
+  }
+  .draft-print .worksheet-section h2 {
+    break-after: avoid;
+  }
+  .draft-print-answer {
+    break-inside: avoid;
+    margin-block: 14px;
+  }
+  .draft-print-answer p {
+    margin-block: 6px;
+    white-space: pre-wrap;
+  }
+  .draft-print-answer:has(p:last-child) {
+    orphans: 3;
+    widows: 3;
   }
 }

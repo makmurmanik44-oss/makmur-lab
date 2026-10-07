@@ -9,6 +9,7 @@ import { domainTitle } from "@/content/taxonomy";
 import { PageIntro } from "@/components/common/page-intro";
 import { Badge, Container } from "@/components/ui/primitives";
 import { PrintButton } from "@/components/resources/print-button";
+import { WorksheetWorkspace } from "@/components/resources/worksheet-workspace";
 import { resourceExamples, examplePath } from "@/content/resource-examples";
 
 export const dynamicParams = false;
@@ -71,7 +72,8 @@ export default async function Worksheet({
                   href={asset(resourceDownload(resource))}
                   download
                 >
-                  <Download size={16} aria-hidden="true" /> Download Markdown
+                  <Download size={16} aria-hidden="true" /> Download blank
+                  Markdown
                 </a>
               </div>
             </div>
@@ -86,78 +88,80 @@ export default async function Worksheet({
               </p>
               <p>{resource.limitation}</p>
               <p className="worksheet-instructions">
-                Print to complete by hand, or download Markdown to edit. Use a
-                fictional or sanitized example. The page is a blank template.
+                Print the blank worksheet, download Markdown, or start a
+                learning draft below. Use a fictional or sanitized example.
               </p>
             </div>
-            <div
-              className="worksheet-identification"
-              aria-label="Space for identifying the learning example"
-            >
-              <div>
-                <span>Example label</span>
-                <div className="worksheet-line" aria-hidden="true" />
+            <WorksheetWorkspace key={resource.slug} resource={resource}>
+              <div
+                className="worksheet-identification"
+                aria-label="Space for identifying the learning example"
+              >
+                <div>
+                  <span>Example label</span>
+                  <div className="worksheet-line" aria-hidden="true" />
+                </div>
+                <div>
+                  <span>Review date</span>
+                  <div className="worksheet-line" aria-hidden="true" />
+                </div>
               </div>
-              <div>
-                <span>Review date</span>
-                <div className="worksheet-line" aria-hidden="true" />
-              </div>
-            </div>
-            <div className="worksheet-sections">
-              {resource.sections.map((section, index) => (
-                <section
-                  className="worksheet-section"
-                  key={section.id}
-                  id={section.id}
-                  aria-labelledby={`section-${section.id}`}
-                >
-                  <h2 id={`section-${section.id}`}>
-                    <span aria-hidden="true">
-                      {String(index + 1).padStart(2, "0")} ·{" "}
-                    </span>
-                    {section.title}
-                  </h2>
-                  {section.prompt && <p>{section.prompt}</p>}
-                  {section.checks && (
-                    <ul className="worksheet-checks">
-                      {section.checks.map((check) => (
-                        <li key={check}>
-                          <span
-                            className="worksheet-check-box"
-                            aria-hidden="true"
-                          />
-                          <span>{check}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  {section.fields && (
-                    <dl className="worksheet-fields">
-                      {section.fields.map((field) => (
-                        <div key={field.label}>
-                          <dt>{field.label}</dt>
-                          <dd>
-                            {field.hint && (
-                              <span className="worksheet-hint">
-                                {field.hint}
-                              </span>
-                            )}
+              <div className="worksheet-sections">
+                {resource.sections.map((section, index) => (
+                  <section
+                    className="worksheet-section"
+                    key={section.id}
+                    id={section.id}
+                    aria-labelledby={`section-${section.id}`}
+                  >
+                    <h2 id={`section-${section.id}`}>
+                      <span aria-hidden="true">
+                        {String(index + 1).padStart(2, "0")} ·{" "}
+                      </span>
+                      {section.title}
+                    </h2>
+                    {section.prompt && <p>{section.prompt}</p>}
+                    {section.checks && (
+                      <ul className="worksheet-checks">
+                        {section.checks.map((check) => (
+                          <li key={check}>
                             <span
-                              className="worksheet-line"
+                              className="worksheet-check-box"
                               aria-hidden="true"
                             />
-                            <span className="sr-only">
-                              Space for a written response on the printed
-                              worksheet.
-                            </span>
-                          </dd>
-                        </div>
-                      ))}
-                    </dl>
-                  )}
-                </section>
-              ))}
-            </div>
+                            <span>{check}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    {section.fields && (
+                      <dl className="worksheet-fields">
+                        {section.fields.map((field) => (
+                          <div key={field.label}>
+                            <dt>{field.label}</dt>
+                            <dd>
+                              {field.hint && (
+                                <span className="worksheet-hint">
+                                  {field.hint}
+                                </span>
+                              )}
+                              <span
+                                className="worksheet-line"
+                                aria-hidden="true"
+                              />
+                              <span className="sr-only">
+                                Space for a written response on the printed
+                                worksheet.
+                              </span>
+                            </dd>
+                          </div>
+                        ))}
+                      </dl>
+                    )}
+                  </section>
+                ))}
+              </div>
+            </WorksheetWorkspace>
             <aside
               className="worksheet-source"
               aria-labelledby="supporting-note"

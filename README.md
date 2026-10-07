@@ -38,6 +38,8 @@ Use [the authoring guide](docs/content-authoring.md) and `content/templates/lear
 
 `src/content/resources.ts` supplies four working aids with printable detail pages, editable Markdown downloads, and links to their supporting articles. Run `npm run resources:sync` after editing a definition; the production build also regenerates the downloads. See [resource authoring](docs/resource-authoring.md).
 
+Four worksheets now offer optional [browser-local learning drafts](docs/worksheet-drafts.md). Readers can answer the existing prompts, retain unresolved checks, return after reload, download their own responses as Markdown, and print the current draft. Drafts stay separate from the published examples and Search. Storage limits and cross-tab conflicts have explicit recovery choices.
+
 Search indexes published note bodies and worksheet questions together. Readers can filter by domain/content type, follow relevant excerpts, and share a URL that restores the query and filters. See [library discovery](docs/discovery.md) for matching and navigation behavior.
 
 Knowledge also supports shareable reading lists: full-note search, domain and reading-level filters, recommended/latest/title/shortest-read order, body excerpts, and visible update dates. Reload and browser history restore the same list, and readers can transfer their text/domain to whole-library Search.

@@ -38,7 +38,13 @@ export function validateResources(
     )
       fail("Resource descriptions cannot be empty");
     if (!resource.sections.length) fail("Resource needs at least one section");
-    const ids = new Set<string>(["main-content", "supporting-note"]);
+    const ids = new Set<string>([
+      "main-content",
+      "supporting-note",
+      "worksheet-working-area",
+      "draft-example-label",
+      "draft-review-date",
+    ]);
     for (const section of resource.sections) {
       if (
         !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(section.id) ||
@@ -48,6 +54,21 @@ export function validateResources(
         fail("Section IDs must be valid and unique");
       ids.add(section.id);
       ids.add(`section-${section.id}`);
+      const inputIds = [
+        ...(section.checks || []).flatMap((_, index) => [
+          `draft-${section.id}-check-${index}`,
+          `draft-${section.id}-check-${index}-note`,
+        ]),
+        ...(section.fields || []).flatMap((field, index) => [
+          `draft-${section.id}-field-${index}`,
+          ...(field.hint ? [`draft-${section.id}-field-${index}-hint`] : []),
+        ]),
+      ];
+      for (const id of inputIds) {
+        if (ids.has(id))
+          fail("Section IDs must not collide with draft controls");
+        ids.add(id);
+      }
       if (
         !section.title.trim() ||
         !(section.checks?.length || section.fields?.length)

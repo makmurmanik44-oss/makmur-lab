@@ -6,6 +6,8 @@ import { Discovery } from "@/components/knowledge/discovery";
 import { getKnowledgeEntries } from "@/content/library";
 export const metadata: Metadata = {
   title: "Knowledge",
+  description:
+    "Find learning notes by concept, knowledge domain, and reading level. Choose a reading order and share your filtered list.",
   alternates: { canonical: canonicalUrl("/articles") },
 };
 export default async function Articles() {

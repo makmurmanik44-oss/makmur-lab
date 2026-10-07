@@ -3,13 +3,18 @@ import { ArrowUpRight, Clock3 } from "lucide-react";
 import { domainTitle } from "@/content/taxonomy";
 import { KnowledgeBadges } from "@/components/knowledge/knowledge-badges";
 import type { KnowledgeEntry } from "@/types/knowledge";
+import { displayDate } from "@/lib/date";
 
 export function ArticleCard({
   entry,
   featured = false,
+  excerpt,
+  showUpdated = false,
 }: {
   entry: KnowledgeEntry;
   featured?: boolean;
+  excerpt?: string;
+  showUpdated?: boolean;
 }) {
   return (
     <article
@@ -25,6 +30,11 @@ export function ArticleCard({
         </Link>
       </h3>
       <p>{entry.summary}</p>
+      {excerpt && (
+        <p className="article-card-excerpt">
+          <span>From the note</span>“{excerpt}”
+        </p>
+      )}
       <KnowledgeBadges
         status={entry.knowledgeStatus}
         maturity={entry.contentMaturity}
@@ -35,6 +45,12 @@ export function ArticleCard({
         </span>
         <span>{entry.difficulty}</span>
       </div>
+      {showUpdated && (
+        <p className="article-card-updated">
+          Updated{" "}
+          <time dateTime={entry.updated}>{displayDate(entry.updated)}</time>
+        </p>
+      )}
     </article>
   );
 }

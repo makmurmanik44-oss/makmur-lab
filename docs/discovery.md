@@ -1,5 +1,15 @@
 # Library discovery
 
+## Knowledge reading lists
+
+`/articles/` combines note-text search, primary-domain and reading-level filters, and recommended/latest/title/shortest-read order. It reuses the library's matching and relevance rules; recommended order shows best matches for a query and latest updates otherwise. Explicit orders use title and slug as deterministic tie-breakers. Reading times remain estimates and levels describe the note, not a reader's competence. Level counts describe the complete published note collection, including zero-count levels.
+
+The reading list stores `q`, `domain`, `difficulty`, and `sort` in its URL. Query typing replaces the current history entry; filter/order/reset actions create entries while preserving the framework's existing history state. Shared URLs, reload, Back/Forward, and return from a note restore the list. Invalid values fall back to defaults. Reset removes only these four parameters and returns focus to the note-search input. Copy reading list link provides a clipboard fallback.
+
+Body-only matches show a source excerpt on the existing article card; catalog cards also show the update date. A domain without notes has a distinct empty state. Readers can reset the list, explore the Atlas, or search other content types while retaining their text/domain; Search does not receive the catalog-only difficulty/order parameters. Draft notes are excluded from matching and level counts.
+
+## Whole-library Search
+
 Learning cases use the distinct `case` kind and Case studies filter. Their context, constraints, option tradeoffs, decision rationale, evidence status, lessons, questions, and exercises are searchable. The primary domain describes the case subject: the Control Tower design belongs to Technology, while its topic is Procurement analytics. Drafts and cases with unavailable supporting content are excluded. Case results show Developing case and reading time, without assigning a knowledge-experience status.
 
 Journal reflections are also indexed as the distinct `journal` kind. Search includes their basis, limitations, body sections, open questions, and connection explanations. Readers can combine Journal reflections with text/domain filters and share the same query URL. Draft reflections are omitted; a reflection is also omitted if a related note, worksheet, example, or guide is unavailable. The primary journal domain identifies its subject, without turning it into a reference article or assigning a knowledge-experience status.

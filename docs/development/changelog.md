@@ -1,5 +1,14 @@
 # Development changelog
 
+## Alpha Knowledge reading lists 2026-10-07
+
+- Continued from `77459b85ce62f7f15327432048e942472ed497dc`; retained all existing content and article URLs.
+- Replaced the older domain-only Discovery component and unused search variant with a note catalog using the established whole-library matching/relevance engine.
+- Added note-body search/excerpts, combined domain/reading-level filters, recommended/latest/title/shortest-read orders, published-level counts, and visible update dates on catalog cards. Homepage cards keep their existing presentation.
+- Added shareable query/filter/order URLs, reload/Back/Forward restoration, result-return navigation, copy-link fallback, and reset with input focus. History updates preserve the framework state instead of replacing it with an empty object.
+- Added distinct empty-domain and no-match recovery paths, including transfer of text/domain to whole-library Search. Invalid URL values fall back to defaults; drafts remain excluded.
+- Kept the existing eighteen-document Search, all content maturity, evidence gaps, review dates, Alpha noindex, and release boundaries.
+
 ## Alpha structured learning case 2026-10-06
 
 - Continued from `4368febb849cddedc1be33919ce2c758d44036df`; preserved the Control Tower URL, original explanations, constraints, lessons, and sanitized visuals.

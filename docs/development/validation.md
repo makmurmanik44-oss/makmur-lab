@@ -1,5 +1,15 @@
 # Alpha validation
 
+## Knowledge reading lists milestone 2026-10-07
+
+- Production export, TypeScript, ESLint, Prettier, thirty-two test groups, and diff checks pass. All 27 page canonicals and Open Graph assets remain valid; the eighteen-document library and existing export guards remain intact.
+- Discovery tests cover body-only source excerpts, all-word matching, case/accent normalization, publication exclusion, combined query/domain/level filters, relevance and deterministic reading orders, stable ties, input preservation, bounded queries, invalid URL fallbacks, unrelated parameter preservation, and supported-filter transfer to whole-library Search.
+- Home and initial/domain-filtered/matched/empty-level/empty-domain Knowledge states return 200 at 360, 390, 768, and 1440 pixels with one H1, unique IDs, no document overflow, and no browser JavaScript errors. Desktop/mobile, matched/empty, and dark catalog layouts were visually reviewed.
+- Browser checks pass for homepage domain entry, all reading orders, body excerpts/update dates, real clipboard copy, shared-link reload, article/Back restoration, filter Back/Forward, reset focus, and preservation of the framework history metadata. Search handoff retains text/domain and excludes difficulty/order; the empty Personal Growth domain leads to an existing journal result.
+- Zero-count reading levels and invalid URLs recover without fabricated notes. Clipboard-denied guidance works; all four published note cards remain accessible without JavaScript.
+- Sampled Axe WCAG 2 A/AA and 2.1 AA checks find no violations on Home and the five catalog states in both themes. This automated sample is not a full accessibility certification.
+- All MDX note content, resource/example definitions and downloads, guides, journals, the learning case, visuals, maturity, eight knowledge gaps, and planned review dates remain unchanged.
+
 ## Structured learning case milestone 2026-10-06
 
 - Production export, TypeScript, ESLint, Prettier, twenty-eight test groups, and diff checks pass. All 27 pages have valid canonicals and Open Graph assets; the case export guard was verified to reject a missing published detail.

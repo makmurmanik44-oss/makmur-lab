@@ -802,6 +802,92 @@ main:focus {
   font-size: 12px;
   color: var(--muted);
 }
+.discovery-controls {
+  padding: 28px;
+  background: var(--tinted);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.discovery-filters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+.discovery-filters select {
+  min-width: 0;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 400;
+}
+.discovery-actions,
+.discovery-empty-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.knowledge-discovery button:disabled,
+.knowledge-discovery input:disabled,
+.knowledge-discovery select:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+.discovery-results-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: baseline;
+  flex-wrap: wrap;
+  margin-block: 36px 24px;
+}
+.discovery-results-heading h2 {
+  font-size: 27px;
+}
+.discovery-count {
+  font-size: 12px;
+  color: var(--muted);
+}
+.article-card > .article-card-excerpt {
+  font-size: 14px;
+  line-height: 1.7;
+  background: var(--tinted);
+  border-left: 2px solid var(--accent);
+  padding: 12px 14px;
+  overflow-wrap: anywhere;
+}
+.article-card-excerpt > span {
+  display: block;
+  font-family: "Geist Variable", Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.article-card > .article-card-updated {
+  font-family: "Geist Variable", Arial, sans-serif;
+  font-size: 11px;
+  margin-top: 16px;
+}
+@media (max-width: 700px) {
+  .discovery-controls {
+    padding: 20px;
+  }
+  .discovery-filters {
+    grid-template-columns: 1fr;
+  }
+  .discovery-actions,
+  .discovery-empty-actions {
+    align-items: start;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
 .empty-state {
   padding: 36px;
   border: 1px dashed var(--line);

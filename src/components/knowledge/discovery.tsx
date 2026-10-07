@@ -1,116 +1,280 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { Check, Copy, Search } from "lucide-react";
 import { ArticleCard } from "@/components/cards/article-card";
 import { domains } from "@/content/taxonomy";
 import type { KnowledgeEntry } from "@/types/knowledge";
 import { ButtonLink } from "@/components/ui/primitives";
+import {
+  difficulties,
+  discoverKnowledge,
+  discoverySearchPath,
+  emptyDiscovery,
+  readDiscoveryState,
+  writeDiscoveryState,
+  type DiscoveryState,
+} from "@/lib/discovery";
+import { maxQueryLength } from "@/lib/search";
 
-export function Discovery({
-  entries,
-  search = false,
-}: {
-  entries: KnowledgeEntry[];
-  search?: boolean;
-}) {
-  const [domain, setDomain] = useState("all");
-  const [query, setQuery] = useState("");
+export function Discovery({ entries }: { entries: KnowledgeEntry[] }) {
+  const [state, setState] = useState<DiscoveryState>(emptyDiscovery);
+  const [ready, setReady] = useState(false);
+  const [notice, setNotice] = useState("");
+  const input = useRef<HTMLInputElement>(null);
   useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      const selected = new URLSearchParams(window.location.search).get(
-        "domain",
-      );
-      if (selected && domains.some((d) => d.id === selected))
-        setDomain(selected);
-    });
-    return () => cancelAnimationFrame(frame);
+    const restore = () => {
+      setState(readDiscoveryState(new URLSearchParams(window.location.search)));
+      setNotice("");
+      setReady(true);
+    };
+    const frame = requestAnimationFrame(restore);
+    window.addEventListener("popstate", restore);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("popstate", restore);
+    };
   }, []);
-  const words = query.toLowerCase().trim().split(/\s+/).filter(Boolean);
-  const results = entries.filter(
-    (entry) =>
-      (domain === "all" || entry.domain === domain) &&
-      words.every((word) =>
-        `${entry.title} ${entry.summary} ${entry.topic} ${entry.tags.join(" ")} ${entry.searchText}`
-          .toLowerCase()
-          .includes(word),
-      ),
+  function update(
+    next: DiscoveryState,
+    mode: "pushState" | "replaceState" = "pushState",
+  ) {
+    setState(next);
+    setNotice("");
+    const url = new URL(window.location.href);
+    url.search = writeDiscoveryState(url.searchParams, next).toString();
+    if (url.href !== window.location.href)
+      window.history[mode](window.history.state, "", url);
+  }
+  function clear() {
+    update(emptyDiscovery);
+    input.current?.focus();
+  }
+  async function copyLink() {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      setNotice("Reading list link copied.");
+    } catch {
+      setNotice(
+        "Copy the address from your browser to share this reading list.",
+      );
+    }
+  }
+  const results = discoverKnowledge(entries, state);
+  const active = Boolean(
+    state.query.trim() ||
+    state.domain !== "all" ||
+    state.difficulty !== "all" ||
+    state.order !== "relevance",
   );
+  const emptyDomain =
+    state.domain !== "all" &&
+    !entries.some((entry) => entry.published && entry.domain === state.domain);
+  const orderLabel =
+    state.order === "reading-time"
+      ? "Shortest reads first"
+      : state.order === "title"
+        ? "Title A–Z"
+        : state.order === "updated" || !state.query.trim()
+          ? "Latest updates first"
+          : "Best matches first";
   return (
-    <>
-      {search && (
-        <div className="search-box">
-          <label className="input-label" htmlFor="library-search">
-            Search titles, concepts, and learning notes
+    <div className="knowledge-discovery" aria-busy={!ready}>
+      <div className="discovery-controls">
+        <label className="input-label" htmlFor="knowledge-query">
+          Find a learning note
+          <span className="library-search-field">
+            <Search size={21} aria-hidden="true" />
             <input
+              ref={input}
               className="search-input"
               type="search"
-              id="library-search"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Try scope, supplier, or data…"
+              id="knowledge-query"
+              value={state.query}
+              maxLength={maxQueryLength}
+              disabled={!ready}
+              onChange={(event) =>
+                update({ ...state, query: event.target.value }, "replaceState")
+              }
+              placeholder="Try scope, SIPOC, or data quality…"
               autoComplete="off"
+              aria-describedby="discovery-help"
             />
-          </label>
-          <p className="search-count" role="status" aria-live="polite">
-            {results.length} {results.length === 1 ? "note" : "notes"} found in
-            the Alpha collection.
-          </p>
-        </div>
-      )}
-      {!search && (
-        <div className="filter-bar">
+          </span>
+        </label>
+        <p id="discovery-help" className="search-help">
+          Search note titles, topics, and full text. All entered words must
+          match. Reading time is an estimate.
+        </p>
+        <div className="discovery-filters">
           <label className="input-label" htmlFor="domain-filter">
             Knowledge domain
             <select
               id="domain-filter"
-              value={domain}
-              onChange={(event) => {
-                const value = event.target.value;
-                setDomain(value);
-                const url = new URL(window.location.href);
-                if (value === "all") url.searchParams.delete("domain");
-                else url.searchParams.set("domain", value);
-                history.replaceState({}, "", url);
-              }}
+              disabled={!ready}
+              value={state.domain}
+              onChange={(event) =>
+                update({
+                  ...state,
+                  domain: event.target.value as DiscoveryState["domain"],
+                })
+              }
             >
-              {<option value="all">All domains</option>}
-              {domains.map((d) => (
-                <option key={d.id} value={d.id}>
-                  {d.title}
+              <option value="all">All domains</option>
+              {domains.map((domain) => (
+                <option key={domain.id} value={domain.id}>
+                  {domain.title}
                 </option>
               ))}
             </select>
           </label>
-          <p role="status">
-            {results.length}{" "}
-            {results.length === 1 ? "learning note" : "learning notes"} ·
-            Developing collection
-          </p>
+          <label className="input-label" htmlFor="difficulty-filter">
+            Reading level
+            <select
+              id="difficulty-filter"
+              disabled={!ready}
+              value={state.difficulty}
+              onChange={(event) =>
+                update({
+                  ...state,
+                  difficulty: event.target
+                    .value as DiscoveryState["difficulty"],
+                })
+              }
+            >
+              <option value="all">All levels</option>
+              {difficulties.map((level) => (
+                <option key={level} value={level}>
+                  {level} (
+                  {
+                    entries.filter(
+                      (entry) => entry.published && entry.difficulty === level,
+                    ).length
+                  }
+                  )
+                </option>
+              ))}
+            </select>
+          </label>
+          <label className="input-label" htmlFor="knowledge-order">
+            Order notes
+            <select
+              id="knowledge-order"
+              disabled={!ready}
+              value={state.order}
+              onChange={(event) =>
+                update({
+                  ...state,
+                  order: event.target.value as DiscoveryState["order"],
+                })
+              }
+            >
+              <option value="relevance">Recommended order</option>
+              <option value="updated">Latest updates</option>
+              <option value="title">Title A–Z</option>
+              <option value="reading-time">Shortest reads</option>
+            </select>
+          </label>
         </div>
-      )}
+        <div className="discovery-actions">
+          <button
+            type="button"
+            className="button button-outline"
+            disabled={!ready || !active}
+            onClick={clear}
+          >
+            Reset reading list
+          </button>
+          <button
+            type="button"
+            className="text-link search-copy"
+            disabled={!ready}
+            onClick={copyLink}
+          >
+            {notice === "Reading list link copied." ? (
+              <Check size={16} aria-hidden="true" />
+            ) : (
+              <Copy size={16} aria-hidden="true" />
+            )}{" "}
+            Copy reading list link
+          </button>
+          <Link
+            prefetch={false}
+            className="text-link"
+            href={discoverySearchPath(state)}
+          >
+            Search all content types →
+          </Link>
+        </div>
+        <p className="search-notice" role="status">
+          {notice}
+        </p>
+        <noscript>
+          <p>
+            Filtering requires JavaScript. Published notes remain available
+            below.
+          </p>
+        </noscript>
+      </div>
+      <div className="discovery-results-heading">
+        <h2>
+          {state.query.trim()
+            ? "Matching learning notes"
+            : "Choose your next reading"}
+        </h2>
+        <p
+          className="discovery-count"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {results.length}{" "}
+          {results.length === 1 ? "learning note" : "learning notes"} ·{" "}
+          {orderLabel}
+        </p>
+      </div>
       {results.length ? (
-        <div className={search ? "search-results" : "article-grid"}>
-          {results.map((entry) => (
-            <ArticleCard entry={entry} key={entry.slug} />
+        <div className="article-grid">
+          {results.map(({ entry, excerpt }) => (
+            <ArticleCard
+              entry={entry}
+              key={entry.slug}
+              excerpt={excerpt}
+              showUpdated
+            />
           ))}
         </div>
       ) : (
         <div className="empty-state">
           <h2>
-            {query
-              ? "No matching note yet."
-              : "This part of the Atlas is still growing."}
+            {emptyDomain
+              ? "This part of the Atlas is still growing."
+              : "No matching note yet."}
           </h2>
           <p>
-            {query
-              ? "Try a broader term such as scope, supplier, or data."
-              : "No article is published in this domain yet. Explore the topic connections and planned areas in the Knowledge Atlas."}
+            {emptyDomain
+              ? "No learning note is published in this domain yet. Other content types may offer a starting point."
+              : "Try fewer words, another reading level, or reset the list. Level counts show the complete published note collection."}
           </p>
-          <ButtonLink href="/atlas" variant="outline">
-            Explore Knowledge Atlas
-          </ButtonLink>
+          <div className="discovery-empty-actions">
+            <button
+              type="button"
+              className="button button-primary"
+              disabled={!ready}
+              onClick={clear}
+            >
+              Show all learning notes
+            </button>
+            <ButtonLink href={discoverySearchPath(state)} variant="outline">
+              Explore other content types
+            </ButtonLink>
+            <ButtonLink href="/atlas" variant="outline">
+              Explore Knowledge Atlas
+            </ButtonLink>
+          </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

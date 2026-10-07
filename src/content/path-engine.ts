@@ -26,6 +26,7 @@ export function validateLearningPaths(
       ![
         path.title,
         path.description,
+        path.startingQuestion,
         path.intendedFor,
         path.outcome,
         path.limitation,

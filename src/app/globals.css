@@ -424,6 +424,51 @@ main:focus {
   text-decoration: underline;
 }
 
+.start-here {
+  background: var(--tinted);
+}
+.starting-points-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.starting-point {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 20px;
+  padding: 30px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+.starting-point:hover {
+  border-color: var(--accent);
+}
+.starting-point h3 {
+  font-size: clamp(24px, 2.5vw, 32px);
+}
+.starting-point p,
+.starting-point-meta,
+.starting-points-limit {
+  color: var(--muted);
+}
+.starting-point-meta {
+  font-size: 13px;
+  margin-top: auto;
+}
+.starting-point-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+}
+.starting-points-limit {
+  font-size: 14px;
+  max-width: 760px;
+  margin-top: 24px;
+}
 .featured-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2166,9 +2211,13 @@ main:focus {
     margin-bottom: 30px;
   }
   .featured-grid,
+  .starting-points-grid,
   .case-feature,
   .simple-grid {
     grid-template-columns: 1fr;
+  }
+  .starting-point {
+    padding: 26px;
   }
   .article-card-featured {
     min-height: 330px;

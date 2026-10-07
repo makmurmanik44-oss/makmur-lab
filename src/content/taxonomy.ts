@@ -57,6 +57,7 @@ export type LearningPath = {
   title: string;
   description: string;
   updated: string;
+  startingQuestion: string;
   intendedFor: string;
   outcome: string;
   limitation: string;
@@ -76,7 +77,8 @@ export const learningPaths: LearningPath[] = [
     title: "From requirement to decision",
     description:
       "This introductory sequence connects the requirement, the supplier, and the information used to support a decision.",
-    updated: "2026-10-06",
+    updated: "2026-10-07",
+    startingQuestion: "How can I compare offers for the same requirement?",
     intendedFor:
       "Readers who want to connect a clear request with relevant supplier evidence and a reproducible measure.",
     outcome:
@@ -119,7 +121,8 @@ export const learningPaths: LearningPath[] = [
     title: "From process boundary to measurement",
     description:
       "Agree what the process includes, then define the information needed to investigate it.",
-    updated: "2026-10-06",
+    updated: "2026-10-07",
+    startingQuestion: "What should I define before measuring a process?",
     intendedFor:
       "Readers exploring a process question before choosing a timing measure or proposing a change.",
     outcome:

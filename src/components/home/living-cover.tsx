@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { asset } from "@/config/site";
 import { ButtonLink, Container } from "@/components/ui/primitives";
@@ -37,17 +38,17 @@ export function LivingCover() {
           <ButtonLink href="/articles" variant="light">
             Explore Knowledge <ArrowUpRight size={18} aria-hidden="true" />
           </ButtonLink>
-          <ButtonLink href="/about" variant="outline">
-            About Makmur
+          <ButtonLink href="/#start-here" variant="outline">
+            Start with a question
           </ButtonLink>
         </div>
         <div className="cover-bottom">
-          <a href="#featured" className="scroll-cue">
+          <Link prefetch={false} href="/#start-here" className="scroll-cue">
             <span className="scroll-circle">
               <ArrowDown size={18} aria-hidden="true" />
             </span>
-            <span>Open the library</span>
-          </a>
+            <span>Choose a starting question</span>
+          </Link>
           <div className="cover-theme">
             <span>2026 THEME</span>
             <strong>Building Foundations</strong>

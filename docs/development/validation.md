@@ -1,5 +1,15 @@
 # Alpha validation
 
+## Reader orientation and Scope Clarity milestone 2026-10-07
+
+- Production export, TypeScript, ESLint, Prettier, thirty-six test groups, and diff checks pass. All 28 application pages retain valid canonicals and Open Graph assets. Content checks retain four published notes, four worksheets/examples, two guides, three journal reflections, one learning case, and eight open gaps.
+- Guide validation rejects an empty starting question; Search indexes the same question shown on the homepage and guide overview. The existing review-date rejection fixture now derives a date after the note's update instead of assuming a fixed date that becomes valid during a later editorial update.
+- Browser QA passes cover action → homepage question → existing guide → first note → Back to the correct homepage/hash. Both starting questions reach every note in their retained guide order. Expanded note links reach the unchanged worksheet, filled example, and guide and restore the correct article body on return.
+- Real saved-note storage survives the article/collection round trip. A guide-only search for the starting question returns the expected guide and restores after reload. Starting-point cards and guide navigation also work without JavaScript.
+- All 28 application routes return 200 with one H1 and unique DOM IDs. Home, both guides, the scope note, its worksheet and example, Saved notes, and matched guide Search fit 360, 390, 768, and 1440 pixels without document overflow. No browser JavaScript errors were observed; the mobile menu retains Escape behavior.
+- Sampled Axe WCAG 2 A/AA and 2.1 AA checks find no violations on Home, both guides, and the scope note in light and dark themes. Desktop/mobile starting points and comparison layouts plus dark starting points were visually reviewed. This automated sample is not a full accessibility certification or a reader-usability trial.
+- A comparison with the previous source confirms every original scope-body paragraph, the other three MDX files, worksheet/example definitions and downloads, journals, learning case, and gap definitions remain. Scope Clarity records an actual 7 October source/editorial review; the planned 6 November checkpoint and Learning/Developing maturity remain. The new comparison and exercise are fictional and close no practical gap.
+
 ## Saved learning notes milestone 2026-10-07
 
 - Production export, TypeScript, ESLint, Prettier, thirty-six test groups, and diff checks pass. An initial local export omitted the new saved page; its required-page guard rejected that output. A subsequent clean build exports all 28 application pages with valid canonicals and Open Graph assets.

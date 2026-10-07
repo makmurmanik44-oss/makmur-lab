@@ -1,5 +1,14 @@
 # Development changelog
 
+## Alpha reader orientation and Scope Clarity 2026-10-07
+
+- Continued from `60508b55f827f5033967d2ea31c8906ea6a2a2d8` on the existing migration branch.
+- Added question-based homepage starting points using the two existing Atlas guides, their learning aims, note counts, publication boundaries, and derived reading estimates. The cover's question action and scroll cue lead to this section through framework navigation.
+- Added one required starting question to each guide's existing typed definition, shared by the homepage, guide overview, and guide search text. Guide URLs, ordered notes, and wider reading connections remain intact.
+- Expanded the existing Scope Clarity note with an original fictional booklet-offer comparison, reviewable acceptance prompts, changed-file questions, and a connected exercise with one possible answer. Retained the original pump illustration and four-question review.
+- Rechecked the existing UN handbook's requirements, inspection/acceptance, change-management, and source-boundary sections. Recorded the 7 October editorial/source review; both scope gaps remain open and the planned 6 November checkpoint is unchanged.
+- Kept all four notes Learning/Developing. Existing worksheets, all 15 scope checks, filled examples and downloads, journals, learning case, saved-note behavior, and the eight gap descriptions are retained. This update adds no private records, measured results, or reading-progress claims.
+
 ## Alpha saved learning notes 2026-10-07
 
 - Continued from `8e0ae05b3f285073bd2186b368db975616051b02`; preserved all current content and URLs.

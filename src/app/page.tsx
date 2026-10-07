@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { canonicalUrl } from "@/config/site";
 import { ArrowUpRight, Route } from "lucide-react";
 import { LivingCover } from "@/components/home/living-cover";
+import { StartingPoints } from "@/components/home/starting-points";
 import { ArticleCard } from "@/components/cards/article-card";
 import { JournalCard } from "@/components/cards/journal-card";
 import { journalEntries } from "@/content/journal";
@@ -24,6 +25,7 @@ export default async function Home() {
   return (
     <>
       <LivingCover />
+      <StartingPoints entries={knowledge} />
       <section id="featured" className="section">
         <Container>
           <SectionHeading

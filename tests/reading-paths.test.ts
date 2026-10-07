@@ -45,6 +45,9 @@ test("reading guides reject unsafe identities, incomplete explanations, unavaila
     paths[0].limitation = "";
   });
   invalid((paths) => {
+    paths[0].startingQuestion = " ";
+  });
+  invalid((paths) => {
     paths[0].steps = [paths[0].steps[0]];
   });
   invalid((paths) => {

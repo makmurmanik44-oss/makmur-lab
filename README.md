@@ -48,6 +48,10 @@ Four fictional filled examples answer every worksheet question and include reaso
 
 Knowledge Atlas includes two [reading guides](docs/reading-guides.md), with step rationale, reflection prompts, and worksheet/example links. Articles display their position and previous/next notes in each applicable connection. Search also finds the guides as a distinct content type. Reading-time estimates derive from the included note bodies; this feature does not track reading progress.
 
+The homepage now offers a question-based starting point for each existing guide. The cover leads to this section, which displays the guide's learning aim, note count, and derived reading estimate. Starting questions share the guide catalog and appear in guide overviews and Search. No additional learning path or progress system is introduced.
+
+Scope Clarity retains its URL, original explanations, four-question aid, worksheet, and filled example. Its expanded note connects an original fictional booklet-offer comparison to explicit acceptance prompts, change questions, and a short exercise with one possible answer. The UN source was rechecked on 7 October; both practical-validation gaps remain open.
+
 Learning Journal now uses one [structured reflection catalog](docs/journal-authoring.md) for its stream, individual pages, homepage preview, search, and sitemap. Three reflections state their basis, limitations, questions, and related reading. The original foundation reflection is retained; the two new entries describe existing library development, not field experience or measured outcomes. Journal publication is separate from the notes' maturity.
 
 The existing Procurement Control Tower [learning case](docs/case-authoring.md) now uses a typed catalog for its preserved detail URL, case listing, homepage preview, Search, and sitemap. It retains the original explanations and two sanitized visuals while making design tradeoffs, illustrative evidence, proposed checks, questions, and an exercise explicit. The data-definition note links back to the case. No deployment or measured impact is claimed.

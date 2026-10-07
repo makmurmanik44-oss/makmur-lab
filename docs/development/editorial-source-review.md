@@ -14,3 +14,9 @@ Continued from the existing three MDX notes. This review adds source support and
 Each article identifies the relevant source through a local reference anchor and records its publisher, access date, support, and limitations. The original explanations and article slugs remain. No source text, paid diagrams, supplier names, or company records were copied into the examples.
 
 Next review work is specific to each note: test acceptance questions, assess category-specific evidence freshness, review purchasing-metric rules, and compare the process map with safely sanitized observations. Review dates record editorial/source review, not field experience. Do not promote maturity based on reference count alone.
+
+## Scope Clarity source recheck — 2026-10-07
+
+Reopened the same UN handbook and checked section 5.2 (Requirement Definition, printed page 72), the receipt/inspection/acceptance discussion in section 7.3 (printed pages 126–127), section 7.4 (Change Management, printed page 129), and the preface reservations. Requirements form the basis of offer evaluation; inspection refers back to contract requirements; controlled changes have documented ownership in the UN context. These support the note's distinctions without prescribing its four-question review, example records, or company approval procedure.
+
+The expanded comparison reuses the existing fictional training-booklet request. Both contrasting offers, clarification questions, acceptance prompts, and the possible exercise answer are original learning material, not quoted source examples or real supplier assessments. The existing pump illustration, 15 checklist checks, worksheet answers, and two scope-gap descriptions are retained. The source access/editorial review and revision dates advance to 7 October; the planned 6 November checkpoint remains. Neither practice gap is closed and maturity remains Learning/Developing.

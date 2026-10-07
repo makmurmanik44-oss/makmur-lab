@@ -15,6 +15,8 @@ const filename = "scope-clarity-before-sourcing.mdx";
 const source = await readFile(`content/articles/${filename}`, "utf8");
 const parts = source.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)!;
 const metadata = parse(parts[1]);
+const reviewAfterUpdate = new Date(`${metadata.updated}T00:00:00Z`);
+reviewAfterUpdate.setUTCDate(reviewAfterUpdate.getUTCDate() + 1);
 function note(patch = {}, body = parts[2], slug = metadata.slug) {
   return parseKnowledgeFile(
     `${slug}.mdx`,
@@ -55,7 +57,10 @@ test("metadata errors fail with the affected file and field", async () => {
     [{ knowledgeStatus: "Stable" }, /knowledgeStatus/],
     [{ contentMaturity: "Experienced" }, /contentMaturity/],
     [{ updated: "2026-02-30" }, /updated/],
-    [{ lastReviewed: "2026-10-07" }, /Review date/],
+    [
+      { lastReviewed: reviewAfterUpdate.toISOString().slice(0, 10) },
+      /Review date/,
+    ],
     [{ unexpected: true }, /Unrecognized key/],
     [{ tags: ["Scope", "Scope"] }, /Tags must be unique/],
     [{ references: [], knowledgeDebt: [] }, /evidence gaps/],

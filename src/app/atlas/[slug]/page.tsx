@@ -67,6 +67,9 @@ export default async function ReadingGuide({
                 </Badge>
               </div>
               <h2>What this connection helps you explore</h2>
+              <p>
+                <strong>Starting question:</strong> {path.startingQuestion}
+              </p>
               <p>{path.intendedFor}</p>
               <p>
                 <strong>After reading, try to:</strong> {path.outcome}

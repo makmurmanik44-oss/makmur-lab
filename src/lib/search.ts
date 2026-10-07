@@ -212,6 +212,7 @@ export function buildSearchDocuments(
         readingTime: guideReadingTime(path, published),
         keywords: `${domainTitle(path.domain)} reading guide knowledge atlas connection ${path.steps.map((step) => step.title).join(" ")}`,
         body: [
+          path.startingQuestion,
           path.intendedFor,
           path.outcome,
           path.limitation,

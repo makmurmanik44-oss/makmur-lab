@@ -10,11 +10,39 @@ import { renderExampleMarkdown } from "../src/content/example-engine";
 import { learningPaths } from "../src/content/taxonomy";
 import { journalEntries } from "../src/content/journal";
 import { caseStudies } from "../src/content/case-studies";
+import {
+  editorialPhotos,
+  articlePhotoSections,
+} from "../src/content/editorial-photos";
 
 async function checkExport() {
   const root = path.resolve("out");
   const base = site.url.replace(/\/+$/, "");
   const documents = await loadLibrary();
+  for (const photo of Object.values(editorialPhotos)) {
+    for (const src of [photo.src, photo.smallSrc]) {
+      const original = await readFile(path.join("public", src));
+      const exported = await readFile(path.join(root, src));
+      if (
+        !original.equals(exported) ||
+        original.toString("ascii", 0, 4) !== "RIFF" ||
+        original.toString("ascii", 8, 12) !== "WEBP"
+      )
+        throw new Error(`Editorial photo missing, invalid, or stale: ${src}`);
+    }
+  }
+  for (const [slug, sections] of Object.entries(articlePhotoSections)) {
+    const entry = documents.find(
+      (document) => document.entry.slug === slug,
+    )?.entry;
+    if (
+      !entry ||
+      sections.some((id) => !entry.toc.some((section) => section.id === id))
+    )
+      throw new Error(
+        `Editorial section photo targets an unavailable heading: ${slug}`,
+      );
+  }
   if (!existsSync(path.join(root, "saved", "index.html")))
     throw new Error("Saved notes page is missing from export");
   if (!existsSync(path.join(root, "case-studies", "index.html")))

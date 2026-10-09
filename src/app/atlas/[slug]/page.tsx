@@ -8,6 +8,7 @@ import { resourceExamples, examplePath } from "@/content/resource-examples";
 import { canonicalUrl } from "@/config/site";
 import { guidePath, guideReadingTime } from "@/lib/reading-paths";
 import { PageIntro } from "@/components/common/page-intro";
+import { photoForDomain } from "@/content/editorial-photos";
 import { Badge, Container } from "@/components/ui/primitives";
 import { KnowledgeBadges } from "@/components/knowledge/knowledge-badges";
 
@@ -44,6 +45,7 @@ export default async function ReadingGuide({
   return (
     <>
       <PageIntro
+        photo={photoForDomain(path.domain)}
         eyebrow={`${domainTitle(path.domain)} / Reading guide`}
         title={path.title}
         description={path.description}

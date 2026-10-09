@@ -1,5 +1,13 @@
 # Development changelog
 
+## Alpha topic photography 2026-10-09
+
+- Continued from `01a0e381630e22d14fce2f65599243c40bf608fa` after inspecting the current branch, worktree, history, deployed refs, and the user's homepage screenshots.
+- Extended the retained Living Cover's photo/overlay language to the two existing starting-question cards, note/journal/case cards, all eighteen existing material detail intros, and eight selected major note headings.
+- Added four credited Unsplash photographs for requirement review, production, analytics, and learning. Each has a local 640/1600-pixel WebP variant and a curated focal position, shared through a typed photo catalog.
+- Added static decorative image rendering, lazy loading below the fold, eager material intros, stable dark overlays/fallbacks, and print removal with dark headings on white. Original heading IDs, body text, tables, examples, diagrams, dates, gaps, Search, draft storage, and download definitions are retained.
+- Extended export validation to reject missing/stale/invalid photo assets or selected heading targets. Added photo authoring/credit documentation; no dependencies, content routes, operational evidence, or maturity claims were added.
+
 ## Alpha worksheet backup and restore 2026-10-07
 
 - Continued from `6174fa6ef4322a35d93f1cb28f034135f821f4a4` on the existing migration branch.

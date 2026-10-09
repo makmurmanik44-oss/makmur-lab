@@ -2760,3 +2760,158 @@ main:focus {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
+
+/* Context photos extend the Living Cover without placing long copy on images. */
+.photo-surface {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #14251e;
+  color: #ffffff;
+}
+.editorial-background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.editorial-background picture,
+.editorial-background img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.editorial-background img {
+  object-fit: cover;
+}
+.editorial-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, rgb(8 24 20 / 88%), rgb(8 24 20 / 68%));
+}
+.photo-intro {
+  min-height: 490px;
+  padding-bottom: 54px;
+}
+.photo-intro .eyebrow,
+.photo-intro .intro-copy {
+  color: #edf5f0;
+}
+.photo-intro h1 {
+  color: #ffffff;
+}
+.editorial-credit {
+  display: inline-block;
+  margin-top: 24px;
+  color: #edf5f0;
+  font-size: 11px;
+  text-underline-offset: 4px;
+}
+.editorial-credit:hover {
+  text-decoration: underline;
+}
+.starting-point.photo-surface {
+  min-height: 430px;
+  border-color: #65796e;
+}
+.starting-point.photo-surface:hover {
+  border-color: #bce0cc;
+}
+.starting-point.photo-surface h3,
+.starting-point.photo-surface p,
+.starting-point.photo-surface .starting-point-meta {
+  color: #ffffff;
+}
+.starting-point.photo-surface .starting-point-action {
+  color: #c6ead7;
+}
+.starting-point.photo-surface .badge {
+  background: #e7f0e9;
+  color: #214e3d;
+  border-color: transparent;
+}
+.card-photo {
+  position: relative;
+  isolation: isolate;
+  height: 180px;
+  flex: none;
+  margin-bottom: 26px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: #14251e;
+}
+.card-photo .editorial-background::after {
+  background: linear-gradient(180deg, transparent 45%, rgb(8 24 20 / 25%));
+}
+.case-visual.photo-surface {
+  background: #14251e;
+  color: #ffffff;
+}
+.case-visual.photo-surface .eyebrow {
+  color: #edf5f0;
+}
+.case-visual.photo-surface .case-flow span {
+  background: #e7f0e9;
+  color: #214e3d;
+}
+.photo-section-heading {
+  margin-block: 44px 24px;
+  padding: 36px 28px;
+  min-height: 170px;
+  display: flex;
+  align-items: end;
+  border-radius: var(--radius);
+}
+.prose .photo-section-heading h2 {
+  color: #ffffff;
+  margin: 0;
+  font-family: "Geist Variable", sans-serif;
+  font-size: clamp(25px, 3vw, 32px);
+  line-height: 1.3;
+  scroll-margin-top: 150px;
+}
+.photo-surface a:focus-visible,
+.starting-point.photo-surface:focus-visible {
+  outline: 3px solid #c6ead7;
+  outline-offset: 5px;
+}
+@media (max-width: 700px) {
+  .photo-intro {
+    min-height: 460px;
+    padding-bottom: 36px;
+  }
+  .starting-point.photo-surface {
+    min-height: 410px;
+  }
+  .card-photo {
+    height: 155px;
+  }
+  .photo-section-heading {
+    padding: 28px 20px;
+  }
+}
+@media print {
+  .editorial-background,
+  .editorial-credit,
+  .card-photo {
+    display: none !important;
+  }
+  .photo-surface,
+  .photo-intro .eyebrow,
+  .photo-intro .intro-copy,
+  .photo-intro h1,
+  .prose .photo-section-heading h2 {
+    color: #17201c !important;
+    background: #ffffff !important;
+  }
+  .photo-intro,
+  .photo-section-heading {
+    min-height: 0;
+  }
+  .photo-section-heading {
+    display: block;
+    padding: 0;
+    margin-block: 24px 12px;
+  }
+}

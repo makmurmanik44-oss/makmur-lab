@@ -1,5 +1,15 @@
 # Alpha validation
 
+## Topic photography milestone 2026-10-09
+
+- Production export, TypeScript, ESLint, Prettier, forty-one test groups, and diff checks pass. All 28 application routes retain valid canonicals/Open Graph assets, eighteen Search documents, eight open editorial gaps, and their existing URLs.
+- Four real Unsplash source pages and the free-use license were checked. Eight local WebP variants retain recorded photographers/source links; the export guard verifies binary identity and rejects missing/invalid/stale files or unavailable selected MDX heading IDs.
+- All 28 routes fit 360, 390, 768, and 1440 pixels with one H1, unique IDs, no document overflow, no browser JavaScript errors, and no failed observed requests. Every contextual image decodes, and actual browser `currentSrc` selects the 640-pixel copy below the breakpoint and the 1600-pixel copy above it.
+- Sampled Axe WCAG 2 A/AA and 2.1 AA checks report no violations on ten representative home/note/journal/case/guide/worksheet/catalog surfaces in both themes. Mobile/desktop starting-question backgrounds, note covers, selected section banners, and a dark data cover were visually reviewed. This is sampled engineering QA, not a full accessibility certification or human reader trial.
+- Existing photo-heading anchors and table-of-contents jumps work. Saved-note reload, original note/worksheet navigation and Back, local draft persistence, and JSON backup download pass. All original note bodies, resource/example/journal/case/taxonomy definitions, and eight blank/example downloads are byte-identical to `01a0e38`.
+- Without JavaScript, the home cards, note/journal intros, selected note sections, and original worksheets remain readable with real decoded images. Blocking photo requests retains the title on a stable dark fallback surface. Decorative images have empty alt text and the textual heading/link remains the content.
+- Worksheet print removes photo layers and credits, restores dark titles on white, and retains the current draft answers. The existing port Living Cover, evidence limits, original diagrams, metadata/review dates, draft storage identities, and Alpha release boundary remain. Context photographs add no supplier evidence, operational results, or maturity promotion.
+
 ## Worksheet backup and restore milestone 2026-10-07
 
 - Clean production export, TypeScript, ESLint, Prettier, forty-one test groups, and diff checks pass. All 28 application pages retain valid canonicals and Open Graph assets, eighteen Search documents, and eight open editorial gaps.

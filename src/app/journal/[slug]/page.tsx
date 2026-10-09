@@ -13,6 +13,7 @@ import {
 } from "@/lib/journal";
 import { displayDate } from "@/lib/date";
 import { PageIntro } from "@/components/common/page-intro";
+import { photoForDomain } from "@/content/editorial-photos";
 import { Badge, Container } from "@/components/ui/primitives";
 
 export const dynamicParams = false;
@@ -50,6 +51,7 @@ export default async function JournalDetail({
   return (
     <>
       <PageIntro
+        photo={photoForDomain(entry.domain)}
         eyebrow={`${entry.category} / Learning Journal`}
         title={entry.title}
         description={entry.summary}

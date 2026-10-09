@@ -1,3 +1,5 @@
+import { EditorialBackground } from "@/components/common/editorial-background";
+import { photoForDomain } from "@/content/editorial-photos";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Layers3 } from "lucide-react";
 import type { CaseStudy } from "@/content/case-studies";
@@ -35,7 +37,8 @@ export function CaseStudyCard({
   if (featured)
     return (
       <Link prefetch={false} href={casePath(entry)} className="case-feature">
-        <div className="case-visual" aria-hidden="true">
+        <div className="case-visual photo-surface" aria-hidden="true">
+          <EditorialBackground photo={photoForDomain(entry.domain)} />
           <span className="eyebrow">From data to decision</span>
           <Layers3 size={52} strokeWidth={1} />
           <div className="case-flow">
@@ -57,6 +60,9 @@ export function CaseStudyCard({
     );
   return (
     <article className="simple-card case-card">
+      <div className="card-photo">
+        <EditorialBackground photo={photoForDomain(entry.domain)} />
+      </div>
       {copy}
       <Link prefetch={false} className="text-link" href={casePath(entry)}>
         Read the developing case <ArrowUpRight size={16} aria-hidden="true" />

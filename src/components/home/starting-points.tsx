@@ -1,3 +1,5 @@
+import { EditorialBackground } from "@/components/common/editorial-background";
+import { photoForDomain } from "@/content/editorial-photos";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { domainTitle, learningPaths } from "@/content/taxonomy";
@@ -41,9 +43,10 @@ export function StartingPoints({ entries }: { entries: KnowledgeEntry[] }) {
               prefetch={false}
               key={path.slug}
               href={guidePath(path)}
-              className="starting-point"
+              className="starting-point photo-surface"
               aria-labelledby={`starting-point-${path.slug}`}
             >
+              <EditorialBackground photo={photoForDomain(path.domain)} />
               <div className="card-badges">
                 <Badge tone="green">{domainTitle(path.domain)}</Badge>
                 <Badge>Developing</Badge>
@@ -65,7 +68,8 @@ export function StartingPoints({ entries }: { entries: KnowledgeEntry[] }) {
         </div>
         <p className="starting-points-limit">
           These guides support learning. Practical validation remains open.
-          Exercises, worksheets, and source review take additional time.
+          Exercises, worksheets, and source review take additional time. Photos
+          illustrate the subject; they are not field evidence.
         </p>
       </Container>
     </section>

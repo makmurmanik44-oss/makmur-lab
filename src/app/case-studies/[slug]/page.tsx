@@ -14,6 +14,7 @@ import {
 } from "@/lib/case-studies";
 import { displayDate } from "@/lib/date";
 import { PageIntro } from "@/components/common/page-intro";
+import { photoForDomain } from "@/content/editorial-photos";
 import { Badge, Container } from "@/components/ui/primitives";
 
 export const dynamicParams = false;
@@ -85,6 +86,7 @@ export default async function CaseDetail({
   return (
     <>
       <PageIntro
+        photo={photoForDomain(entry.domain)}
         eyebrow={`Case study / ${domainTitle(entry.domain)}`}
         title={entry.title}
         description={entry.summary}

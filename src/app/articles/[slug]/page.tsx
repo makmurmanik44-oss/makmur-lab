@@ -5,6 +5,10 @@ import { notFound } from "next/navigation";
 import { domainTitle } from "@/content/taxonomy";
 import { getKnowledgeDocument, getKnowledgeEntries } from "@/content/library";
 import { PageIntro } from "@/components/common/page-intro";
+import {
+  photoForDomain,
+  articlePhotoSections,
+} from "@/content/editorial-photos";
 import { Container } from "@/components/ui/primitives";
 import { KnowledgeBadges } from "@/components/knowledge/knowledge-badges";
 import { MdxBody } from "@/components/knowledge/mdx-body";
@@ -52,6 +56,7 @@ export default async function Article({
   return (
     <>
       <PageIntro
+        photo={photoForDomain(entry.domain)}
         eyebrow={`${domainTitle(entry.domain)} / ${entry.topic}`}
         title={entry.title}
         description={entry.summary}
@@ -184,7 +189,11 @@ export default async function Article({
                 </aside>
               )}
               <div className="prose">
-                <MdxBody compiled={compiled} />
+                <MdxBody
+                  compiled={compiled}
+                  photo={photoForDomain(entry.domain)}
+                  photoSections={articlePhotoSections[slug]}
+                />
                 <ReadingConnections slug={slug} entries={knowledge} />
                 {relatedCases.length > 0 && (
                   <section

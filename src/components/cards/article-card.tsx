@@ -1,3 +1,5 @@
+import { EditorialBackground } from "@/components/common/editorial-background";
+import { photoForDomain } from "@/content/editorial-photos";
 import Link from "next/link";
 import { ArrowUpRight, Clock3 } from "lucide-react";
 import { domainTitle } from "@/content/taxonomy";
@@ -23,6 +25,9 @@ export function ArticleCard({
     <article
       className={`article-card ${featured ? "article-card-featured" : ""}`}
     >
+      <div className="card-photo">
+        <EditorialBackground photo={photoForDomain(entry.domain)} />
+      </div>
       <div className="card-top">
         <span className="eyebrow">{domainTitle(entry.domain)}</span>
         <ArrowUpRight size={20} aria-hidden="true" />

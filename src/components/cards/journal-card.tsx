@@ -1,3 +1,5 @@
+import { EditorialBackground } from "@/components/common/editorial-background";
+import { photoForDomain } from "@/content/editorial-photos";
 import Link from "next/link";
 import type { JournalEntry } from "@/content/journal";
 import { domainTitle } from "@/content/taxonomy";
@@ -15,6 +17,9 @@ export function JournalCard({
   const Heading = heading;
   return (
     <article className="journal-card">
+      <div className="card-photo">
+        <EditorialBackground photo={photoForDomain(entry.domain)} />
+      </div>
       <div className="journal-card-top">
         <p className="eyebrow">{entry.category}</p>
         <time dateTime={entry.created}>{displayDate(entry.created)}</time>

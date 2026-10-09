@@ -13,6 +13,7 @@ import {
 } from "@/content/resource-examples";
 import { domainTitle } from "@/content/taxonomy";
 import { PageIntro } from "@/components/common/page-intro";
+import { photoForDomain } from "@/content/editorial-photos";
 import { Badge, Container } from "@/components/ui/primitives";
 import { PrintButton } from "@/components/resources/print-button";
 
@@ -47,6 +48,7 @@ export default async function FilledExample({
   return (
     <div className="worksheet-page worked-example">
       <PageIntro
+        photo={photoForDomain(resource.domain)}
         eyebrow={`${domainTitle(resource.domain)} / Worked example`}
         title={example.title}
         description={example.learningGoal}

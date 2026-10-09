@@ -4,6 +4,8 @@ import { run } from "@mdx-js/mdx";
 import * as runtime from "react/jsx-runtime";
 import type { ComponentProps, ReactNode } from "react";
 import { asset } from "@/config/site";
+import type { EditorialPhoto } from "@/content/editorial-photos";
+import { PhotoSectionHeading } from "@/components/common/photo-section-heading";
 
 const components = {
   a: ({ href = "", children, ...props }: ComponentProps<"a">) =>
@@ -47,7 +49,31 @@ const components = {
   ),
 };
 
-export async function MdxBody({ compiled }: { compiled: string }) {
+export async function MdxBody({
+  compiled,
+  photo,
+  photoSections = [],
+}: {
+  compiled: string;
+  photo?: EditorialPhoto;
+  photoSections?: readonly string[];
+}) {
   const { default: Content } = await run(compiled, { ...runtime });
-  return <Content components={components} />;
+  return (
+    <Content
+      components={{
+        ...components,
+        h2: ({ id, children, ...props }: ComponentProps<"h2">) =>
+          photo && id && photoSections.includes(id) ? (
+            <PhotoSectionHeading photo={photo} id={id}>
+              {children}
+            </PhotoSectionHeading>
+          ) : (
+            <h2 id={id} {...props}>
+              {children}
+            </h2>
+          ),
+      }}
+    />
+  );
 }

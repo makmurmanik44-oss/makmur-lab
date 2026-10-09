@@ -36,6 +36,8 @@ Use [the authoring guide](docs/content-authoring.md) and `content/templates/lear
 
 `src/components/ui` is a small semantic primitive layer. Shared layout, home, card, and discovery components use the same design tokens from `src/app/globals.css`.
 
+[Editorial photographs](docs/editorial-photos.md) extend the existing port cover to homepage starting questions, content cards, material intros, and selected note headings. Local responsive WebP variants, credited sources, dark overlays, and a white print view keep the visual context separate from evidence and long-form reading.
+
 `src/content/resources.ts` supplies four working aids with printable detail pages, editable Markdown downloads, and links to their supporting articles. Run `npm run resources:sync` after editing a definition; the production build also regenerates the downloads. See [resource authoring](docs/resource-authoring.md).
 
 Four worksheets now offer optional [browser-local learning drafts](docs/worksheet-drafts.md). Readers can answer the existing prompts, retain unresolved checks, return after reload, download their own responses as Markdown, and print the current draft. Drafts stay separate from the published examples and Search. Storage limits and cross-tab conflicts have explicit recovery choices.

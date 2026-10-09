@@ -7,6 +7,7 @@ import { getKnowledgeDocument } from "@/content/library";
 import { resources, resourceDownload } from "@/content/resources";
 import { domainTitle } from "@/content/taxonomy";
 import { PageIntro } from "@/components/common/page-intro";
+import { photoForDomain } from "@/content/editorial-photos";
 import { Badge, Container } from "@/components/ui/primitives";
 import { PrintButton } from "@/components/resources/print-button";
 import { WorksheetWorkspace } from "@/components/resources/worksheet-workspace";
@@ -45,6 +46,7 @@ export default async function Worksheet({
   return (
     <div className="worksheet-page">
       <PageIntro
+        photo={photoForDomain(resource.domain)}
         eyebrow={`${domainTitle(resource.domain)} / ${resource.kind}`}
         title={resource.title}
         description={resource.summary}

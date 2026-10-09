@@ -1,5 +1,14 @@
 # Alpha validation
 
+## Personal About restoration milestone 2026-10-09
+
+- Clean production export, TypeScript, ESLint, Prettier, forty-one test groups, and diff checks pass. The export guard retains all 28 application pages and their correct canonical URLs/Open Graph assets.
+- The headline, introduction, all four section headings, five working principles, career-card titles/descriptions, and personal prose match the retained earlier `about.html`, which matches the three screenshots in the supplied About Me document. No career dates, achievements, or professional claims were added.
+- About fits 360, 390, 768, and 1440 pixels in both themes with one H1, unique IDs, four career cards, and no document overflow. Journey cards use one column on phones and two above 600 pixels. Desktop/mobile light views and the tablet dark view were visually reviewed.
+- All four sidebar hash destinations work. Navigation away and browser Back restore the About body and last section hash; reload retains that location. The same text, cards, and section links remain available without JavaScript.
+- Sampled Axe WCAG 2 A/AA and 2.1 AA checks at 390/1440 pixels in both themes report no violations. No browser JavaScript errors or failed observed requests were found. This is engineering QA, not a human reader trial.
+- The original legacy About file, homepage cover/photo cards, and material-photo system are retained. Only the Alpha About page, scoped styles, and development records changed; existing content catalogs, worksheets, backups, and downloads remain.
+
 ## Topic photography milestone 2026-10-09
 
 - Production export, TypeScript, ESLint, Prettier, forty-one test groups, and diff checks pass. All 28 application routes retain valid canonicals/Open Graph assets, eighteen Search documents, eight open editorial gaps, and their existing URLs.

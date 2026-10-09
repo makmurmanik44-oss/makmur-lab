@@ -3,118 +3,139 @@ import Link from "next/link";
 import { canonicalUrl } from "@/config/site";
 import { PageIntro } from "@/components/common/page-intro";
 import { Container } from "@/components/ui/primitives";
-import { site } from "@/config/site";
+
 export const metadata: Metadata = {
   title: "About",
+  description:
+    "About Makmur Lienjeriski Manik, his procurement journey, working principles, and direction toward procurement leadership.",
   alternates: { canonical: canonicalUrl("/about") },
 };
+
 export default function About() {
   return (
-    <>
+    <div className="about-page">
       <PageIntro
-        eyebrow="The curator & the library"
-        title="Learn deeply. Think clearly. Share generously."
-        description="Makmur Lab exists to preserve useful knowledge, connect ideas with practice, and make learning accessible to others."
+        eyebrow="About"
+        title="I am learning to move from solving tasks to designing systems."
+        description="My background is Industrial Engineering and my professional work sits across procurement, vendor management, logistics, services, contracts, sourcing, and operational problem solving."
       />
       <section className="page-content">
         <Container>
           <div className="reading-layout">
             <aside className="reading-sidebar">
-              <p className="eyebrow">About the library</p>
+              <p className="eyebrow">On this page</p>
               <nav aria-label="About sections">
-                <a href="#why">Why it exists</a>
-                <a href="#curator">The curator</a>
-                <a href="#principles">Working principles</a>
-                <a href="#boundaries">Product boundaries</a>
-                <a href="#connect">Connect</a>
+                <Link prefetch={false} href="#story">
+                  My story
+                </Link>
+                <Link prefetch={false} href="#work">
+                  How I work
+                </Link>
+                <Link prefetch={false} href="#journey">
+                  Professional journey
+                </Link>
+                <Link prefetch={false} href="#direction">
+                  Where I am going
+                </Link>
               </nav>
             </aside>
-            <div className="prose">
-              <h2 id="why">Knowledge is the product.</h2>
+            <div className="prose about-prose">
+              <h2 id="story">My story</h2>
               <p>
-                Good knowledge becomes more useful when it is connected, tested,
-                revised, and shared. Makmur Lab is a living library for
-                procurement, supply chain, industrial engineering, technology,
-                and continuous learning.
+                I am <strong>Makmur Lienjeriski Manik</strong>, an Industrial
+                Engineering graduate from UPN “Veteran” Yogyakarta. I started my
+                career close to operations and inventory before moving deeper
+                into procurement, logistics, vendor management, and strategic
+                sourcing.
               </p>
               <p>
-                The goal is a collection that remains useful beyond the moment
-                it is published. Fewer careful notes are more valuable than a
-                large archive that cannot explain its assumptions or evidence.
+                What interests me most is not only the commercial transaction
+                itself, but the system around it: how requirements are defined,
+                how risk is distributed, how vendors are selected, how
+                performance is accepted, and how information becomes a better
+                decision.
               </p>
-              <h2 id="curator">The curator</h2>
+              <h2 id="work">How I work</h2>
               <p>
-                I am Makmur Lienjeriski Manik, an Industrial Engineering
-                graduate from UPN “Veteran” Yogyakarta. My professional work has
-                taken me through inventory, logistics, procurement, vendor
-                management, and strategic sourcing.
+                I tend to approach work by first making the problem visible,
+                separating fact from assumption, defining options and
+                consequences, and then creating a repeatable control when the
+                same issue appears again.
               </p>
-              <p>
-                I use this library to study questions from practice, organize
-                what I learn, and share frameworks that others can examine and
-                improve. Experience informs the questions; it does not make
-                every answer certain.
-              </p>
-              <h2 id="principles">How knowledge is developed here</h2>
               <ul>
                 <li>
-                  <strong>Evidence before opinion.</strong> Make facts,
-                  assumptions, references, and judgement distinguishable.
+                  <strong>Problem first:</strong> understand what business
+                  problem we are actually solving.
                 </li>
                 <li>
-                  <strong>Depth before quantity.</strong> Develop a useful
-                  explanation and practical example before expanding the
-                  collection.
+                  <strong>Evidence over noise:</strong> use data, direct
+                  evidence, and explicit assumptions.
                 </li>
                 <li>
-                  <strong>Clarity before complexity.</strong> Explain the
-                  reasoning in language readers can use.
+                  <strong>Decision architecture:</strong> show options,
+                  trade-offs, residual risk, and required ownership.
                 </li>
                 <li>
-                  <strong>Systems before hacks.</strong> Look for repeatable
-                  methods rather than isolated shortcuts.
+                  <strong>Systemize repetition:</strong> convert recurring
+                  problems into standards, dashboards, or workflows.
                 </li>
                 <li>
-                  <strong>Learning remains open.</strong> Show status, review
-                  dates, and substantive revisions.
+                  <strong>Close the loop:</strong> capture lessons learned so
+                  future execution starts from a higher baseline.
                 </li>
               </ul>
+              <h2 id="journey">Professional journey</h2>
+              <div className="about-journey">
+                <article className="about-journey-card">
+                  <p className="eyebrow">Early career</p>
+                  <h3>Inventory &amp; operations exposure</h3>
+                  <p>
+                    Built an understanding of material flow, operational
+                    constraints, and the importance of reliable execution.
+                  </p>
+                </article>
+                <article className="about-journey-card">
+                  <p className="eyebrow">Procurement foundation</p>
+                  <h3>Logistics &amp; procurement analysis</h3>
+                  <p>
+                    Worked across purchasing processes, transporter
+                    coordination, service procurement, and commercial follow-up.
+                  </p>
+                </article>
+                <article className="about-journey-card">
+                  <p className="eyebrow">Current depth</p>
+                  <h3>Vendor management &amp; strategic procurement</h3>
+                  <p>
+                    Greater focus on supplier governance, contract thinking,
+                    sourcing strategy, tenders, services, and system
+                    improvement.
+                  </p>
+                </article>
+                <article className="about-journey-card">
+                  <p className="eyebrow">Next chapter</p>
+                  <h3>Procurement leadership</h3>
+                  <p>
+                    Developing the ability to lead through systems, decisions,
+                    stakeholder alignment, delegation, and governance.
+                  </p>
+                </article>
+              </div>
+              <h2 id="direction">Where I am going</h2>
               <p>
-                <Link prefetch={false} href="/review">
-                  View the content review plan
-                </Link>{" "}
-                for planned checkpoints, open gaps, and the checks required
-                before a gap can be closed.
+                I want to become a procurement leader who can connect commercial
+                judgment with operational reality. That requires more than
+                negotiation skills. It requires system design, risk thinking,
+                communication, governance, and the ability to help other people
+                make better decisions.
               </p>
-              <h2 id="boundaries">
-                Knowledge and operations have different homes.
-              </h2>
               <p>
-                Makmur Lab contains public knowledge. SLGP is a separate product
-                for procurement operations. Vendor records, contracts,
-                evaluations, and confidential operational data belong outside
-                this public library. Lessons can enter the library after they
-                are abstracted and sanitized.
-              </p>
-              <h2 id="connect">Continue the conversation</h2>
-              <p>
-                If you work or learn in these fields, you can{" "}
-                <a
-                  href={site.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  connect with me on LinkedIn
-                </a>
-                .
-              </p>
-              <p className="reading-label">
-                Last updated: 2026-10-05 · Alpha library foundation
+                Makmur Lab is part portfolio, part knowledge base, and part
+                accountability system for that journey.
               </p>
             </div>
           </div>
         </Container>
       </section>
-    </>
+    </div>
   );
 }

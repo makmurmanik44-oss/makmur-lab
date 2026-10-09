@@ -1308,6 +1308,57 @@ main:focus {
   margin-top: 28px;
   margin-bottom: 12px;
 }
+.about-page .intro-copy,
+.about-prose {
+  font-family: "Geist Variable", Arial, sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+}
+.about-prose {
+  color: var(--muted);
+}
+.about-prose h2,
+.about-prose h3,
+.about-prose strong {
+  color: var(--ink);
+}
+.about-prose h2 {
+  font-size: clamp(28px, 3.2vw, 40px);
+  font-weight: 650;
+}
+.about-prose > h2:first-child {
+  margin-top: 0;
+}
+.about-journey {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+.about-journey-card {
+  padding: 26px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+}
+.about-journey-card .eyebrow {
+  margin: 0 0 10px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+.about-journey-card h3 {
+  margin: 0;
+  font-size: 21px;
+  font-weight: 650;
+}
+.about-journey-card > p:last-child {
+  margin-bottom: 0;
+  font-size: 16px;
+}
+@media (max-width: 600px) {
+  .about-journey {
+    grid-template-columns: 1fr;
+  }
+}
 .prose p {
   margin-block: 14px;
 }

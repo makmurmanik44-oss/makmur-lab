@@ -1,5 +1,12 @@
 # Development changelog
 
+## Alpha personal About restoration 2026-10-09
+
+- Continued from `758affa46d761886fdeca4ecc7d52f4a9cc6c60d` after inspecting the current branch, clean worktree, history, existing About, and the three earlier-page screenshots embedded in the user's About Me document.
+- Restored the preferred personal headline, background, My story, How I work, Professional journey, and Where I am going from the matching retained `about.html`. All five working principles, four career stages, and the leadership aspiration retain their original wording.
+- Restored sans-serif reading text, prominent section headings, and four rounded journey cards with two desktop columns and one mobile column. About navigation uses framework hash links for correct section/history returns; metadata now describes the personal page.
+- Kept the existing Alpha shell, themes, route, legacy site, homepage photography, material pages, content catalogs, drafts, backups, and downloads. Styling is scoped to About.
+
 ## Alpha topic photography 2026-10-09
 
 - Continued from `01a0e381630e22d14fce2f65599243c40bf608fa` after inspecting the current branch, worktree, history, deployed refs, and the user's homepage screenshots.

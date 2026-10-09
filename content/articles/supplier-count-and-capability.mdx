@@ -1,0 +1,188 @@
+---
+slug: supplier-count-and-capability
+title: Supplier count is not supplier capability
+summary: Why a long supplier list says little about usable capacity, category
+  coverage, or supply continuity.
+domain: supply-chain
+topic: Supplier resilience
+tags:
+  - Supplier lifecycle
+  - Capacity
+  - Risk
+difficulty: Foundation
+knowledgeStatus: Learning
+contentMaturity: Developing
+updated: 2026-10-07
+lastReviewed: 2026-10-07
+nextReview: 2026-11-06
+featured: true
+prerequisites:
+  - scope-clarity-before-sourcing
+relatedKnowledge:
+  - data-definitions-before-dashboards
+references:
+  - id: ungm-registration
+    title: The UNGM Glossary — registration and pre-qualification
+    url: https://www.ungm.org/Shared/KnowledgeCenter/Pages/UNGMglossary
+    publisher: United Nations Global Marketplace
+    accessed: 2026-10-07
+    note: The R entries distinguish registration from pre-qualification against
+      defined criteria. This distinction is specific to UNGM; an organisation's
+      own approved-supplier status may include other checks.
+  - id: un-pph-qualification
+    title: UN Procurement Practitioner's Handbook — February 2022
+    url: https://www.ungm.org/Shared/KnowledgeCenter/Document?documentId=1294233&widgetId=3518
+    publisher: UN HLCM Procurement Network via UNGM
+    accessed: 2026-10-07
+    note:
+      Section 6.4, Supplier evaluation, covers contract-specific capacity and
+      qualification. It supports checking evidence, not a universal activity
+      window, supplier score, or rationalization target.
+  - id: uk-supply-resilience
+    title: DBT supply chains resilience framework
+    url: https://www.gov.uk/government/publications/supply-chain-resilience/dit-supply-chains-resilience-framework
+    publisher: UK Government — Department for Business and Trade
+    accessed: 2026-10-07
+    note: Diversification and supply-chain visibility support investigating
+      dependencies. This UK policy framework does not validate the worksheet,
+      a supplier-independence test, or a category-specific review interval.
+revisionHistory:
+  - date: 2026-10-05
+    note: Initial Alpha learning note. No company supplier counts or performance
+      metrics are published.
+  - date: 2026-10-06
+    note: Migrated the existing Alpha note to MDX with explicit editorial gaps.
+  - date: 2026-10-06
+    note:
+      Added UNGM and UN qualification references, an evidence-record example,
+      and limits on what registration or confirmation demonstrates.
+  - date: 2026-10-06
+    note: Added actionable gap criteria and a planned editorial checkpoint;
+      linked a fictional worksheet example without closing evidence gaps.
+  - date: 2026-10-07
+    note: Rechecked UN/UNGM sources and reviewed UK resilience guidance.
+      Qualified the opening approval-status statement; added original fictional
+      evidence contrasts, freshness prompts, a shared-source follow-up, and an
+      exercise. Both practical gaps remain open.
+published: true
+knowledgeDebt:
+  - id: practice-validation
+    description: Validate the proposed framework in practice before treating it
+      as established guidance.
+    priority: High
+    nextCheck: Review one safely sanitized category requirement with dated
+      capability and capacity evidence; record where the worksheet is insufficient.
+    closeWhen: A human reviewer documents the trial, its limits, and revisions;
+      unresolved category questions remain visible.
+  - id: continuity-evidence
+    description: Define and test category-specific evidence freshness and
+      shared-source exposure checks before using the review for continuity decisions.
+    priority: High
+    nextCheck: Propose a category-specific review window and trace shared
+      upstream dependencies using safely sanitized evidence.
+    closeWhen: The proposed window and dependency checks are reviewed against
+      observed evidence, with assumptions and remaining exposure recorded.
+---
+
+## Executive summary
+
+Read a supplier's approval status against what the organisation's approval process actually checked. A usable supplier can meet a defined requirement in the period that matters. Supplier count becomes more useful when paired with capability, activity, location, and capacity evidence.
+
+Use this note after [clarifying the requirement](/articles/scope-clarity-before-sourcing). Try the [supplier evidence worksheet](/resources/supplier-capability-review) alongside its [fictional filled example](/resources/supplier-capability-review/example), then connect your questions through [From requirement to decision](/atlas/requirement-to-decision).
+
+## Context
+
+A database can retain suppliers that no longer serve a category or cannot respond when demand changes. Counting those records equally may overstate available alternatives.
+
+The [UNGM glossary](#reference-ungm-registration) explicitly separates registration from pre-qualification. The [UN handbook's supplier-evaluation section](#reference-un-pph-qualification) asks whether a supplier can perform the particular contract. These support asking what a status actually verifies; they do not mean every organisation uses the same approval model.
+
+## A capability review
+
+For a specific requirement, ask what is known and what still needs verification.
+
+1. Capability: can the supplier meet the specification?
+2. Capacity: can the supplier deliver the required volume and timing?
+3. Activity: when was the capability last demonstrated?
+4. Exposure: do apparent alternatives depend on the same upstream source?
+
+## Practical example
+
+A fictional delivery lane has eight registered transporters, but only two confirm vehicles for the required dates. The useful decision is how to secure capacity or change the plan; adding six inactive names to a coverage chart does not answer that question.
+
+For that fictional lane, a proposed evidence record could look like this:
+
+| Decision question                      | Evidence to request                                           | What remains uncertain                     |
+| -------------------------------------- | ------------------------------------------------------------- | ------------------------------------------ |
+| Can this vehicle serve the lane?       | Vehicle type and route constraints checked with the requester | Whether other requirements were omitted    |
+| Is it available on the required dates? | Dated confirmation for the named vehicle and period           | Confirmation can change before dispatch    |
+| Is the alternative independent?        | Declared subcontractor or vehicle source                      | Shared dependencies may remain undisclosed |
+
+Keep the verification date and reviewer alongside the record. A confirmation is provisional evidence, not guaranteed delivery. The table is an original working example; the sources do not prescribe it.
+
+## Compare evidence for one requirement
+
+The existing filled worksheet uses a fictional request for 20 training booklets delivered by 21 October 2026. Each booklet has 24 A4 monochrome pages, printed duplex on 12 sheets and stapled. A final PDF and an agreed proof are required handoffs; paper and proof legibility still need clarification.
+
+Option A's invented directory entry contains contact details only. Its similar-booklet proof illustrates page order and stapling, while a simulated message says 20 copies can be produced during 16–20 October. Neither a reserved production slot nor delivery confirmation exists in that worksheet. This fictional directory is not a description of UNGM registration requirements.
+
+To explore the difference between more names and more evidence, add an invented Option B for this exercise:
+
+| Evidence question                  | Fictional Option A                                                                   | Fictional Option B                                                                    |
+| ---------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
+| What did the status check?         | Contact details in the exercise's directory.                                         | A fictional category listing; its assessment scope is unstated.                       |
+| What supports this specification?  | A similar booklet shows page order and stapling; a proof for the new PDF is missing. | A general brochure states printing capability; no proof for this request is supplied. |
+| What supports the required period? | A simulated 16–20 October message; no reserved slot or confirmed delivery.           | A general lead-time statement; no dated allocation for this quantity.                 |
+| What is the production source?     | Unknown in the original worksheet.                                                   | Unknown in this initial comparison.                                                   |
+
+**The decision supported so far:** identify the missing checks. This comparison does not qualify either option, prove that A is better, or show two available supply alternatives. Request evidence tied to the same final specification, quantity, production period, and delivery destination before treating the statements as comparable.
+
+Registration, capability evidence, and a capacity statement answer different questions. Recording them separately prevents a broad status from silently answering a narrower question it never assessed.
+
+## Decide when evidence needs another check
+
+The date of a record is useful only alongside what it covers. A recent message for a different quantity can be unsuitable; an older technical assessment may still be relevant if its scope and conditions remain applicable. This note does not define a universal expiry period.
+
+For the fictional booklet request, propose these review prompts:
+
+1. **Scope:** which PDF version, quantity, output conditions, production period, and delivery commitment does the evidence address?
+2. **Change:** what could invalidate the conclusion before use? Examples include a revised PDF, another booking using the same production slot, or a changed print facility.
+3. **Recheck:** which decision needs an updated confirmation, who reviews it, and what remains unknown until then?
+
+Keep the original date and record the reason for another check. A later email does not by itself demonstrate a reserved slot. For this exercise, seek updated confirmation after the final scope is agreed and review any changed conditions before relying on it. The category-specific review window still needs testing against observed evidence.
+
+## Check whether alternatives share a constraint
+
+The [UK resilience framework](#reference-uk-supply-resilience) connects diversification with supply-chain visibility. The dependency check below is this note's proposed interpretation; the framework does not establish it as a qualification method.
+
+In a **separate fictional follow-up**, suppose A and B both declare that production uses the same invented Print Shop P during the required period. This changes the exercise's information; it does not turn the original worksheet's unknown dependency into verified evidence.
+
+Two supplier names now point to one declared production source. If that source loses its slot, changing the commercial contact might not restore capacity. Separate the number of registered entities, the number of options with evidence for this request, and the production constraints they share. Do not add their promised capacities as independent capacity without checking the underlying allocation.
+
+The next question is whether another option uses a different available production source for the same requirement and period. Even a different facility may share paper, transport, or other constraints. Record the boundary of the check; absence of a disclosed dependency is not proof that none exists.
+
+<Callout title="One possible decision sentence">
+
+A and B are options to investigate. Current evidence does not confirm the final proof, production allocation, or delivery. In the separate follow-up scenario, both declare Print Shop P, so their two names do not establish independent production capacity. Request scope-specific confirmation and investigate a feasible alternative source; keep the remaining assumptions visible.
+
+</Callout>
+
+## Limits and next review
+
+A last-order date measures transaction history, not current capability. Avoid using one inactivity window across categories without reviewing demand cycles. The exposure question also needs evidence beyond the supplier register: two names may still depend on one vehicle owner or upstream facility.
+
+Try the review on a sanitized category example, record which evidence can actually be obtained, and document unanswered questions before treating the alternatives as available.
+
+## Try the evidence review
+
+Start with the [filled anonymous-print example](/resources/supplier-capability-review/example), then use the blank worksheet for the added contrast:
+
+1. Separate a directory status, a similar proof, and a period-specific capacity statement. Write what each does and does not support.
+2. Name one scope change and one capacity change that would justify another check. Explain why a fixed inactivity window would not resolve them.
+3. Apply the separate Print Shop P follow-up. Write one question about shared production and one about another possible common dependency.
+4. Write a decision sentence with the known evidence, missing evidence, and next check. A reasonable answer can retain both options while declining to call their capacity confirmed or independent.
+
+Then read [Data definitions before dashboards](/articles/data-definitions-before-dashboards): if a chart shows an option count, define which evidence states are included and disclose the unresolved coverage. This exercise tests your explanation; it is not evidence that the worksheet improves a sourcing outcome.
+
+## Key takeaways
+
+Separate the supplier register from confirmed supply options. Review one category with time-bound evidence before making a rationalization decision; reducing supplier count alone does not prove an improvement.

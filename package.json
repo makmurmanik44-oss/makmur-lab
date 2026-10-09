@@ -1,0 +1,51 @@
+{
+  "name": "makmur-lab",
+  "version": "0.2.0-alpha.2",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build --webpack",
+    "build:clean": "node scripts/clean-build.mjs && npm run build",
+    "prebuild": "npm run content:check && npm run resources:sync",
+    "postbuild": "npm run export:check",
+    "export:check": "node --import tsx scripts/export-check.ts",
+    "content:check": "node --import tsx scripts/content-check.ts",
+    "review:report": "node --import tsx scripts/review-report.ts",
+    "resources:sync": "node --import tsx scripts/resource-sync.ts",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "typecheck": "next typegen && tsc --noEmit",
+    "lint": "eslint .",
+    "format:check": "prettier --check src content docs scripts tests *.json *.mjs *.ts",
+    "format": "prettier --write src content docs scripts tests *.json *.mjs *.ts"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "^5.2.8",
+    "@fontsource-variable/source-serif-4": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.2.8",
+    "@mdx-js/mdx": "^3.1.1",
+    "github-slugger": "^2.0.0",
+    "lucide-react": "1.52.0",
+    "next": "16.3.8",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "remark-gfm": "^4.0.1",
+    "server-only": "^0.0.1",
+    "yaml": "^2.9.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/mdast": "^4.0.4",
+    "@types/node": "^22.19.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "16.3.8",
+    "postcss": "^8.5.6",
+    "prettier": "^3.6.2",
+    "tailwindcss": "4.3.3",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
+}

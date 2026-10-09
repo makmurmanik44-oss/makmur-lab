@@ -1,102 +1,73 @@
+# Makmur Lab Knowledge Alpha
 
-# Makmur Lab v2.1
+A living knowledge library for procurement, supply chain, industrial engineering, and continuous learning. Makmur is the curator; knowledge is the product. SLGP is a separate product and is outside this repository's application scope.
 
-This version adds a homepage background image system to the hero section.
+This branch develops the knowledge-first Alpha from the approved Development Handoff v1.0, including the Foundation, Living Cover, MDX content engine, working resources, and library discovery. It is not completion of the full v1.0 MVP.
 
-## Included
-- multi-page website
-- dark mode
-- responsive design
-- homepage with visual background hero
-- placeholder asset that can be swapped later
+## Development
 
-## Files
-- index.html
-- about.html
-- projects.html
-- notes.html
-- styles.css
-- script.js
-- assets/hero-background.svg
-- HERO_BACKGROUND_GUIDE.md
+Requirements: Node.js 22 or later and npm.
 
-## Recommended next step
-Replace the placeholder background with:
-1. a professional personal photo,
-2. a workspace image, or
-3. an industrial / systems visual.
+```sh
+npm ci
+npm run dev
+```
 
-Then continue with the flagship project page:
-Procurement Control Tower.
+```sh
+npm run lint
+npm run typecheck
+npm run format:check
+npm test
+npm run build
+```
 
+The build generates static files in `out/`. Build-time variables:
 
-## v2.2 additions
-- Homepage visual direction changed to a dark professional workspace / desk photo.
-- Added `procurement-control-tower.html` as the first full flagship case study.
-- The flagship case includes:
-  - context
-  - problem framing
-  - hypothesis
-  - system architecture
-  - module breakdown
-  - before / after decision flow
-  - personal role
-  - lessons learned
-  - next-version roadmap
-- Added `IMAGE_CREDITS.md`.
+- `NEXT_PUBLIC_BASE_PATH`: empty for a root deployment; `/makmur-lab/alpha` for the isolated Pages preview.
+- `NEXT_PUBLIC_SITE_URL`: the absolute URL of the same deployment, without a trailing slash.
 
-## Recommended next content improvement
-Use anonymized screenshots / mockups of the actual dashboard in the Procurement Control Tower case study.
+Vercel can build this static Next.js application from this branch with the root path configuration. Final production hosting remains pending verification; the current public HTML release stays available.
 
+## Content and components
 
-## v2.3 additions
-- Added complete source files `styles.css` and `script.js`.
-- Added visual evidence assets for the flagship case study:
-  - `assets/control-tower-dashboard-mockup.svg`
-  - `assets/control-tower-architecture.svg`
-  - `assets/control-tower-flow.svg`
-- Embedded those visuals into `procurement-control-tower.html`.
-- Strengthened the flagship page so it reads more like a public-safe professional case study than a text-only project page.
+`content/articles/*.mdx` supplies validated metadata, article bodies, references, and learning relationships. One build-time loader supplies the public pages, search, and Atlas. `src/content/taxonomy.ts` retains the approved domains and reading path. Reading time and section anchors derive from the body. `npm run content:check` validates every note, including unpublished drafts; public output includes only published notes.
 
-## Why these visuals are mockups
-The goal is to communicate structure and thinking without exposing internal supplier data, spend details, or company-sensitive information.
+Use [the authoring guide](docs/content-authoring.md) and `content/templates/learning-note.mdx` to add a note. The build runs content checks automatically. Arbitrary JavaScript, raw HTML, and unapproved JSX are not accepted in article files.
 
+`src/components/ui` is a small semantic primitive layer. Shared layout, home, card, and discovery components use the same design tokens from `src/app/globals.css`.
 
-## v2.4 Release Candidate
+[Editorial photographs](docs/editorial-photos.md) extend the existing port cover to homepage starting questions, content cards, material intros, and selected note headings. Local responsive WebP variants, credited sources, dark overlays, and a white print view keep the visual context separate from evidence and long-form reading.
 
-This release focuses on credibility and deployment readiness.
+`src/content/resources.ts` supplies four working aids with printable detail pages, editable Markdown downloads, and links to their supporting articles. Run `npm run resources:sync` after editing a definition; the production build also regenerates the downloads. See [resource authoring](docs/resource-authoring.md).
 
-### Flagship case improvements
-- Added real-world constraints.
-- Sharpened personal role and ownership.
-- Added Impact & Evidence section.
-- Explicitly separates demonstrated outcomes from metrics that are not yet measured.
-- Added public confidentiality statement.
+Four worksheets now offer optional [browser-local learning drafts](docs/worksheet-drafts.md). Readers can answer the existing prompts, retain unresolved checks, return after reload, download their own responses as Markdown, and print the current draft. Drafts stay separate from the published examples and Search. Storage limits and cross-tab conflicts have explicit recovery choices.
 
-### Publish-readiness
-- Added favicon.
-- Added social-card visual asset.
-- Added Open Graph / Twitter text metadata.
-- Added `404.html`.
-- Added `robots.txt`.
-- Added `.nojekyll`.
-- Added `netlify.toml`.
-- Added `DEPLOYMENT.md`.
-- Added `PRE_PUBLISH_CHECKLIST.md`.
+Drafts also have separate JSON backup files for manual transfer to another browser/device. Restore checks the current worksheet and questions, shows a readable replacement preview, and requires confirmation. Local edits and another tab's changes are checked before replacement. Markdown/PDF downloads remain reading copies; this feature adds no account or automatic sync.
 
-No final custom-domain URLs are hard-coded yet because the final domain has not been confirmed.
+Search indexes published note bodies and worksheet questions together. Readers can filter by domain/content type, follow relevant excerpts, and share a URL that restores the query and filters. See [library discovery](docs/discovery.md) for matching and navigation behavior.
 
+Knowledge also supports shareable reading lists: full-note search, domain and reading-level filters, recommended/latest/title/shortest-read order, body excerpts, and visible update dates. Reload and browser history restore the same list, and readers can transfer their text/domain to whole-library Search.
 
-## v2.5 — Live Deploy Ready
+Readers can save published learning notes from homepage/catalog cards and note pages, then return through `/saved/`. Saves are local to the current browser, newest-first, and synchronized between its tabs. Storage failures fall back to the open tab with visible guidance. See [saved notes](docs/saved-notes.md) for behavior and limits.
 
-The repository now includes:
+Four fictional filled examples answer every worksheet question and include reasoning, limitations, open items, printable pages, and separate Markdown downloads. Search also indexes their answers. `/review` lists planned editorial checkpoints and actionable knowledge gaps; `npm run review:report` supports the same workflow from the repository. See [content review](docs/development/content-review.md). Neither examples nor dates change maturity automatically.
 
-`.github/workflows/pages.yml`
+Knowledge Atlas includes two [reading guides](docs/reading-guides.md), with step rationale, reflection prompts, and worksheet/example links. Articles display their position and previous/next notes in each applicable connection. Search also finds the guides as a distinct content type. Reading-time estimates derive from the included note bodies; this feature does not track reading progress.
 
-This workflow deploys the static website to GitHub Pages from the `main` branch using GitHub's Pages actions.
+The homepage now offers a question-based starting point for each existing guide. The cover leads to this section, which displays the guide's learning aim, note count, and derived reading estimate. Starting questions share the guide catalog and appear in guide overviews and Search. No additional learning path or progress system is introduced.
 
-See:
+Scope Clarity retains its URL, original explanations, four-question aid, worksheet, and filled example. Its expanded note connects an original fictional booklet-offer comparison to explicit acceptance prompts, change questions, and a short exercise with one possible answer. The UN source was rechecked on 7 October; both practical-validation gaps remain open.
 
-`FIRST_LIVE_DEPLOY.md`
+The supplier-capability note now connects the same fictional requirement to an evidence comparison, context-based recheck prompts, a separate shared-production follow-up, and a decision exercise. Its opening distinguishes the scope of an organisation's approval process rather than assuming approval is administrative only. UN/UNGM sources were rechecked and UK resilience guidance is linked with explicit limits. The original worksheet keeps its unknown dependency; the added scenario is separate. Both practical gaps remain open.
 
-for the exact first-publication steps.
+A [proposed reader trial](docs/development/reader-trial.md) prepares three observable tasks across the existing homepage, guides, notes, resources, and saved collection. It includes a blank observation record and distinguishes navigation, understanding, and field validation. No reader session or outcome is claimed.
+
+Learning Journal now uses one [structured reflection catalog](docs/journal-authoring.md) for its stream, individual pages, homepage preview, search, and sitemap. Three reflections state their basis, limitations, questions, and related reading. The original foundation reflection is retained; the two new entries describe existing library development, not field experience or measured outcomes. Journal publication is separate from the notes' maturity.
+
+The existing Procurement Control Tower [learning case](docs/case-authoring.md) now uses a typed catalog for its preserved detail URL, case listing, homepage preview, Search, and sitemap. It retains the original explanations and two sanitized visuals while making design tradeoffs, illustrative evidence, proposed checks, questions, and an exercise explicit. The data-definition note links back to the case. No deployment or measured impact is claimed.
+
+## Quality and status
+
+The four Alpha notes are Developing and identify specific evidence gaps. Reviewed UN, UNGM, W3C, UK Government, and ASQ references explain their support and limitations; field validation and purchasing-specific metric review remain open. The worksheets are original working aids, not validated SOPs. Images and the adapted case use public or sanitized material. Preview metadata is noindex. Analytics is not installed.
+
+See `docs/adr/001-knowledge-alpha-migration.md` and `docs/development/changelog.md` for migration and scope decisions.

@@ -1,0 +1,122 @@
+---
+slug: data-definitions-before-dashboards
+title: Data definitions before dashboards
+summary: Start with the decision and the meaning of a metric before choosing how
+  to visualize it.
+domain: technology
+topic: Information foundations
+tags:
+  - Data
+  - Metrics
+  - Decision visibility
+difficulty: Foundation
+knowledgeStatus: Learning
+contentMaturity: Developing
+updated: 2026-10-06
+lastReviewed: 2026-10-06
+nextReview: 2026-11-06
+featured: false
+prerequisites: []
+relatedKnowledge:
+  - scope-clarity-before-sourcing
+  - map-the-process-before-improving-it
+references:
+  - id: w3c-dqv
+    title: "Data on the Web Best Practices: Data Quality Vocabulary"
+    url: https://www.w3.org/TR/vocab-dqv/
+    publisher: W3C — Working Group Note
+    accessed: 2026-10-06
+    note: Sections 3 and 4 distinguish a quality metric from a measurement and
+      describe metadata for judging fitness for purpose. This supports the
+      general need to describe a measure; it does not validate the procurement
+      definition card or prescribe supplier activity windows.
+  - id: uk-data-quality
+    title: The Government Data Quality Framework
+    url: https://www.gov.uk/government/publications/the-government-data-quality-framework/the-government-data-quality-framework
+    publisher: UK Government — Government Data Quality Hub
+    accessed: 2026-10-06
+    note:
+      Data quality dimensions and user-needs sections distinguish completeness,
+      timeliness, and accuracy and discuss fitness for purpose. This is guidance
+      for input-data quality, not validation of purchasing KPIs or this card.
+revisionHistory:
+  - date: 2026-10-05
+    note:
+      Initial Alpha learning note. Examples are fictional and calculations are
+      not operational business rules.
+  - date: 2026-10-06
+    note: Migrated to MDX and added related W3C reading with its scope and
+      limitations. Field validation remains open.
+  - date: 2026-10-06
+    note: Added primary UK data-quality guidance and separated definition review
+      from input-data checks using a fictional example.
+  - date: 2026-10-06
+    note: Added actionable gap criteria and a planned editorial checkpoint;
+      linked a fictional worksheet example without closing evidence gaps.
+published: true
+knowledgeDebt:
+  - id: definition-trial
+    description: Test the proposed definition card against a real management
+      question using sanitized evidence.
+    priority: High
+    nextCheck: Agree one decision and reproduce a sample calculation from
+      safely sanitized underlying records; record missing coverage and exceptions.
+    closeWhen: A human reviewer confirms reproducible rules, documents sample
+      differences and limits, and revises the card where needed.
+  - id: purchasing-sources
+    description: Add references specific to purchasing metrics and review their limitations.
+    priority: Normal
+    nextCheck: Locate primary purchasing-metric definitions and compare their
+      populations, events, exclusions, and intended decisions with this note.
+    closeWhen: Relevant sources and exact claim boundaries are added, with
+      differences and applicability limits recorded in the revision history.
+---
+
+## Executive summary
+
+Two charts can be internally correct while telling different stories because they use different definitions. A useful metric needs a management question, a scope, a calculation, a source, and an owner.
+
+## Context
+
+Terms such as active supplier, open order, and realized spend are not self-explanatory. Their meaning depends on time windows, transaction status, and whether taxes or cancellations are included.
+
+## A metric definition card
+
+Capture the definition alongside the data model so it can be reviewed rather than recreated in each chart.
+
+1. Question: which decision should this metric support?
+2. Definition: what is counted, over which period, and with which exclusions?
+3. Source: which records support the calculation?
+4. Ownership: who maintains the definition and investigates exceptions?
+
+## Practical example
+
+In a fictional dashboard, active supplier could mean one order in 3, 6, or 12 months. Those windows answer different questions. Label the chosen window and test it against the category's normal purchasing cycle before treating a supplier as dormant.
+
+## Check the records as well as the definition
+
+The [Government Data Quality Framework](#reference-uk-data-quality) distinguishes completeness, timeliness, and accuracy. Having all required records does not mean their values match reality. Which checks matter depends on the intended use.
+
+For the fictional active-supplier metric, this note proposes the following checks:
+
+| Check        | Example question                                                           |
+| ------------ | -------------------------------------------------------------------------- |
+| Completeness | Are orders from every included site present, with a supplier identifier?   |
+| Timeliness   | Through which date is the extract current?                                 |
+| Accuracy     | Does a sampled order's supplier and date agree with its underlying record? |
+
+Record the extract cutoff and any known missing sites beside the result. These purchasing examples are an interpretation of the framework, not prescribed KPI rules. Even a clean extract still needs an agreed definition of an included order.
+
+## Key takeaways
+
+Review one metric definition before adding another chart. Automation can make a definition repeatable; it cannot establish that the definition is appropriate.
+
+## Related reading
+
+The [W3C Data Quality Vocabulary](#reference-w3c-dqv) distinguishes a metric from a measurement and describes metadata that helps a reader assess fitness for purpose. This Working Group Note offers a useful conceptual connection. Applying that distinction to a purchasing dashboard is an interpretation in this developing note; the source does not prescribe a procurement metric.
+
+<Callout title="Scope of the reference">
+
+The definition card above is a proposed working aid. The references help explain measurement and data quality; they do not establish that the purchasing examples or chosen activity windows have been validated.
+
+</Callout>
